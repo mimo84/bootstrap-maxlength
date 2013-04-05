@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bootstrap-maxlength : This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Bootstrap-maxlength</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mimo84/bootstrap-maxlength">View on GitHub</a>
+
+          <h1 id="project_title">Bootstrap-maxlength</h1>
+          <h2 id="project_tagline">This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mimo84/bootstrap-maxlength/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mimo84/bootstrap-maxlength/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Bootstrap MaxLength</h1>
+
+<p>This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. 
+This plugin uses the HTML5 attribute "maxlength" to work.</p>
+
+<p>The indicator badge show up on focusing on the element, and disappear when the focus is lost.</p>
+
+<h2>Configurable options</h2>
+
+<ul>
+<li>alwaysShow: if true the threshold will be ignored and the remaining length indication will be always showing up while typing or on focus on the input. Default: false.</li>
+<li>threshold: this is a number indicating how many chars are left to start displaying the indications. Default: 10.</li>
+<li>warningClass: it's the class of the element with the indicator. By default is the bootstrap "badge badge-info" but can be changed to anything you'd like.</li>
+<li>limitReachedClass: it's the class the element gets when the limit is reached. Default is "badge badge-warning".</li>
+</ul><h2>Examples</h2>
+
+<p>Basic implementation:</p>
+
+<pre><code>$('input[maxlength]').maxlength();
+</code></pre>
+
+<p>Change the threshold value:</p>
+
+<pre><code>$('input.className').maxlength({
+    threshold: 20
+});
+</code></pre>
+
+<p>An example will all the configurable options:</p>
+
+<pre><code>$('input.className').maxlength({
+      alwaysShow: true,
+          threshold: 10,
+          warningClass: "badge badge-info",
+          limitReachedClass: "badge badge-warning"
+});
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bootstrap-maxlength maintained by <a href="https://github.com/mimo84">mimo84</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-1714199-17");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
