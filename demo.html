@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Bootstrap-maxlength : This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work." />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/javascripts/google-code-prettify/prettify.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/stylesheet.css">
 
-    <title>Bootstrap-maxlength - Demo | Mimo84</title>
+    <title>Bootstrap-maxlength | Mimo84</title>
   </head>
 
   <body>
@@ -42,7 +42,9 @@
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input[maxlength]').maxlength();</code>
 </pre>
-				<p>Change the threshold value:</p>
+				<h3>Change the threshold value</h3>
+				<p>The plugin will show the indicator for remaining chars since the number of chars left are 20.</p>
+				<input type="text" maxlength="25" name="thresholdconfig" id="thresholdconfig" />
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input.className').maxlength({
     threshold: 20
@@ -50,13 +52,26 @@
 </code>
 </pre>
 
-				<p>An example will all the configurable options:</p>
+				<h3>Few options </h3>
+				<input type="text" maxlength="25" name="moreoptions" id="moreoptions" />
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input.className').maxlength({
             alwaysShow: true,
             threshold: 10,
-            warningClass: "badge badge-info",
-            limitReachedClass: "badge badge-warning"
+            warningClass: "label label-success",
+            limitReachedClass: "label label-important"
+        });
+</code>
+</pre>
+
+				<h3>We can also set some text in at the beginning and at the end of the idicator. The separator can be also customized:</h3>
+				<input type="text" maxlength="25" name="alloptions" id="alloptions" />
+<pre class="prettyprint">
+<code class="lang-js linenums">$('input.className').maxlength({
+            alwaysShow: true,
+            threshold: 10,
+            warningClass: "label label-success",
+            limitReachedClass: "label label-important"
         });
 </code>
 </pre>
@@ -78,6 +93,27 @@
       <script>
 	   $(document).ready(function(){
            $('input#defaultconfig').maxlength()
+					 $('input#thresholdconfig').maxlength({
+							threshold: 20
+					 });
+					 $('input#moreoptions').maxlength({
+						alwaysShow: true,
+            threshold: 10,
+            warningClass: "label label-success",
+            limitReachedClass: "label label-important"
+					  });
+						$('input#alloptions').maxlength({
+							alwaysShow: true,
+							threshold: 10,
+							warningClass: "label label-success",
+							limitReachedClass: "label label-important",
+							separator: ' of ',
+							preText: 'You have ',
+							postText: ' chars remaining.'
+					  });
+						
+						
+						
 	   });
 	   </script>
        <script type="text/javascript">
