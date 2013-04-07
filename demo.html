@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/javascripts/google-code-prettify/prettify.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/stylesheet.css">
 
-    <title>Bootstrap-maxlength | Mimo84</title>
+    <title>Bootstrap-maxlength - Demo | Mimo84</title>
   </head>
 
   <body>
@@ -34,24 +34,11 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>Bootstrap MaxLength</h1>
-
-				<p>This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. 
-				This plugin uses the HTML5 attribute "maxlength" to work.</p>
-
-				<p>The indicator badge show up on focusing on the element, and disappear when the focus is lost.</p>
-
-				<h2>Configurable options</h2>
-
-				<ul>
-					<li>alwaysShow: if true the threshold will be ignored and the remaining length indication will be always showing up while typing or on focus on the input. Default: false.</li>
-					<li>threshold: this is a number indicating how many chars are left to start displaying the indications. Default: 10.</li>
-					<li>warningClass: it's the class of the element with the indicator. By default is the bootstrap "badge badge-info" but can be changed to anything you'd like.</li>
-					<li>limitReachedClass: it's the class the element gets when the limit is reached. Default is "badge badge-warning".</li>
-				</ul>
 				
-				<h2>Examples</h2>
+				<h2>Demo</h2>
 
-				<p>Basic implementation:</p>
+				<h3>Default usage</h3>
+                <input type="text" maxlength="25" name="defaultconfig" id="defaultconfig" />
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input[maxlength]').maxlength();</code>
 </pre>
@@ -87,7 +74,12 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 			<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-
+      <script src="assets/javascripts/bootstrap-maxlength.js"></script>
+      <script>
+	   $(document).ready(function(){
+           $('input#defaultconfig').maxlength()
+	   });
+	   </script>
        <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
