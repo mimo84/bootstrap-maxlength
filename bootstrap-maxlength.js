@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.0.1
+ * bootstrap-maxlength.js v1.1
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,10 @@
                 alwaysShow: false, // if true the indicator it's always shown.
                 threshold: 10, // Represents how many chars left are needed
                 warningClass: "badge badge-info",
-                limitReachedClass: "badge badge-warning"
+                limitReachedClass: "badge badge-warning",
+								separator: ' / ',
+								preText: '',
+								postText: ''
             };
 
             if($.isFunction(options) && !callback) {
@@ -109,7 +112,7 @@
              */
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
 
-                maxLengthIndicator.html(maxLengthCurrentInput + '/' + remaining);
+                maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput,remaining));
 
                 if ( remaining ) {
                     if(charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
@@ -121,6 +124,23 @@
                     showRemaining(maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass))
                 }
             }
+						/**
+						 * This function updates the value in the indicator
+						 *  
+						 * @param maxlengthIndicator
+						 * @return String
+						 */
+						function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
+							var output = '';
+							if(options.preText) {
+								output += options.preText;
+							} 
+							output = output + typedChars + options.separator + maxLengthThisInput;
+							if(options.postText) {
+								output += options.postText;
+							} 
+							return output
+						}
 
 
 
@@ -129,14 +149,14 @@
                 var currentInput = $(this),
                     maxLengthCurrentInput = currentInput.attr('maxlength') || currentInput.attr('size'),
                     maxLengthIndicator = $('<span></span>').css({
-																								position:'absolute',
                                                 display:'none',
+                                                position:'absolute',
                                                 whiteSpace:'nowrap',
                                                 zIndex: 999
-                                            }).html('0 / ' + maxLengthCurrentInput)
+                                            }).html(updateMaxLengthHTML(maxLengthCurrentInput,'0'))
 
                 documentBody.append(maxLengthIndicator)
-
+                
                 currentInput.focus(function() {
                     var currentInputTopPx = currentInput.offset().top + currentInput.outerHeight(),
                         currentInputLeftPx = currentInput.offset().left + currentInput.outerWidth(),
