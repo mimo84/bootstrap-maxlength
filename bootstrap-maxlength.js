@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.0
+ * bootstrap-maxlength.js v1.0.1
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@
     $.fn.extend({
         maxlength: function(options,callback) {
 
-            var document = $('body');
+            var documentBody = $('body');
 
             var defaults = {
                 alwaysShow: false, // if true the indicator it's always shown.
@@ -128,13 +128,14 @@
 
                 var currentInput = $(this),
                     maxLengthCurrentInput = currentInput.attr('maxlength') || currentInput.attr('size'),
-                    maxLengthIndicator = $('<span class="absolute smallFont"></span>').css({
+                    maxLengthIndicator = $('<span></span>').css({
+																								position:'absolute',
                                                 display:'none',
                                                 whiteSpace:'nowrap',
                                                 zIndex: 999
                                             }).html('0 / ' + maxLengthCurrentInput)
 
-                document.append(maxLengthIndicator)
+                documentBody.append(maxLengthIndicator)
 
                 currentInput.focus(function() {
                     var currentInputTopPx = currentInput.offset().top + currentInput.outerHeight(),

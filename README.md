@@ -4,6 +4,9 @@ Bootstrap MaxLength
 This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. 
 This plugin uses the HTML5 attribute "maxlength" to work.
 
+[Project home page](http://mimo84.github.io/bootstrap-maxlength)
+[Demo](http://mimo84.github.io/bootstrap-maxlength/demo.html)
+
 The indicator badge show up on focusing on the element, and disappear when the focus is lost.
 
 ## Configurable options
@@ -30,9 +33,9 @@ Change the threshold value:
 An example will all the configurable options:
 
 	$('input.className').maxlength({
-		alwaysShow: true,
-    threshold: 10,
-    warningClass: "badge badge-info",
-    limitReachedClass: "badge badge-warning"
+		  alwaysShow: true,
+      threshold: 10,
+      warningClass: "badge badge-info",
+      limitReachedClass: "badge badge-warning"
 	});
 	
