@@ -64,15 +64,19 @@
 </code>
 </pre>
 
-				<h3>We can also set some text in at the beginning and at the end of the idicator. The separator can be also customized:</h3>
+				<h3>Customize the options</h3>
+				<p>This is a complete example with all the options configured.</p>
 				<input type="text" maxlength="25" name="alloptions" id="alloptions" />
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input.className').maxlength({
-            alwaysShow: true,
-            threshold: 10,
-            warningClass: "label label-success",
-            limitReachedClass: "label label-important"
-        });
+	alwaysShow: true,
+	threshold: 10,
+	warningClass: "label label-success",
+	limitReachedClass: "label label-important",
+	separator: ' of ',
+	preText: 'You have ',
+	postText: ' chars remaining.'
+});
 </code>
 </pre>
             </section>
@@ -111,9 +115,6 @@
 							preText: 'You have ',
 							postText: ' chars remaining.'
 					  });
-						
-						
-						
 	   });
 	   </script>
        <script type="text/javascript">
