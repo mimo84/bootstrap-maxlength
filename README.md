@@ -1,11 +1,9 @@
-Bootstrap MaxLength
-===================
+# [Bootstrap MaxLength](http://mimo84.github.com/bootstrap-maxlength/)
+
 
 This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. 
 This plugin uses the HTML5 attribute "maxlength" to work.
 
-[Project home page](http://mimo84.github.io/bootstrap-maxlength)
-[Demo](http://mimo84.github.io/bootstrap-maxlength/demo.html)
 
 The indicator badge show up on focusing on the element, and disappear when the focus is lost.
 
@@ -15,7 +13,9 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * threshold: this is a number indicating how many chars are left to start displaying the indications. Default: 10.
  * warningClass: it's the class of the element with the indicator. By default is the bootstrap "badge badge-info" but can be changed to anything you'd like.
  * limitReachedClass: it's the class the element gets when the limit is reached. Default is "badge badge-warning".
- 
+ * separator: represents the separator between the number of typed chars and total number of available chars. Default is "/".
+ * preText: is a string of text that can be outputted in front of the indicator. preText is empty by default.
+ * postText: is a string outputted after the indicator. postText is empty by default.
 
 ## Examples
 
