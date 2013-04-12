@@ -176,8 +176,10 @@
       function place(currentInput, maxLengthIndicator) {
         var pos = getPosition(currentInput),
           offset = currentInput.offset(),
+          inputOuter = currentInput.outerWidth(),
+          outerWidth = maxLengthIndicator.outerWidth(),
           actualWidth = maxLengthIndicator.width(),
-          actualHeight = maxLengthIndicator.height()
+          actualHeight = maxLengthIndicator.height();
 
         switch (options.placement) {
           case 'bottom':
@@ -192,10 +194,23 @@
           case 'right':
             maxLengthIndicator.css({top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width})
             break;
+          case 'bottom-right':
+            maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width})
+            break;
+          case 'top-right':
+            maxLengthIndicator.css({top: offset.top - actualHeight, left: offset.left + inputOuter})
+            break;
+          case 'top-left':
+            maxLengthIndicator.css({top: offset.top - actualHeight, left: offset.left - outerWidth})
+            break;
+          case 'bottom-left':
+            maxLengthIndicator.css({top: offset.top + currentInput.outerHeight(), left: offset.left - outerWidth})
+            break;
+          case 'centered-right':
+            maxLengthIndicator.css({top: offset.top + (actualHeight / 2), left: offset.left + inputOuter - outerWidth - 3})
+            break; 
         }   
       }
-        
-
 
       return this.each(function(){
 
