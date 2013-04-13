@@ -64,8 +64,9 @@
 </code>
 </pre>
 
-				<h2>Customize the options</h2>
-				<p>This is a complete example with all the options configured.</p>
+				<h2>All the options</h2>
+				<p>This is a complete example where all the options configured for the bootstrap-maxlength counter are setted.</p>
+				<p>Please note: if the <code class="prettyprint lang-js">alwaysShow</code> option is enabled, the <code class="prettyprint lang-js">threshold</code> option is ignored.</p>
 				<input type="text" maxlength="25" name="alloptions" id="alloptions" />
 <pre class="prettyprint">
 <code class="lang-js linenums">$('input.className').maxlength({
@@ -75,7 +76,30 @@
 	limitReachedClass: "label label-important",
 	separator: ' of ',
 	preText: 'You have ',
-	postText: ' chars remaining.'
+	postText: ' chars remaining.',
+	validate: true
+});
+</code>
+</pre>
+
+				<h2>What about textareas?</h2>
+				<p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
+				<textarea id="textarea" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
+<pre class="prettyprint">
+<code class="lang-js linenums">$('textarea#textarea').maxlength({
+    alwaysShow: true
+});
+</code>
+</pre>
+
+        <h2>Let's play with the position</h2>
+        <p>The field counter can be positioned at the top, bottom, left or right. You can also place the maxlength indicator on the corners: bottom-right, top-right, top-left, bottom-left and centered-right.<br />
+          All you need to do is specify the <code>placement</code> option, with one of those strings. If none is specified, the positioning will be defauted to 'bottom'.</p>
+        <input type="text" maxlength="25" name="placement" id="placement" />
+<pre class="prettyprint">
+<code class="lang-js linenums">$('input#placement').maxlength({
+    alwaysShow: true,
+    placement: 'top-right'
 });
 </code>
 </pre>
@@ -92,8 +116,8 @@
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
-			<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-      <script src="assets/javascripts/bootstrap-maxlength.js"></script>
+			<script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+      <script src="https://raw.github.com/mimo84/bootstrap-maxlength/master/bootstrap-maxlength.js"></script>
       <script>
 	   $(document).ready(function(){
            $('input#defaultconfig').maxlength()
@@ -102,19 +126,25 @@
 					 });
 					 $('input#moreoptions').maxlength({
 						alwaysShow: true,
-            threshold: 10,
             warningClass: "label label-success",
             limitReachedClass: "label label-important"
 					  });
 						$('input#alloptions').maxlength({
 							alwaysShow: true,
-							threshold: 10,
 							warningClass: "label label-success",
 							limitReachedClass: "label label-important",
 							separator: ' of ',
 							preText: 'You have ',
-							postText: ' chars remaining.'
+							postText: ' chars remaining.',
+							validate: true
 					  });
+						$('textarea#textarea').maxlength({
+								alwaysShow: true
+						});
+            $('input#placement').maxlength({
+              alwaysShow: true,
+              placement: 'top-left'
+            });
 	   });
 	   </script>
        <script type="text/javascript">
