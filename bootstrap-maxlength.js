@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.1
+ * bootstrap-maxlength.js v1.3.2
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -227,14 +227,14 @@
         
         currentInput.focus(function() {
 
-          var remaining = remainingChars(currentInput, maxLengthCurrentInput)
-          place(currentInput,maxLengthIndicator);
+          var remaining = remainingChars(currentInput, maxLengthCurrentInput);
           
           maxLengthIndicator.css({
             zIndex: 99999
           });
 
-          manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator)
+          manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
+          place(currentInput,maxLengthIndicator);
 
         });
 
@@ -245,9 +245,9 @@
          currentInput.keyup(function(){
           var remaining = remainingChars(currentInput, maxLengthCurrentInput);
           if ( options.validate && remaining < 0 ) {
-            return false
+            return false;
           } else {
-            manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator)
+            manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
          });
       });
