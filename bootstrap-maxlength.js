@@ -214,10 +214,20 @@
                 }
             }
 
+            /**
+             *  This function retrieves the maximum length of currentInput
+             *
+             *  @param currentInput
+             *  @return {number}
+             *
+             */
+            function getMaxLength(currentInput){
+                return currentInput.attr('maxlength') || currentInput.attr('size');
+            }
             return this.each(function() {
 
                 var currentInput = $(this),
-                    maxLengthCurrentInput = currentInput.attr('maxlength') || currentInput.attr('size'),
+                    maxLengthCurrentInput = getMaxLength(currentInput),
                     maxLengthIndicator = $('<span></span>').css({
                         display: 'none',
                         position: 'absolute',
@@ -228,7 +238,7 @@
                 documentBody.append(maxLengthIndicator);
 
                 currentInput.focus(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput);
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput));
                     maxLengthIndicator.css({
                         zIndex: 99999
                     });
@@ -242,7 +252,7 @@
                 });
 
                 currentInput.keyup(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput),
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput)),
                         output = true;
                     if (options.validate && remaining < 0) {
                         output = false;
