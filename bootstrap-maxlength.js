@@ -49,7 +49,10 @@
           * @return {number}
           */
             function inputLength(input) {
-                return input.val().length;
+              var text = input.val();
+              var matches = text.match(/\n/g);
+              var breaks = matches ? matches.length : 0;
+              return input.val().length;
             }
 
           /**
