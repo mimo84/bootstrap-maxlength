@@ -48,12 +48,12 @@
           * @param input
           * @return {number}
           */
-            function inputLength(input) {
+          function inputLength(input) {
               var text = input.val();
               var matches = text.match(/\n/g);
               var breaks = matches ? matches.length : 0;
-              return input.val().length;
-            }
+              return input.val().length+breaks;
+          }
 
           /**
            * Return true if the indicator should be showing up.
