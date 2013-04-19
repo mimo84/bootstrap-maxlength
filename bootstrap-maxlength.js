@@ -142,7 +142,7 @@
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
                 maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, remaining));
 
-                if (remaining) {
+                if (remaining>0) {
                     if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
                         showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
                     } else {
@@ -263,6 +263,12 @@
                         manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     }
                     return output;
+                });
+                currentInput.keydown(function(event){
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput));
+                    if(remaining<=0 && (event.keyCode!=46 && event.keyCode!=8)){
+                        return false;
+                    }
                 });
             });
         }
