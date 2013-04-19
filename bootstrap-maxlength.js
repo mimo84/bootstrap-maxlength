@@ -48,9 +48,12 @@
           * @param input
           * @return {number}
           */
-            function inputLength(input) {
-                return input.val().length;
-            }
+          function inputLength(input) {
+              var text = input.val();
+              var matches = text.match(/\n/g);
+              var breaks = matches ? matches.length : 0;
+              return input.val().length+breaks;
+          }
 
           /**
            * Return true if the indicator should be showing up.
@@ -139,7 +142,7 @@
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
                 maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, remaining));
 
-                if (remaining) {
+                if (remaining>0) {
                     if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
                         showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
                     } else {
@@ -260,6 +263,12 @@
                         manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     }
                     return output;
+                });
+                currentInput.keydown(function(event){
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput));
+                    if(remaining<=0 && (event.keyCode!=46 && event.keyCode!=8)){
+                        return false;
+                    }
                 });
             });
         }
