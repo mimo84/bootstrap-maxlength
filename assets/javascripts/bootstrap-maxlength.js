@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.2
+ * bootstrap-maxlength.js v1.3.3
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,10 @@
           * @return {number}
           */
             function inputLength(input) {
-                return input.val().length;
+                var text = input.val(),
+                    matches = text.match(/\n/g),
+                    breaks = matches ? matches.length : 0;
+                return input.val().length + breaks;
             }
 
           /**
@@ -139,7 +142,7 @@
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
                 maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, remaining));
 
-                if (remaining) {
+                if (remaining > 0) {
                     if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
                         showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
                     } else {
@@ -214,10 +217,21 @@
                 }
             }
 
+            /**
+             *  This function retrieves the maximum length of currentInput
+             *
+             *  @param currentInput
+             *  @return {number}
+             *
+             */
+            function getMaxLength(currentInput) {
+                return currentInput.attr('maxlength') || currentInput.attr('size');
+            }
+
             return this.each(function() {
 
                 var currentInput = $(this),
-                    maxLengthCurrentInput = currentInput.attr('maxlength') || currentInput.attr('size'),
+                    maxLengthCurrentInput = getMaxLength(currentInput),
                     maxLengthIndicator = $('<span></span>').css({
                         display: 'none',
                         position: 'absolute',
@@ -228,7 +242,7 @@
                 documentBody.append(maxLengthIndicator);
 
                 currentInput.focus(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput);
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
                     maxLengthIndicator.css({
                         zIndex: 99999
                     });
@@ -242,7 +256,7 @@
                 });
 
                 currentInput.keyup(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput),
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput)),
                         output = true;
                     if (options.validate && remaining < 0) {
                         output = false;
@@ -250,6 +264,12 @@
                         manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     }
                     return output;
+                });
+                currentInput.keydown(function(event) {
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
+                    if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
+                        return false;
+                    }
                 });
             });
         }
