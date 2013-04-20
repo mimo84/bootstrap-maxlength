@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.2
+ * bootstrap-maxlength.js v1.3.3
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -267,7 +267,7 @@
                 });
                 currentInput.keydown(function(event) {
                     var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
-                    if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)){
+                    if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
                         return false;
                     }
                 });
