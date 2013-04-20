@@ -48,12 +48,12 @@
           * @param input
           * @return {number}
           */
-          function inputLength(input) {
-              var text = input.val();
-              var matches = text.match(/\n/g);
-              var breaks = matches ? matches.length : 0;
-              return input.val().length+breaks;
-          }
+            function inputLength(input) {
+                var text = input.val(),
+                    matches = text.match(/\n/g),
+                    breaks = matches ? matches.length : 0;
+                return input.val().length + breaks;
+            }
 
           /**
            * Return true if the indicator should be showing up.
@@ -142,7 +142,7 @@
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
                 maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, remaining));
 
-                if (remaining>0) {
+                if (remaining > 0) {
                     if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
                         showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
                     } else {
@@ -224,9 +224,10 @@
              *  @return {number}
              *
              */
-            function getMaxLength(currentInput){
+            function getMaxLength(currentInput) {
                 return currentInput.attr('maxlength') || currentInput.attr('size');
             }
+
             return this.each(function() {
 
                 var currentInput = $(this),
@@ -241,7 +242,7 @@
                 documentBody.append(maxLengthIndicator);
 
                 currentInput.focus(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput));
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
                     maxLengthIndicator.css({
                         zIndex: 99999
                     });
@@ -255,7 +256,7 @@
                 });
 
                 currentInput.keyup(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput)),
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput)),
                         output = true;
                     if (options.validate && remaining < 0) {
                         output = false;
@@ -264,9 +265,9 @@
                     }
                     return output;
                 });
-                currentInput.keydown(function(event){
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput=getMaxLength(currentInput));
-                    if(remaining<=0 && (event.keyCode!=46 && event.keyCode!=8)){
+                currentInput.keydown(function(event) {
+                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
+                    if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)){
                         return false;
                     }
                 });
