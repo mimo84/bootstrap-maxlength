@@ -64,10 +64,11 @@
            * @return {number}
            */
             function charsLeftThreshold(input, thereshold, maxlength) {
-                var output = true;
-                if (!options.alwaysShow && (maxlength - inputLength(input) > thereshold)){
+                var output = false;
+                if (!options.alwaysShow && (maxlength - inputLength(input) > thereshold)) {
                     output = true;
                 }
+                return output;
             }
 
           /**
