@@ -64,9 +64,9 @@
            * @return {number}
            */
             function charsLeftThreshold(input, thereshold, maxlength) {
-                var output = false;
+                var output = true;
                 if (!options.alwaysShow && (maxlength - inputLength(input) > thereshold)) {
-                    output = true;
+                    output = false;
                 }
                 return output;
             }
