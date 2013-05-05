@@ -237,10 +237,6 @@
 
                 currentInput.focus(function() {
                     var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
-                    maxLengthIndicator.css({
-                        zIndex: 99999
-                    });
-
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
                 });
