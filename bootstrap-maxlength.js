@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.4
+ * bootstrap-maxlength.js v1.3.5
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
