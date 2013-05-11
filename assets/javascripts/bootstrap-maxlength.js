@@ -1,24 +1,16 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.3
- * ==========================================================
+ * bootstrap-maxlength.js v1.3.6
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright (c) 2013 Maurizio Napoleoni; 
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Licensed under the terms of the MIT license.
+ * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
  * ========================================================== */
-
+/*jslint browser:true*/
+/*global  jQuery*/
 (function ($) {
     "use strict";
-    /*jslint browser:true*/
-    /*global  $*/
+
     $.fn.extend({
         maxlength: function (options, callback) {
 
@@ -65,14 +57,8 @@
            */
             function charsLeftThreshold(input, thereshold, maxlength) {
                 var output = true;
-                if (options.alwaysShow) {
-                    output = true;
-                } else {
-                    if ((maxlength - inputLength(input)) <= thereshold) {
-                        output = true;
-                    } else {
-                        output = false;
-                    }
+                if (!options.alwaysShow && (maxlength - inputLength(input) > thereshold)) {
+                    output = false;
                 }
                 return output;
             }
@@ -239,15 +225,30 @@
                         zIndex: 999
                     }).html(updateMaxLengthHTML(maxLengthCurrentInput, '0'));
 
+                // We need to detect resizes if we are dealing with a textarea:
+                if (currentInput.is('textarea')) {
+                    currentInput.data('maxlenghtsizex', currentInput.outerWidth());
+                    currentInput.data('maxlenghtsizey', currentInput.outerHeight());
+
+                    currentInput.mouseup(function() {
+                        if (currentInput.outerWidth() !== currentInput.data('maxlenghtsizex') || currentInput.outerHeight() !== currentInput.data('maxlenghtsizey')) {
+                            currentInput.trigger('maxlenghtresized');
+                        }
+
+                        currentInput.data('maxlenghtsizex', currentInput.outerWidth());
+                        currentInput.data('maxlenghtsizey', currentInput.outerHeight());
+                    });
+                }
+
                 documentBody.append(maxLengthIndicator);
 
                 currentInput.focus(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
-                    maxLengthIndicator.css({
-                        zIndex: 99999
-                    });
-
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
+                    place(currentInput, maxLengthIndicator);
+                });
+
+                currentInput.on('maxlenghtresized', function() {
                     place(currentInput, maxLengthIndicator);
                 });
 
@@ -256,7 +257,7 @@
                 });
 
                 currentInput.keyup(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput)),
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
                         output = true;
                     if (options.validate && remaining < 0) {
                         output = false;
@@ -266,7 +267,7 @@
                     return output;
                 });
                 currentInput.keydown(function(event) {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
                         return false;
                     }
