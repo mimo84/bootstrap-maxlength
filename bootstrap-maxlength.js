@@ -1,6 +1,8 @@
 /* ==========================================================
  * bootstrap-maxlength.js v1.3.6
  * 
+ * Copyright (c) 2013 Maurizio Napoleoni; 
+ *
  * Licensed under the terms of the MIT license.
  * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
  * ========================================================== */
