@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.6
+ * bootstrap-maxlength.js v1.3.7
  * 
  * Copyright (c) 2013 Maurizio Napoleoni; 
  *
@@ -25,7 +25,7 @@
                     postText: '',
                     placement: 'bottom',
                     validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
-                          // the indicated chars, will be prevented.
+                                                                        // the indicated chars, will be prevented.
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -166,7 +166,6 @@
            */
             function place(currentInput, maxLengthIndicator) {
                 var pos = getPosition(currentInput),
-                    offset = currentInput.offset(),
                     inputOuter = currentInput.outerWidth(),
                     outerWidth = maxLengthIndicator.outerWidth(),
                     actualWidth = maxLengthIndicator.width(),
@@ -174,7 +173,7 @@
 
                 switch (options.placement) {
                 case 'bottom':
-                    maxLengthIndicator.css({top: offset.top + pos.height, left: offset.left + pos.width / 2 - actualWidth / 2});
+                    maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2});
                     break;
                 case 'top':
                     maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2});
@@ -189,16 +188,16 @@
                     maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width});
                     break;
                 case 'top-right':
-                    maxLengthIndicator.css({top: offset.top - actualHeight, left: offset.left + inputOuter});
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left + inputOuter});
                     break;
                 case 'top-left':
-                    maxLengthIndicator.css({top: offset.top - actualHeight, left: offset.left - outerWidth});
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left - outerWidth});
                     break;
                 case 'bottom-left':
-                    maxLengthIndicator.css({top: offset.top + currentInput.outerHeight(), left: offset.left - outerWidth});
+                    maxLengthIndicator.css({top: pos.top + currentInput.outerHeight(), left: pos.left - outerWidth});
                     break;
                 case 'centered-right':
-                    maxLengthIndicator.css({top: offset.top + (actualHeight / 2), left: offset.left + inputOuter - outerWidth - 3});
+                    maxLengthIndicator.css({top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3});
                     break;
                 }
             }
@@ -266,6 +265,7 @@
                     }
                     return output;
                 });
+
                 currentInput.keydown(function(event) {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
