@@ -22,22 +22,23 @@ The indicator badge show up on focusing on the element, and disappear when the f
 
 Basic implementation:
 
-	$('input[maxlength]').maxlength();
-	
+    $('input[maxlength]').maxlength();
 
 Change the threshold value:
 
-	$('input.className').maxlength({
-		threshold: 20
-	});
-	
+    $('input.className').maxlength({
+        threshold: 20
+    });
+
 An example will all the configurable options:
 
-	$('input.className').maxlength({
-		  alwaysShow: true,
-      threshold: 10,
-      warningClass: "label label-info",
-      limitReachedClass: "label label-warning",
-      placement: 'top'
-	});
-	
+    $('input.className').maxlength({
+        alwaysShow: true,
+        threshold: 10,
+        warningClass: "label label-info",
+        limitReachedClass: "label label-warning",
+        placement: 'top',
+        preText: 'used ',
+        separator: ' of ',
+        postText: ' chars.'
+    });
