@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.5
+ * bootstrap-maxlength.js v1.3.6
  * ==========================================================
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================== */
-
+/*jslint browser:true*/
+/*global  jQuery*/
 (function ($) {
     "use strict";
-    /*jslint browser:true*/
-    /*global  $*/
+
     $.fn.extend({
         maxlength: function (options, callback) {
 
@@ -233,11 +233,30 @@
                         zIndex: 999
                     }).html(updateMaxLengthHTML(maxLengthCurrentInput, '0'));
 
+                // We need to detect resizes if we are dealing with a textarea:
+                if (currentInput.is('textarea')) {
+                    currentInput.data('maxlenghtsizex', currentInput.outerWidth());
+                    currentInput.data('maxlenghtsizey', currentInput.outerHeight());
+
+                    currentInput.mouseup(function() {
+                        if (currentInput.outerWidth() !== currentInput.data('maxlenghtsizex') || currentInput.outerHeight() !== currentInput.data('maxlenghtsizey')) {
+                            currentInput.trigger('maxlenghtresized');
+                        }
+
+                        currentInput.data('maxlenghtsizex', currentInput.outerWidth());
+                        currentInput.data('maxlenghtsizey', currentInput.outerHeight());
+                    });
+                }
+
                 documentBody.append(maxLengthIndicator);
 
                 currentInput.focus(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
+                    place(currentInput, maxLengthIndicator);
+                });
+
+                currentInput.on('maxlenghtresized', function() {
                     place(currentInput, maxLengthIndicator);
                 });
 
@@ -246,7 +265,7 @@
                 });
 
                 currentInput.keyup(function() {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput)),
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
                         output = true;
                     if (options.validate && remaining < 0) {
                         output = false;
@@ -256,7 +275,7 @@
                     return output;
                 });
                 currentInput.keydown(function(event) {
-                    var remaining = remainingChars(currentInput, maxLengthCurrentInput = getMaxLength(currentInput));
+                    var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
                         return false;
                     }
