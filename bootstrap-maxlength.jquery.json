@@ -15,7 +15,7 @@
     },
     "licenses": [
         {
-            "type": "Apache License 2.0",
+            "type": "MIT License",
             "url" : "https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE"
         }
     ],
