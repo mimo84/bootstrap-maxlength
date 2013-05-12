@@ -231,7 +231,7 @@
 
                     currentInput.mouseup(function() {
                         if (currentInput.outerWidth() !== currentInput.data('maxlenghtsizex') || currentInput.outerHeight() !== currentInput.data('maxlenghtsizey')) {
-                            currentInput.trigger('maxlenghtresized');
+                            place(currentInput, maxLengthIndicator);
                         }
 
                         currentInput.data('maxlenghtsizex', currentInput.outerWidth());
@@ -244,10 +244,6 @@
                 currentInput.focus(function() {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
-                    place(currentInput, maxLengthIndicator);
-                });
-
-                currentInput.on('maxlenghtresized', function() {
                     place(currentInput, maxLengthIndicator);
                 });
 

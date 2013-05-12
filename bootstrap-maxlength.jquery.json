@@ -6,7 +6,9 @@
         "count",
         "input",
         "maxlength",
-        "length"
+        "length",
+        "textarea",
+        "form"
     ],
     "version": "1.3.7",
     "author": {
