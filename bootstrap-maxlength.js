@@ -23,6 +23,7 @@
                     separator: ' / ',
                     preText: '',
                     postText: '',
+                    showMaxLength : true,
                     placement: 'bottom',
                     validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
                                                                         // the indicated chars, will be prevented.
@@ -108,7 +109,11 @@
                 if (options.preText) {
                     output += options.preText;
                 }
-                output = output + typedChars + options.separator + maxLengthThisInput;
+                if (options.showMaxLength) {
+                   output += typedChars + options.separator + maxLengthThisInput;
+                } else {
+                   output += + typedChars;
+                }
                 if (options.postText) {
                     output += options.postText;
                 }
