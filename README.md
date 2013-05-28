@@ -16,7 +16,7 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **separator**: represents the separator between the number of typed chars and total number of available chars. Default is "/".
  * **preText**: is a string of text that can be outputted in front of the indicator. preText is empty by default.
  * **postText**: is a string outputted after the indicator. postText is empty by default.
- * **showMaxLength*: if false, will display just the remaining length, e.g. will not display the max length. Default: true.
+ * **showMaxLength**: if false, will display just the remaining length, e.g. will not display the max length. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
 
 ## Examples
