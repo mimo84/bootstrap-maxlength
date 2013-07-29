@@ -266,13 +266,6 @@
                     }
                     return output;
                 });
-
-                currentInput.keydown(function(event) {
-                    var remaining = remainingChars(currentInput, getMaxLength(currentInput));
-                    if (remaining <= 0 && (event.keyCode !== 46 && event.keyCode !== 8)) {
-                        return false;
-                    }
-                });
             });
         }
     });
