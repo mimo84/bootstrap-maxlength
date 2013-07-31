@@ -26,7 +26,7 @@
                     showMaxLength : true,
                     placement: 'bottom',
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
-                    validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than 
+                    validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
                                                                         // the indicated chars, will be prevented.
                 };
 
