@@ -25,6 +25,7 @@
                     postText: '',
                     showMaxLength : true,
                     placement: 'bottom',
+                    showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
                     validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
                                                                         // the indicated chars, will be prevented.
                 };
@@ -102,6 +103,7 @@
            * This function updates the value in the indicator
            *  
            * @param maxlengthIndicator
+           * @param typedChars
            * @return String
            */
             function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
@@ -109,10 +111,14 @@
                 if (options.preText) {
                     output += options.preText;
                 }
+                if (!options.showCharsTyped) {
+                    output += remainingChars(typedChars, maxLengthThisInput);
+                }
+                else {
+                    output += typedChars;
+                }
                 if (options.showMaxLength) {
-                   output += typedChars + options.separator + maxLengthThisInput;
-                } else {
-                   output += + typedChars;
+                   output += options.separator + maxLengthThisInput;
                 }
                 if (options.postText) {
                     output += options.postText;
@@ -131,7 +137,7 @@
            * @param maxLengthIndicator
            */
             function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
-                maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, remaining));
+                maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
                 if (remaining > 0) {
                     if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
