@@ -1,0 +1,11 @@
+{
+  "name": "bootstrap-maxlength",
+  "version": "1.4.0",
+  "main": "bootstrap-maxlength.js",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.0"
+  }
+}

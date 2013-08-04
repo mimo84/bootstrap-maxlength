@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.3.7
+ * bootstrap-maxlength.js v1.4.0
  * 
  * Copyright (c) 2013 Maurizio Napoleoni; 
  *
