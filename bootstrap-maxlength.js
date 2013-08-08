@@ -258,6 +258,10 @@
                     place(currentInput, maxLengthIndicator);
                 });
 
+                $(window).resize(function() {
+                  place(currentInput, maxLengthIndicator);
+                });
+
                 currentInput.blur(function() {
                     maxLengthIndicator.css('display', 'none');
                 });
