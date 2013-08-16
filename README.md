@@ -43,3 +43,9 @@ An example will all the configurable options:
         separator: ' of ',
         postText: ' chars.'
     });
+
+## Changelog
+
+# 1.4.1
+
+* Added support for TAB key when the maxlength is reached.

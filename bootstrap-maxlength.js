@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.4.0
+ * bootstrap-maxlength.js v1.4.1
  * 
  * Copyright (c) 2013 Maurizio Napoleoni; 
  *
@@ -266,9 +266,19 @@
                     maxLengthIndicator.css('display', 'none');
                 });
 
-                currentInput.keyup(function() {
+                currentInput.keyup(function(e) {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
-                        output = true;
+                        output = true,
+                        keyCode = e.keyCode || e.which;
+                    // Handle the tab press when the maxlength have been reached.
+                    if (remaining===0 && keyCode===9) {
+                      currentInput.attr('maxlength',getMaxLength(currentInput)+1)
+                                  .trigger({
+                                    type: 'keypress',
+                                    which: 9
+                                  }).attr('maxlength',getMaxLength(currentInput)-1);
+
+                    }
                     if (options.validate && remaining < 0) {
                         output = false;
                     } else {
