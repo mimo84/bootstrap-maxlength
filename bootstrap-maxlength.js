@@ -26,8 +26,9 @@
                     showMaxLength : true,
                     placement: 'bottom',
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
-                    validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
-                                                                        // the indicated chars, will be prevented.
+                    validate: false, // for browser not supporting maxlength attribute natively.
+                    trialing: false
+                                                      
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -45,8 +46,10 @@
             function inputLength(input) {
                 var text = input.val(),
                     matches = text.match(/\n/g),
-                    breaks = matches ? matches.length : 0;
-                return input.val().length + breaks;
+                    breaks = matches ? matches.length : 0,
+                    inputValue = options.trialing ? input.val().replace(/^\s+|\s+$/g, '') : input.val();
+
+                return inputValue.length + breaks;
             }
 
           /**
