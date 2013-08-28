@@ -1,5 +1,5 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.4.1
+ * bootstrap-maxlength.js v1.4.2
  * 
  * Copyright (c) 2013 Maurizio Napoleoni; 
  *
@@ -18,17 +18,16 @@
                 defaults = {
                     alwaysShow: false, // if true the indicator it's always shown.
                     threshold: 10, // Represents how many chars left are needed to show up the counter
-                    warningClass: "badge badge-success",
-                    limitReachedClass: "badge badge-important",
+                    warningClass: "label label-success",
+                    limitReachedClass: "label label-important",
                     separator: ' / ',
                     preText: '',
                     postText: '',
                     showMaxLength : true,
                     placement: 'bottom',
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
-                    validate: false, // for browser not supporting maxlength attribute natively.
-                    trialing: false
-                                                      
+                    validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
+                                                                        // the indicated chars, will be prevented.
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -46,10 +45,8 @@
             function inputLength(input) {
                 var text = input.val(),
                     matches = text.match(/\n/g),
-                    breaks = matches ? matches.length : 0,
-                    inputValue = options.trialing ? input.val().replace(/^\s+|\s+$/g, '') : input.val();
-
-                return inputValue.length + breaks;
+                    breaks = matches ? matches.length : 0;
+                return input.val().length + breaks;
             }
 
           /**
@@ -274,7 +271,7 @@
                         output = true,
                         keyCode = e.keyCode || e.which;
                     // Handle the tab press when the maxlength have been reached.
-                    if (remaining===0 && keyCode===9) {
+                    if (remaining===0 && keyCode===9 && !e.shiftKey) {
                       currentInput.attr('maxlength',getMaxLength(currentInput)+1)
                                   .trigger({
                                     type: 'keypress',
