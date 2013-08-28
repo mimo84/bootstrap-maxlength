@@ -46,6 +46,11 @@ An example will all the configurable options:
 
 ## Changelog
 
+### 1.4.2
+
+* Fixed issue with counting when the user moves with shift+tab keyboard shortcut.
+* Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap 3.0 better compatibility. 
+
 ### 1.4.1
 
 * Added support for TAB key when the maxlength is reached.
