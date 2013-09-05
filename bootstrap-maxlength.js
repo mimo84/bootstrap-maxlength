@@ -112,7 +112,7 @@
                     output += options.preText;
                 }
                 if (!options.showCharsTyped) {
-                    output += remainingChars(typedChars, maxLengthThisInput);
+                    output += maxLengthThisInput - typedChars;
                 }
                 else {
                     output += typedChars;
