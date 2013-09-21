@@ -1,191 +1,197 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Bootstrap-maxlength : This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work." />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Maurizio Napoleoni">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/javascripts/google-code-prettify/prettify.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/stylesheet.css">
+    <title>BootStrap MaxLength</title>
 
-    <title>Bootstrap-maxlength | Mimo84</title>		
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/javascripts/highlight.js/styles/solarized_dark.css">
+
   </head>
 
   <body>
+    <div class="container">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/mimo84/bootstrap-maxlength">View on GitHub</a>
-
-          <h1 id="project_title">Bootstrap-maxlength</h1>
-          <h2 id="project_tagline">This plugin integrates by default with Twitter bootstrap using badges to display the maximum lenght of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work.</h2>
+      <div class="page-header col-md-12">
+          <p class="text-center"><img src="assets/images/maxlength-logo.png" alt="BootStrap MaxLength Logo" /></p>
+          <h1 class="text-center">Bootstrap Maxlength <small>a visual feedback indicator for the maxlength attribute.</small></h1>
           
-          <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="Bootstrap-maxlength: the HTML5 maxlength jQuery plugin" data-url="http://mimo84.github.io/bootstrap-maxlength/" data-count="horizontal">Vote on Hacker News</a>
-          
-          <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
+          <!-- Social Section -->
+          <section class="text-center">
+            <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="Bootstrap-maxlength: the HTML5 maxlength jQuery plugin" data-url="http://mimo84.github.io/bootstrap-maxlength/" data-count="horizontal">Vote on Hacker News</a>
+            
+            <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
 
-          <iframe src="http://ghbtns.com/github-btn.html?user=mimo84&repo=bootstrap-maxlength&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=mimo84&repo=bootstrap-maxlength&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
 
-          <a href="https://twitter.com/share" class="twitter-share-button" data-related="mimonap" data-hashtags="bootstrap">Tweet</a>
-          <a href="https://twitter.com/mimonap" class="twitter-follow-button" data-show-count="false" data-lang="en-gb">Follow @mimonap</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-related="mimonap" data-hashtags="bootstrap">Tweet</a>
+            <a href="https://twitter.com/mimonap" class="twitter-follow-button" data-show-count="false" data-lang="en-gb">Follow @mimonap</a>
 
-          <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
-         
-          <div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/110485677581999567433" data-rel="author"></div>
-
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/mimo84/bootstrap-maxlength/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/mimo84/bootstrap-maxlength/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+            <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
+           
+            <div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/110485677581999567433" data-rel="author"></div>
+          </section>
+          <a href="https://github.com/mimo84/bootstrap-maxlength/zipball/master" class="btn btn-default btn-lg">Download</a>
+      </div>
+    </div>
+    <div class="container">
+      <p>Bootstrap-Maxlength uses a Twitter Bootstrap label to show a visual feedback to the user about the maximum length of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work.</p>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
+     <div id="main_content_wrap" class="container">
       <section id="main_content" class="inner">
+        <h1>Bootstrap MaxLength - Demo</h1>
 
-				<h1>Bootstrap MaxLength - Demo</h1>
+        <h2>Default usage</h2>
+        <p>The badge will appear when the remaining chars are 10 or less:</p>
+        <input type="text" class="form-control" maxlength="25" name="defaultconfig" id="defaultconfig" />
 
-				<h2>Default usage</h2>
-				<p>The badge will appear when the remaining chars are 10 or less:</p>
-                <input type="text" maxlength="25" name="defaultconfig" id="defaultconfig" />
-<pre class="prettyprint">
-<code class="lang-js linenums">$('input[maxlength]').maxlength();</code>
-</pre>
-				<h2>Change the threshold value</h2>
-				<p>The plugin will show the indicator for remaining chars since the number of chars left are 20.</p>
-				<input type="text" maxlength="25" name="thresholdconfig" id="thresholdconfig" />
-<pre class="prettyprint">
-<code class="lang-js linenums">$('input.className').maxlength({
-    threshold: 20
-});
-</code>
-</pre>
+        <pre>
+        <code>$('input[maxlength]').maxlength();</code>
+        </pre>
 
-				<h2>Few options </h2>
-				<input type="text" maxlength="25" name="moreoptions" id="moreoptions" />
-<pre class="prettyprint">
-<code class="lang-js linenums">$('input.className').maxlength({
+        <h2>Change the threshold value</h2>
+        <p>The plugin will show the indicator for remaining chars since the number of chars left are 20.</p>
+        <input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig" />
+        <pre>
+        <code>
+        $('input.className').maxlength({
+            threshold: 20
+        });
+        </code>
+        </pre>
+
+        <h2>Few options </h2>
+        <input type="text" class="form-control" maxlength="25" name="moreoptions" id="moreoptions" />
+        <pre>
+        <code>
+        $('input.className').maxlength({
             alwaysShow: true,
             threshold: 10,
             warningClass: "label label-success",
             limitReachedClass: "label label-important"
         });
-</code>
-</pre>
+        </code>
+        </pre>
 
-				<h2>All the options</h2>
-				<p>This is a complete example where all the options configured for the bootstrap-maxlength counter are setted.</p>
-				<p>Please note: if the <code class="prettyprint lang-js">alwaysShow</code> option is enabled, the <code class="prettyprint lang-js">threshold</code> option is ignored.</p>
-				<input type="text" maxlength="25" name="alloptions" id="alloptions" />
-<pre class="prettyprint">
-<code class="lang-js linenums">$('input.className').maxlength({
-	alwaysShow: true,
-	threshold: 10,
-	warningClass: "label label-success",
-	limitReachedClass: "label label-important",
-	separator: ' of ',
-	preText: 'You have ',
-	postText: ' chars remaining.',
-	validate: true
-});
-</code>
-</pre>
+        <h2>All the options</h2>
+        <p>This is a complete example where all the options configured for the bootstrap-maxlength counter are setted.</p>
+        <p>Please note: if the <code>alwaysShow</code> option is enabled, the <code>threshold</code> option is ignored.</p>
+        <input type="text" class="form-control" maxlength="25" name="alloptions" id="alloptions" />
+        <pre>
+        <code>
+        $('input.className').maxlength({
+          alwaysShow: true,
+          threshold: 10,
+          warningClass: "label label-success",
+          limitReachedClass: "label label-important",
+          separator: ' of ',
+          preText: 'You have ',
+          postText: ' chars remaining.',
+          validate: true
+        });
+        </code>
+        </pre>
 
-				<h2>What about textareas?</h2>
-				<p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
-				<textarea id="textarea" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
-<pre class="prettyprint">
-<code class="lang-js linenums">$('textarea#textarea').maxlength({
-    alwaysShow: true
-});
-</code>
-</pre>
+        <h2>What about textareas?</h2>
+        <p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
+        <textarea id="textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
+        <pre>
+        <code>
+        $('textarea#textarea').maxlength({
+            alwaysShow: true
+        });
+        </code>
+        </pre>
 
         <h2>Let's play with the position</h2>
         <p>The field counter can be positioned at the top, bottom, left or right. You can also place the maxlength indicator on the corners: bottom-right, top-right, top-left, bottom-left and centered-right.<br />
           All you need to do is specify the <code>placement</code> option, with one of those strings. If none is specified, the positioning will be defauted to 'bottom'.</p>
-        <input type="text" maxlength="25" name="placement" id="placement" />
-<pre class="prettyprint">
-<code class="lang-js linenums">$('input#placement').maxlength({
-    alwaysShow: true,
-    placement: 'top-left'
-});
-</code>
-</pre>
-            </section>
-        </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Bootstrap-maxlength maintained by <a href="https://github.com/mimo84">mimo84</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
+        <input type="text" class="form-control" maxlength="25" name="placement" id="placement" />
+        <pre>
+        <code>
+        $('input#placement').maxlength({
+            alwaysShow: true,
+            placement: 'top-left'
+        });
+        </code>
+        </pre>
+      </section>
     </div>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
-			<script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-      <script src="./assets/javascripts/bootstrap-maxlength.min.js"></script>
-      <script>
-	   $(document).ready(function(){
-           $('input#defaultconfig').maxlength()
-					 $('input#thresholdconfig').maxlength({
-							threshold: 20
-					 });
-					 $('input#moreoptions').maxlength({
-						alwaysShow: true,
-            warningClass: "label label-success",
-            limitReachedClass: "label label-important"
-					  });
-						$('input#alloptions').maxlength({
-							alwaysShow: true,
-							warningClass: "label label-success",
-							limitReachedClass: "label label-important",
-							separator: ' out of ',
-							preText: 'You typed ',
-							postText: ' chars available.',
-							validate: true
-					  });
-						$('textarea#textarea').maxlength({
-								alwaysShow: true
-						});
-            $('input#placement').maxlength({
-              alwaysShow: true,
-              placement: 'top-left'
-            });
-	   });
-	   </script>
-     <script>
-      // HN Button
-      var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();
+  </div> <!-- /row -->
 
-      // G+ Button
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="assets/javascripts/highlight.js/highlight.pack.js"></script>
+  <script src="./assets/javascripts/bootstrap-maxlength.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('input#defaultconfig').maxlength()
+    
+    $('input#thresholdconfig').maxlength({
+      threshold: 20
+    });
+    
+    $('input#moreoptions').maxlength({
+      alwaysShow: true,
+      warningClass: "label label-success",
+      limitReachedClass: "label label-important"
+    });
+    
+    $('input#alloptions').maxlength({
+      alwaysShow: true,
+      warningClass: "label label-success",
+      limitReachedClass: "label label-important",
+      separator: ' out of ',
+      preText: 'You typed ',
+      postText: ' chars available.',
+      validate: true
+    });
 
-      // Twitter
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    $('textarea#textarea').maxlength({
+      alwaysShow: true
+    });
 
-</script>
+    $('input#placement').maxlength({
+      alwaysShow: true,
+      placement: 'top-left'
+    });
 
-       <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <script type="text/javascript">
-        try {
-            var pageTracker = _gat._getTracker("UA-1714199-17");
-            pageTracker._trackPageview();
-        } catch(err) {}
-        </script>
+    hljs.initHighlightingOnLoad();
+
+   });
+   </script>
+   <script>
+    // HN Button
+    var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();
+
+    // G+ Button
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+    // Twitter
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+    </script>
+
+     <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+          var pageTracker = _gat._getTracker("UA-1714199-17");
+          pageTracker._trackPageview();
+      } catch(err) {}
+      </script>
   </body>
 </html>
