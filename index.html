@@ -27,14 +27,10 @@
             
             <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
 
-            <iframe src="http://ghbtns.com/github-btn.html?user=mimo84&repo=bootstrap-maxlength&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
-
             <a href="https://twitter.com/share" class="twitter-share-button" data-related="mimonap" data-hashtags="bootstrap">Tweet</a>
-            <a href="https://twitter.com/mimonap" class="twitter-follow-button" data-show-count="false" data-lang="en-gb">Follow @mimonap</a>
 
             <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
            
-            <div class="g-follow" data-annotation="bubble" data-height="15" data-href="//plus.google.com/110485677581999567433" data-rel="author"></div>
           </section>
           <a href="https://github.com/mimo84/bootstrap-maxlength/zipball/master" class="btn btn-default btn-lg">Download</a>
           <a href="https://github.com/mimo84/bootstrap-maxlength/" class="btn btn-info btn-lg">View Project on GitHub</a>
@@ -49,43 +45,40 @@
         <h1>Bootstrap MaxLength - Demo</h1>
 
         <h2>Default usage</h2>
-        <p>The badge will appear when the remaining chars are 10 or less:</p>
+        <p>The badge will show up by default when the remaining chars are 10 or less:</p>
+        
         <input type="text" class="form-control" maxlength="25" name="defaultconfig" id="defaultconfig" />
-
-        <pre>
-        <code>$('input[maxlength]').maxlength();</code>
-        </pre>
+        <pre><code>$('input[maxlength]').maxlength();</code></pre>
+        <hr>
+        
 
         <h2>Change the threshold value</h2>
-        <p>The plugin will show the indicator for remaining chars since the number of chars left are 20.</p>
+        <p>Do you want the badge to show up when there are 20 chars or less? Use the <code>threshold</code> option:</p>
         <input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig" />
-        <pre>
-        <code>
+        <pre><code>
         $('input.className').maxlength({
             threshold: 20
         });
-        </code>
-        </pre>
+        </code></pre>
+        <hr>
 
         <h2>Few options </h2>
         <input type="text" class="form-control" maxlength="25" name="moreoptions" id="moreoptions" />
-        <pre>
-        <code>
+        <pre><code>
         $('input.className').maxlength({
             alwaysShow: true,
             threshold: 10,
             warningClass: "label label-success",
             limitReachedClass: "label label-important"
         });
-        </code>
-        </pre>
+        </code></pre>
+        <hr>
 
         <h2>All the options</h2>
         <p>This is a complete example where all the options configured for the bootstrap-maxlength counter are setted.</p>
         <p>Please note: if the <code>alwaysShow</code> option is enabled, the <code>threshold</code> option is ignored.</p>
         <input type="text" class="form-control" maxlength="25" name="alloptions" id="alloptions" />
-        <pre>
-        <code>
+        <pre><code>
         $('input.className').maxlength({
           alwaysShow: true,
           threshold: 10,
@@ -96,33 +89,55 @@
           postText: ' chars remaining.',
           validate: true
         });
-        </code>
-        </pre>
+        </code></pre>
+        <hr>
 
         <h2>What about textareas?</h2>
         <p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
         <textarea id="textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
-        <pre>
-        <code>
+        <pre><code>
         $('textarea#textarea').maxlength({
             alwaysShow: true
         });
-        </code>
-        </pre>
+        </code></pre>
+        <hr>
 
         <h2>Let's play with the position</h2>
         <p>The field counter can be positioned at the top, bottom, left or right. You can also place the maxlength indicator on the corners: bottom-right, top-right, top-left, bottom-left and centered-right.<br />
           All you need to do is specify the <code>placement</code> option, with one of those strings. If none is specified, the positioning will be defauted to 'bottom'.</p>
 
         <input type="text" class="form-control" maxlength="25" name="placement" id="placement" />
-        <pre>
-        <code>
+        <pre><code>
         $('input#placement').maxlength({
             alwaysShow: true,
             placement: 'top-left'
         });
-        </code>
-        </pre>
+        </code></pre>
+        <hr>
+        <h2>Contributors: </h2>
+        <ul>
+        <li><a href="https://github.com/mimo84/">mimo84 - Maurizio Napoleoni</a></li>
+        <li><a href="https://github.com/FnTm">FnTm - Jānis Peisenieks</a></li>
+        <li><a href="https://github.com/tepez">Tepez</a></li>
+        <li><a href="https://github.com/Darayus">Darayus</a></li>
+        <li><a href="https://github.com/bmajewski">bmajewski - Brian Majewski </a></li>
+        <li><a href="https://github.com/ysrb">ysrb - Yung Sen Riady Budiman </a></li>
+        </ul>
+
+        <h2>Changelog</h2>
+
+          <h3>1.4.2</h3>
+
+          <ul>
+          <li>Fixed issue with counting when the user moves with shift+tab keyboard shortcut.</li>
+          <li>Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap 3.0 better compatibility. </li>
+          </ul>
+
+          <h3>1.4.1</h3>
+
+          <ul>
+          <li>Added support for TAB key when the maxlength is reached.</li>
+          </ul>
       </section>
     </div>
   </div> <!-- /row -->
@@ -131,7 +146,7 @@
     <hr>
 
   </div>
-
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
   <script src="assets/javascripts/highlight.js/highlight.pack.js"></script>
