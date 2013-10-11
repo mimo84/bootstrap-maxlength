@@ -23,6 +23,7 @@
                     separator: ' / ',
                     preText: '',
                     postText: '',
+                    message: '', // any message where %charsTyped%, %charsRemaining% and %charsTotal% are replaced with the actual values
                     showMaxLength : true,
                     placement: 'bottom',
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
@@ -102,26 +103,32 @@
            /**
            * This function updates the value in the indicator
            *  
-           * @param maxlengthIndicator
+           * @param maxLengthThisInput
            * @param typedChars
            * @return String
            */
             function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
                 var output = '';
-                if (options.preText) {
-                    output += options.preText;
-                }
-                if (!options.showCharsTyped) {
-                    output += maxLengthThisInput - typedChars;
-                }
-                else {
-                    output += typedChars;
-                }
-                if (options.showMaxLength) {
-                   output += options.separator + maxLengthThisInput;
-                }
-                if (options.postText) {
-                    output += options.postText;
+                if (options.message){
+                    output = options.message.replace('%charsTyped%', typedChars)
+                            .replace('%charsRemaining%', maxLengthThisInput - typedChars)
+                            .replace('%charsTotal%', maxLengthThisInput);
+                } else {
+                    if (options.preText) {
+                        output += options.preText;
+                    }
+                    if (!options.showCharsTyped) {
+                        output += maxLengthThisInput - typedChars;
+                    }
+                    else {
+                        output += typedChars;
+                    }
+                    if (options.showMaxLength) {
+                       output += options.separator + maxLengthThisInput;
+                    }
+                    if (options.postText) {
+                        output += options.postText;
+                    }
                 }
                 return output;
             }

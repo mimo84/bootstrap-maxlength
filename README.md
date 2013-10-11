@@ -18,6 +18,7 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **postText**: is a string outputted after the indicator. postText is empty by default.
  * **showMaxLength**: if false, will display just the remaining length, e.g. will not display the max length. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
+ * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
 
 ## Examples
 
@@ -42,6 +43,17 @@ An example will all the configurable options:
         preText: 'used ',
         separator: ' of ',
         postText: ' chars.'
+    });
+
+The same example using the message option:
+
+    $('input.className').maxlength({
+        alwaysShow: true,
+        threshold: 10,
+        warningClass: "label label-info",
+        limitReachedClass: "label label-warning",
+        placement: 'top',
+        message: 'used %charsTyped% of %charsTotal% chars.'
     });
 
 ## Changelog
