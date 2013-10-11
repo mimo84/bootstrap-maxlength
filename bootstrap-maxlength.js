@@ -23,12 +23,12 @@
                     separator: ' / ',
                     preText: '',
                     postText: '',
-                    message: '', // any message where %charsTyped%, %charsRemaining% and %charsTotal% are replaced with the actual values
                     showMaxLength : true,
                     placement: 'bottom',
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
-                    validate: false // if the browser doesn't support the maxlength attribute, attempt to type more than 
+                    validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
                                                                         // the indicated chars, will be prevented.
+                    utf8: false // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -44,10 +44,43 @@
           * @return {number}
           */
             function inputLength(input) {
-                var text = input.val(),
-                    matches = text.match(/\n/g),
-                    breaks = matches ? matches.length : 0;
-                return input.val().length + breaks;
+              var text = input.val();
+              var matches = text.match(/\n/g);
+
+              var breaks = 0;
+              var inputLength = 0;
+
+              if (options.utf8) {
+                breaks = matches ? getUTF8Length(matches) : 0;
+                inputLength = getUTF8Length(input.val()) + breaks;
+              } else {
+                breaks = matches ? matches.length : 0;
+                inputLength = input.val().length + breaks;
+              }
+              return inputLength;
+            }
+
+          /**
+          * Return the length of the specified input in UTF8 encoding.
+          *
+          * @param input
+          * @return {number}
+          */
+            function utf8Length(string) {
+              var utf8length = 0;
+              for (var n = 0; n < string.length; n++) {
+                var c = string.charCodeAt(n);
+                if (c < 128) {
+                  utf8length++;
+                }
+                else if((c > 127) && (c < 2048)) {
+                  utf8length = utf8length+2;
+                }
+                else {
+                  utf8length = utf8length+3;
+                }
+              }
+              return utf8length;
             }
 
           /**

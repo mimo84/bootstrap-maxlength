@@ -19,6 +19,7 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **showMaxLength**: if false, will display just the remaining length, e.g. will not display the max length. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
  * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
+ * **uft8**: if true the input will count using uft8 bytesize/encoding.  For example: the '£' character is counted as two characters.
 
 ## Examples
 
