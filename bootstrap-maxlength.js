@@ -232,7 +232,7 @@
                         display: 'none',
                         position: 'absolute',
                         whiteSpace: 'nowrap',
-                        zIndex: 999
+                        zIndex: 1099
                     }).html(updateMaxLengthHTML(maxLengthCurrentInput, '0'));
 
                 // We need to detect resizes if we are dealing with a textarea:
