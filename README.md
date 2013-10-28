@@ -59,6 +59,14 @@ The same example using the message option:
 
 ## Changelog
 
+### 1.5.0 (not released)
+
+*   Removed window.resize
+*   Maxlenght is created and destroyed each time
+*   Fixed Doesn't update the limit after input's maxlength attribute was changed ( #31 )
+*   Added Gruntfile
+*   Added qunit unit tests
+
 ### 1.4.2
 
 * Fixed issue with counting when the user moves with shift+tab keyboard shortcut.
