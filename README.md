@@ -59,11 +59,11 @@ The same example using the message option:
 
 ## Changelog
 
-### 1.5.0 (not released)
+### 1.5.0
 
-*   Removed window.resize
+*   Removed window.resize event
 *   Maxlenght is created and destroyed each time
-*   Fixed Doesn't update the limit after input's maxlength attribute was changed ( #31 )
+*   Fixed Doesn't update the limit after input's maxlength attribute was changed [#31](https://github.com/mimo84/bootstrap-maxlength/issues/31)
 *   Added Gruntfile
 *   Added qunit unit tests
 
