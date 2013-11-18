@@ -270,6 +270,10 @@
                   maxLengthCurrentInput,
                   maxLengthIndicator;
 
+              $(window).resize(function() {
+                place(currentInput, maxLengthIndicator);
+              });
+
               currentInput.focus(function () {
                     var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
                     maxLengthCurrentInput = getMaxLength(currentInput);
