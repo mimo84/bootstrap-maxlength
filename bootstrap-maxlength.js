@@ -28,7 +28,8 @@
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
                     validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
                                                                         // the indicated chars, will be prevented.
-                    utf8: false // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+                    utf8: false, // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+                    ignoreBreaks: false //true will consider either CR or LF, false would consider both.
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -52,11 +53,12 @@
 
               if (options.utf8) {
                 breaks = matches ? utf8Length(matches) : 0;
-                currentLength = utf8Length(input.val()) + breaks;
+                currentLength = utf8Length(input.val());
               } else {
                 breaks = matches ? matches.length : 0;
-                currentLength = input.val().length + breaks;
+                currentLength = input.val().length;
               }
+              currentLength += (options.ignoreBreaks ? 0 : breaks);
               return currentLength;
             }
 
@@ -269,6 +271,10 @@
               var currentInput = $(this),
                   maxLengthCurrentInput,
                   maxLengthIndicator;
+
+              $(window).resize(function() {
+                place(currentInput, maxLengthIndicator);
+              });
 
               currentInput.focus(function () {
                     var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
