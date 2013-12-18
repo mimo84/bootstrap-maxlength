@@ -1,7 +1,7 @@
 /* ==========================================================
  * bootstrap-maxlength.js v1.4.2
- * 
- * Copyright (c) 2013 Maurizio Napoleoni; 
+ *
+ * Copyright (c) 2013 Maurizio Napoleoni;
  *
  * Licensed under the terms of the MIT license.
  * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
@@ -9,7 +9,7 @@
 /*jslint browser:true*/
 /*global  jQuery*/
 (function ($) {
-    "use strict";
+    'use strict';
 
     $.fn.extend({
         maxlength: function (options, callback) {
@@ -18,8 +18,8 @@
                 defaults = {
                     alwaysShow: false, // if true the indicator it's always shown.
                     threshold: 10, // Represents how many chars left are needed to show up the counter
-                    warningClass: "label label-success",
-                    limitReachedClass: "label label-important",
+                    warningClass: 'label label-success',
+                    limitReachedClass: 'label label-important',
                     separator: ' / ',
                     preText: '',
                     postText: '',
@@ -137,7 +137,7 @@
 
            /**
            * This function updates the value in the indicator
-           *  
+           *
            * @param maxLengthThisInput
            * @param typedChars
            * @return String
@@ -193,9 +193,9 @@
             }
 
           /**
-           * This function returns an object containing all the 
-           * informations about the position of the current input 
-           *  
+           * This function returns an object containing all the
+           * informations about the position of the current input
+           *
            *  @param currentInput
            *  @return object {bottom height left right top  width}
            *
@@ -313,10 +313,10 @@
                     maxLengthIndicator.remove();
                 });
 
-                currentInput.keyup(function(e) {
+                currentInput.keyup(function() {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
-                        output = true,
-                        keyCode = e.keyCode || e.which;
+                        output = true;
+                    //  keyCode = e.keyCode || e.which;
                     // Handle the tab press when the maxlength have been reached.
                     // if (remaining===0 && keyCode===9 && !e.shiftKey) {
                       // currentInput.attr('maxlength',getMaxLength(currentInput)+1)

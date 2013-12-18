@@ -16,20 +16,23 @@
   ],
   "author": "Maurizio Napoleoni @mimonap",
   "licenses": [
-        {
-            "type": "MIT License",
-            "url" : "https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE"
+    {
+      "type": "MIT License",
+      "url": "https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE"
     }
   ],
   "bugs": {
     "url": "https://github.com/mimo84/bootstrap-maxlength/issues"
   },
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-jshint": "~0.7.0",
-    "grunt-contrib-qunit": "~0.3.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-concat": "~0.3.0"
+    "grunt": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-qunit": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-concat": "*"
   }
 }
