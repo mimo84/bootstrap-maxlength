@@ -52,7 +52,25 @@ $(function () {
 
       maxlengthInput.focus();
 
-      ok($('.bootstrap-maxlength').html(), '0 / 142', 'Maxlength updated the field');
+      ok($('.bootstrap-maxlength').html() === '0 / 142' , 'Maxlength updated the field');
+      $('.bootstrap-maxlength').remove();
+      $('#qunit-fixture').empty();
+
+    });
+
+    test('The focus event is triggered multiple times without a blur', function () {
+
+      var maxlengthInput = $('<input type="text" maxlength="10" />')
+          .appendTo('#qunit-fixture');
+
+      maxlengthInput.maxlength();
+
+      maxlengthInput.focus();
+      maxlengthInput.focus();
+      maxlengthInput.focus();
+      maxlengthInput.focus();
+
+      ok($('.bootstrap-maxlength').length === 1, 'Maxlength visualized only once after multiple focuses');
       $('.bootstrap-maxlength').remove();
       $('#qunit-fixture').empty();
 

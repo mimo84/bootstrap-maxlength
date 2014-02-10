@@ -30,6 +30,11 @@ module.exports = function(grunt) {
         }
       }
     },
+    changelog: {
+      options: {
+
+      }
+    },
     qunit: {
       files: ['test/**/*.html']
     },
@@ -50,9 +55,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-conventional-changelog');
 
   grunt.registerTask('test', ['jshint','qunit']);
 
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'changelog']);
 
 };
