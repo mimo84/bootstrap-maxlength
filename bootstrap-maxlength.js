@@ -1,13 +1,3 @@
-/* ==========================================================
- * bootstrap-maxlength.js v1.4.2
- *
- * Copyright (c) 2013 Maurizio Napoleoni;
- *
- * Licensed under the terms of the MIT license.
- * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
- * ========================================================== */
-/*jslint browser:true*/
-/*global  jQuery*/
 (function ($) {
     'use strict';
 
@@ -28,8 +18,7 @@
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
                     validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
                                                                         // the indicated chars, will be prevented.
-                    utf8: false, // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
-                    ignoreBreaks: false //true will consider either CR or LF, false would consider both.
+                    utf8: false // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -46,19 +35,18 @@
           */
             function inputLength(input) {
               var text = input.val();
-              var matches = text.match(/\n/g);
 
-              var breaks = 0;
+              // Remove all double-character (\r\n) linebreaks, so they're counted only once.
+              text = text.replace(new RegExp('\r?\n','g'), '\n');
+              // var matches = text.match(/\n/g);
+
               var currentLength = 0;
 
               if (options.utf8) {
-                breaks = matches ? utf8Length(matches) : 0;
                 currentLength = utf8Length(input.val());
               } else {
-                breaks = matches ? matches.length : 0;
                 currentLength = input.val().length;
               }
-              currentLength += (options.ignoreBreaks ? 0 : breaks);
               return currentLength;
             }
 

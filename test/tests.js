@@ -75,16 +75,16 @@ $(function () {
       $('#qunit-fixture').empty();
 
     });
-    
-    test("Newlines are not counted twice", function() {
-    	var maxlengthInput = $('<textarea maxlength="10"></textarea>').val("t\r\nt")
+
+    test('Newlines are not counted twice', function() {
+      var maxlengthInput = $('<textarea maxlength="10"></textarea>').val('t\r\nt')
           .appendTo('#qunit-fixture');
 
       maxlengthInput.maxlength();
       maxlengthInput.focus();
-      
+
       ok($('.bootstrap-maxlength').html() === '3 / 10' , 'Current length is: '+$('.bootstrap-maxlength').html()+'. Expected 3 / 10.');
-      
-    })
-    
+
+    });
+
 });

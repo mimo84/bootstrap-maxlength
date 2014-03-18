@@ -1,13 +1,3 @@
-/* ==========================================================
- * bootstrap-maxlength.js v1.4.2
- *
- * Copyright (c) 2013 Maurizio Napoleoni;
- *
- * Licensed under the terms of the MIT license.
- * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
- * ========================================================== */
-/*jslint browser:true*/
-/*global  jQuery*/
 (function ($) {
     'use strict';
 
@@ -45,10 +35,10 @@
           */
             function inputLength(input) {
               var text = input.val();
-              
+
               // Remove all double-character (\r\n) linebreaks, so they're counted only once.
-              text = text.replace(new RegExp('\r?\n','g'), "\n");
-              var matches = text.match(/\n/g);
+              text = text.replace(new RegExp('\r?\n','g'), '\n');
+              // var matches = text.match(/\n/g);
 
               var currentLength = 0;
 

@@ -33,7 +33,6 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-qunit": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-conventional-changelog": "~1.0.0"
+    "grunt-contrib-concat": "*"
   }
 }
