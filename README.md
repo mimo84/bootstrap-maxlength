@@ -1,7 +1,7 @@
 # [Bootstrap MaxLength](http://mimo84.github.com/bootstrap-maxlength/) [![Build Status](https://travis-ci.org/mimo84/bootstrap-maxlength.png?branch=master)](https://travis-ci.org/mimo84/bootstrap-maxlength) [![Total views](https://sourcegraph.com/api/repos/github.com/mimo84/bootstrap-maxlength/counters/views.png)](https://sourcegraph.com/github.com/mimo84/bootstrap-maxlength)
 
 
-This plugin integrates by default with Twitter bootstrap using badges to display the maximum length of the field where the user is inserting text. 
+This plugin integrates by default with Twitter bootstrap using badges to display the maximum length of the field where the user is inserting text.
 This plugin uses the HTML5 attribute "maxlength" to work.
 
 
@@ -20,7 +20,8 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **showCharsTyped**: if false, will display just the remaining length, e.g. will display remaining lenght instead of number of typed characters. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
  * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
- * **uft8**: if true the input will count using uft8 bytesize/encoding.  For example: the '£' character is counted as two characters.
+ * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters.
+
 
 ## Examples
 
@@ -60,10 +61,23 @@ The same example using the message option:
 
 ## Changelog
 
+### 1.5.3
+
+*   Fixed #40, error on resize event.
+
+### 1.5.2
+
+*   Fixed #44 (pasted text in can cause it to go over the max length)
+
+### 1.5.1
+
+*   Added self protection of multiple focus events
+*   Added back detection of window resizing
+
 ### 1.5.0
 
 *   Removed window.resize event
-*   Maxlenght is created and destroyed each time
+*   Maxlength is created and destroyed each time
 *   Fixed Doesn't update the limit after input's maxlength attribute was changed [#31](https://github.com/mimo84/bootstrap-maxlength/issues/31)
 *   Added Gruntfile
 *   Added qunit unit tests
@@ -71,7 +85,7 @@ The same example using the message option:
 ### 1.4.2
 
 * Fixed issue with counting when the user moves with shift+tab keyboard shortcut.
-* Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap 3.0 better compatibility. 
+* Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap 3.0 better compatibility.
 
 ### 1.4.1
 

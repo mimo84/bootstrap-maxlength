@@ -261,7 +261,9 @@
                   maxLengthIndicator;
 
               $(window).resize(function() {
-                place(currentInput, maxLengthIndicator);
+                if(maxLengthIndicator) {
+                  place(currentInput, maxLengthIndicator);
+                }
               });
 
               currentInput.focus(function () {
