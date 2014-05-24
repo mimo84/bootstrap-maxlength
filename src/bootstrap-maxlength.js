@@ -303,7 +303,9 @@
               });
 
                 currentInput.blur(function() {
-                    maxLengthIndicator.remove();
+                    if(maxLengthIndicator) {
+                        maxLengthIndicator.remove();
+                    }
                 });
 
                 currentInput.keyup(function() {
