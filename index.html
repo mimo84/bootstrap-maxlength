@@ -78,7 +78,7 @@
             alwaysShow: true,
             threshold: 10,
             warningClass: "label label-success",
-            limitReachedClass: "label label-important"
+            limitReachedClass: "label label-danger"
         });
         </code></pre>
         <hr>
@@ -92,7 +92,7 @@
           alwaysShow: true,
           threshold: 10,
           warningClass: "label label-success",
-          limitReachedClass: "label label-important",
+          limitReachedClass: "label label-danger",
           separator: ' of ',
           preText: 'You have ',
           postText: ' chars remaining.',
@@ -192,13 +192,13 @@
     $('input#moreoptions').maxlength({
       alwaysShow: true,
       warningClass: "label label-success",
-      limitReachedClass: "label label-important"
+      limitReachedClass: "label label-danger"
     });
 
     $('input#alloptions').maxlength({
       alwaysShow: true,
       warningClass: "label label-success",
-      limitReachedClass: "label label-important",
+      limitReachedClass: "label label-danger",
       separator: ' out of ',
       preText: 'You typed ',
       postText: ' chars available.',
