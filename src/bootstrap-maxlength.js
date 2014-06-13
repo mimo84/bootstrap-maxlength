@@ -301,18 +301,13 @@
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
               });
-
-                currentInput.blur(function() {
-                    if(maxLengthIndicator) {
-                        maxLengthIndicator.remove();
-                    }
+                
+                currentInput.on('blur remove', function(){
+                  if(maxLengthIndicator) {
+                    maxLengthIndicator.remove();
+                  }
                 });
                 
-                currentInput.on("remove", function () {
-                    if(maxLengthIndicator) {
-                        maxLengthIndicator.remove();
-                    }
-                });
 
                 currentInput.keyup(function() {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
