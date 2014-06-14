@@ -1,5 +1,22 @@
 (function ($) {
     'use strict';
+    /**
+     * We need an event when the elements are destroyed
+     * because if an input is remvoed, we have to remove the
+     * maxlength object associated (if any).
+     * From:
+     * http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
+     */
+    if (!$.event.special.destroyed) {
+      $.event.special.destroyed = {
+        remove: function(o) {
+          if (o.handler) {
+            o.handler()
+          }
+        }
+      }
+    }
+
 
     $.fn.extend({
         maxlength: function (options, callback) {
@@ -301,7 +318,7 @@
                     place(currentInput, maxLengthIndicator);
               });
 
-                currentInput.on('blur remove', function(){
+                currentInput.on('blur destroyed', function(){
                   if(maxLengthIndicator) {
                     maxLengthIndicator.remove();
                   }

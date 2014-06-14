@@ -26,14 +26,12 @@ $(function () {
       ok($('.bootstrap-maxlength').is(':visible'), 'Maxlength is visible');
     });
 
-    test('Maxlength is invisible on blur', function () {
+    test('Maxlength is removed on blur', function () {
           maxlengthInput.maxlength().focus().blur();
-          ok( !$('.bootstrap-maxlength').length, 'Maxlength is not visible');
+          ok( !$('.bootstrap-maxlength').length, 'Maxlength is removed on blur');
     });
 
     test('Maxlength updates the maxlength', function () {
-
-      maxlengthInput.maxlength();
       maxlengthInput.focus();
 
       // Change the maxlength attribute
@@ -42,24 +40,17 @@ $(function () {
       ok($('.bootstrap-maxlength').html() === '0 / 142' , 'Maxlength updated the field');
 
     });
-    /*
+
     test('Removing an element with the maxlength removes the maxlength if any.', function() {
       maxlengthInput.maxlength().focus();
       maxlengthInput.remove();
-      console.log($('.bootstrap-maxlength').length);
-      ok($('.bootstrap-maxlength').length === 0, 'Maxlength field removed with the input');
-      $('.bootstrap-maxlength').remove();
-      $('#qunit-fixture').empty();
+      ok( $('.bootstrap-maxlength').length === 0, 'Maxlength field removed with the input');
 
     });
-    */
-    test('The focus event is triggered multiple times without a blur', function () {
-      console.log('before ', $('.bootstrap-maxlength'));
-      maxlengthInput.maxlength();
-      maxlengthInput.focus().focus();
-      console.log($('.bootstrap-maxlength'));
-      ok($('.bootstrap-maxlength').length === 1, 'Maxlength visualized only once after multiple focuses');
 
+    test('The focus event is triggered multiple times without a blur', function () {
+      maxlengthInput.focus().focus().focus().focus();
+      ok($('.bootstrap-maxlength').length === 1, 'Maxlength visualized only once after multiple focuses');
     });
 
     module('textarea', {
