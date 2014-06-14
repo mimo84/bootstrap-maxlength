@@ -61,6 +61,10 @@ The same example using the message option:
 
 ## Changelog
 
+### 1.5.4
+
+*   When an input with associated maxlength element is removed, maxlength is also removed.
+
 ### 1.5.3
 
 *   Fixed #40, error on resize event.
