@@ -1,0 +1,30 @@
+{
+  "name": "bootstrap-maxlength",
+  "version": "1.5.3",
+  "homepage": "https://github.com/mimo84/bootstrap-maxlength",
+  "authors": [
+    "Maurizio Napoleoni <napy84@gmail.com>"
+  ],
+  "description": "A jQuery - Twitter Bootstrap compatible plugin to provide a visual feedback for the maxlenght attribute\"",
+  "keywords": [
+    "jquery",
+    "twitter-bootstrap",
+    "maxlenght",
+    "html"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "qunit": "~1.14.0",
+    "bootstrap": "~3.1.1",
+    "bootstrap-maxlength": "~1.5.3"
+  }
+}

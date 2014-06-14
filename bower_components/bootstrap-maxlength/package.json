@@ -1,0 +1,38 @@
+{
+  "name": "bootstrap-maxlength",
+  "version": "1.5.3",
+  "description": "An visual feedback indicator for the MaxLength attribute",
+  "main": "bootstrap-maxlength.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mimo84/bootstrap-maxlength.git"
+  },
+  "keywords": [
+    "form",
+    "maxlength",
+    "html5",
+    "input",
+    "feedback"
+  ],
+  "author": "Maurizio Napoleoni @mimonap",
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/mimo84/bootstrap-maxlength/issues"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-qunit": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-concat": "*"
+  }
+}
