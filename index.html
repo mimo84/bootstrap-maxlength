@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -13,68 +14,72 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
 
-      <div class="page-header col-md-12">
-          <p class="text-center"><img src="assets/images/maxlength-logo.png" alt="BootStrap MaxLength Logo" /></p>
-          <h1 class="text-center">Bootstrap Maxlength <small>a visual feedback indicator for the maxlength attribute.</small></h1>
+        <div class="page-header col-md-12">
+            <p class="text-center">
+                <img src="assets/images/maxlength-logo.png" alt="BootStrap MaxLength Logo" />
+            </p>
+            <h1 class="text-center">Bootstrap Maxlength <small>a visual feedback indicator for the maxlength attribute.</small></h1>
 
-          <!-- Social Section -->
-          <section class="text-center">
-            <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="Bootstrap-maxlength: the HTML5 maxlength jQuery plugin" data-url="http://mimo84.github.io/bootstrap-maxlength/" data-count="horizontal">Vote on Hacker News</a>
+            <!-- Social Section -->
+            <section class="text-center">
+                <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="Bootstrap-maxlength: the HTML5 maxlength jQuery plugin"
+                data-url="http://mimo84.github.io/bootstrap-maxlength/" data-count="horizontal">Vote on Hacker News</a>
 
-            <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
+                <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
 
-            <a href="https://twitter.com/share" class="twitter-share-button" data-related="mimonap" data-hashtags="bootstrap">Tweet</a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-related="mimonap" data-hashtags="bootstrap">Tweet</a>
 
-            <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
+                <div class="g-plus" data-action="share" data-annotation="bubble" data-height="15"></div>
 
-          </section>
-          <a href="https://github.com/mimo84/bootstrap-maxlength/zipball/master" class="btn btn-default btn-lg">Download</a>
-          <a href="https://github.com/mimo84/bootstrap-maxlength/" class="btn btn-info btn-lg">View Project on GitHub</a>
-      </div>
+            </section>
+            <a href="https://github.com/mimo84/bootstrap-maxlength/zipball/master" class="btn btn-default btn-lg">Download</a>
+            <a href="https://github.com/mimo84/bootstrap-maxlength/" class="btn btn-info btn-lg">View Project on GitHub</a>
+        </div>
     </div>
     <div class="container">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- MaxLength -->
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:728px;height:90px"
-         data-ad-client="ca-pub-3164525102076656"
-         data-ad-slot="8295333715"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-      <p>Bootstrap-Maxlength uses a Twitter Bootstrap label to show a visual feedback to the user about the maximum length of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot; to work.</p>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- MaxLength -->
+        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-3164525102076656"
+        data-ad-slot="8295333715"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || [])
+            .push({});
+        </script>
+        <p>Bootstrap-Maxlength uses a Twitter Bootstrap label to show a visual feedback to the user about the maximum
+            length of the field where the user is inserting text. Uses the HTML5 attribute &quot;maxlength&quot;
+            to work.</p>
     </div>
 
-     <div id="main_content_wrap" class="container">
-      <section id="main_content" class="inner">
-        <h1>Bootstrap MaxLength - Demo</h1>
+    <div id="main_content_wrap" class="container">
+        <section id="main_content" class="inner">
+            <h1>Bootstrap MaxLength - Demo</h1>
 
-        <h2>Default usage</h2>
-        <p>The badge will show up by default when the remaining chars are 10 or less:</p>
+            <h2>Default usage</h2>
+            <p>The badge will show up by default when the remaining chars are 10 or less:</p>
 
-        <input type="text" class="form-control" maxlength="25" name="defaultconfig" id="defaultconfig" />
-        <pre><code>$('input[maxlength]').maxlength();</code></pre>
-        <hr>
+            <input type="text" class="form-control" maxlength="25" name="defaultconfig" id="defaultconfig" />
+            <pre><code>$('input[maxlength]').maxlength();</code></pre>
+            <hr>
 
 
-        <h2>Change the threshold value</h2>
-        <p>Do you want the badge to show up when there are 20 chars or less? Use the <code>threshold</code> option:</p>
-        <input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig" />
-        <pre><code>
+            <h2>Change the threshold value</h2>
+            <p>Do you want the badge to show up when there are 20 chars or less? Use the <code>threshold</code> option:</p>
+            <input type="text" maxlength="25" name="thresholdconfig" class="form-control" id="thresholdconfig" />
+            <pre><code>
         $('input.className').maxlength({
             threshold: 20
         });
         </code></pre>
-        <hr>
+            <hr>
 
-        <h2>Few options </h2>
-        <input type="text" class="form-control" maxlength="25" name="moreoptions" id="moreoptions" />
-        <pre><code>
+            <h2>Few options </h2>
+            <input type="text" class="form-control" maxlength="25" name="moreoptions" id="moreoptions" />
+            <pre><code>
         $('input.className').maxlength({
             alwaysShow: true,
             threshold: 10,
@@ -82,13 +87,15 @@
             limitReachedClass: "label label-danger"
         });
         </code></pre>
-        <hr>
+            <hr>
 
-        <h2>All the options</h2>
-        <p>This is a complete example where all the options configured for the bootstrap-maxlength counter are setted.</p>
-        <p>Please note: if the <code>alwaysShow</code> option is enabled, the <code>threshold</code> option is ignored.</p>
-        <input type="text" class="form-control" maxlength="25" name="alloptions" id="alloptions" />
-        <pre><code>
+            <h2>All the options</h2>
+            <p>This is a complete example where all the options configured for the bootstrap-maxlength counter are
+                setted.
+            </p>
+            <p>Please note: if the <code>alwaysShow</code> option is enabled, the <code>threshold</code> option is ignored.</p>
+            <input type="text" class="form-control" maxlength="25" name="alloptions" id="alloptions" />
+            <pre><code>
         $('input.className').maxlength({
           alwaysShow: true,
           threshold: 10,
@@ -100,150 +107,295 @@
           validate: true
         });
         </code></pre>
-        <hr>
+            <hr>
 
-        <h2>What about textareas?</h2>
-        <p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
-        <textarea id="textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
-        <pre><code>
+            <h2>What about textareas?</h2>
+            <p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
+            <textarea id="textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
+            <pre><code>
         $('textarea#textarea').maxlength({
             alwaysShow: true
         });
         </code></pre>
-        <hr>
+            <hr>
 
-        <h2>Let's play with the position</h2>
-        <p>The field counter can be positioned at the top, bottom, left or right. You can also place the maxlength indicator on the corners: bottom-right, top-right, top-left, bottom-left and centered-right.<br />
-          All you need to do is specify the <code>placement</code> option, with one of those strings. If none is specified, the positioning will be defauted to 'bottom'.</p>
+            <h2>Let's play with the position</h2>
+            <p>The field counter can be positioned at the top, bottom, left or right. You can also place the maxlength
+                indicator on the corners: bottom-right, top-right, top-left, bottom-left and centered-right.
+                <br />All you need to do is specify the <code>placement</code> option, with one of those strings. If none
+                is specified, the positioning will be defauted to 'bottom'.</p>
 
-        <input type="text" class="form-control" maxlength="25" name="placement" id="placement" />
-        <pre><code>
+            <input type="text" class="form-control" maxlength="25" name="placement" id="placement" />
+            <pre><code>
         $('input#placement').maxlength({
             alwaysShow: true,
             placement: 'top-left'
         });
         </code></pre>
-        <hr>
-        <h2>Contributors: </h2>
+            <hr>
+            <h2>Contributors: </h2>
 
-        <ul>
-          <li><a href="https://github.com/mimo84/">mimo84 - Maurizio Napoleoni</a></li>
-          <li><a href="https://github.com/FnTm">FnTm - Jānis Peisenieks</a></li>
-          <li><a href="https://github.com/tepez">Tepez</a></li>
-          <li><a href="https://github.com/Darayus">Darayus</a></li>
-          <li><a href="https://github.com/bmajewski">bmajewski - Brian Majewski </a></li>
-          <li><a href="https://github.com/ysrb">ysrb - Yung Sen Riady Budiman </a></li>
-          <li><a href="https://github.com/g-g">gg - Georg</a></li>
-          <li><a href="https://github.com/AbdullahAli">AbdullahAli - Abdullah Al</a></li>
-        </ul>
+            <ul>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/1006473?s=60" width="20"><span class="rank">#1</span>
+                    <a class="aname" href="http://github.com/mimo84">mimo84</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/1577924?s=60" width="20"><span class="rank">#2</span>
+                    <a class="aname" href="http://github.com/Kosmin">Kosmin</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/1011549?s=60" width="20"><span class="rank">#3</span>
+                    <a class="aname" href="http://github.com/FnTm">FnTm</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars2.githubusercontent.com/u/3265649?s=60" width="20"><span class="rank">#4</span>
+                    <a class="aname" href="http://github.com/tepez">tepez</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/1901375?s=60" width="20"><span class="rank">#5</span>
+                    <a class="aname" href="http://github.com/Darayus">Darayus</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/1620134?s=60" width="20"><span class="rank">#6</span>
+                    <a class="aname" href="http://github.com/AbdullahAli">AbdullahAli</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/67437?s=60" width="20"><span class="rank">#7</span>
+                    <a class="aname" href="http://github.com/vfonic">vfonic</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/5393?s=60" width="20"><span class="rank">#8</span>
+                    <a class="aname" href="http://github.com/BrunoDeBarros">BrunoDeBarros</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/561937?s=60" width="20"><span class="rank">#9</span>
+                    <a class="aname" href="http://github.com/ysrb">ysrb</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/7392640?s=60" width="20"><span class="rank">#10</span>
+                    <a class="aname" href="http://github.com/georggell">georggell</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/2240568?s=60" width="20"><span class="rank">#11</span>
+                    <a class="aname" href="http://github.com/sajus">sajus</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars0.githubusercontent.com/u/1693720?s=60" width="20"><span class="rank">#12</span>
+                    <a class="aname" href="http://github.com/bmajewski">bmajewski</a>
+                </li>
+                <li>
+                    <img alt="" class="avatar" height="20" src="https://avatars3.githubusercontent.com/u/5386?s=60" width="20"><span class="rank">#13</span>
+                    <a class="aname" href="http://github.com/maxschulze">maxschulze</a>
+                </li>
+            </ul>
 
-        <h2>Changelog</h2>
+            <h2>Changelog</h2>
 
-        <h3>1.5.0</h3>
+            <h3>1.5.3</h3>
 
-          <ul>
-            <li>Removed window.resize</li>
-            <li>Maxlenght is created and destroyed each time</li>
-            <li>Fixed Doesn't update the limit after input's maxlength attribute was changed ( #31 )</li>
-            <li>Added Gruntfile</li>
-            <li>Added qunit unit tests</li>
-          </ul>
+            <ul>
+                <li>Fixed #40, error on resize event.
+                </li>
+            </ul>
 
-          <h3>1.4.3</h3>
+            <h3>1.5.2</h3>
 
-          <ul>
-            <li>Added message option, thanks to <a href="https://github.com/g-g">gg</a></li>
-            <li>Added UFT8 option, thanks to <a href="https://github.com/AbdullahAli">Abdullah Al</a></li>
-            <li>Fixed z-index in modal windows <a href="https://github.com/mimo84/bootstrap-maxlength/issues/23">Issue #23</a></li>
-          </ul>
+            <ul>
+                <li>Fixed #44 (pasted text in can cause it to go over the max length)</li>
+            </ul>
 
-          <h3>1.4.2</h3>
+            <h3>1.5.1</h3>
+            <ul>
+                <li>Added self protection of multiple focus events</li>
+                <li>Added back detection of window resizing
+                </li>
+            </ul>
 
-          <ul>
-          <li>Fixed issue with counting when the user moves with shift+tab keyboard shortcut.</li>
-          <li>Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap 3.0 better compatibility. </li>
-          </ul>
+            <h3>1.5.0</h3>
 
-          <h3>1.4.1</h3>
+            <ul>
+                <li>Removed window.resize</li>
+                <li>Maxlenght is created and destroyed each time</li>
+                <li>Fixed Doesn't update the limit after input's maxlength attribute was changed ( #31 )</li>
+                <li>Added Gruntfile</li>
+                <li>Added qunit unit tests</li>
+            </ul>
 
-          <ul>
-          <li>Added support for TAB key when the maxlength is reached.</li>
-          </ul>
-      </section>
+            <h3>1.4.3</h3>
+
+            <ul>
+                <li>Added message option, thanks to <a href="https://github.com/g-g">gg</a>
+                </li>
+                <li>Added UFT8 option, thanks to <a href="https://github.com/AbdullahAli">Abdullah Al</a>
+                </li>
+                <li>Fixed z-index in modal windows
+                    <a href="https://github.com/mimo84/bootstrap-maxlength/issues/23">Issue #23</a>
+                </li>
+            </ul>
+
+            <h3>1.4.2</h3>
+
+            <ul>
+                <li>Fixed issue with counting when the user moves with shift+tab keyboard shortcut.</li>
+                <li>Replaced the warningClass limitReachedClass options to use labels rather than badges for Bootstrap
+                    3.0 better compatibility.</li>
+            </ul>
+
+            <h3>1.4.1</h3>
+
+            <ul>
+                <li>Added support for TAB key when the maxlength is reached.
+                </li>
+            </ul>
+        </section>
     </div>
-  </div> <!-- /row -->
-  <div class="col-md-12">
+    </div>
+    <!-- /row -->
+    <div class="col-md-12">
 
-    <hr>
+        <hr>
 
-  </div>
-<a href="https://github.com/mimo84"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script src="assets/javascripts/highlight.js/highlight.pack.js"></script>
-  <script src="bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-  <script>
-  $(document).ready(function(){
-    $('input#defaultconfig').maxlength()
+    </div>
+    <a href="https://github.com/mimo84">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+        alt="Fork me on GitHub">
+    </a>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="assets/javascripts/highlight.js/highlight.pack.js"></script>
+    <script src="bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(
+                'input#defaultconfig'
+            ).maxlength()
 
-    $('input#thresholdconfig').maxlength({
-      threshold: 20
-    });
+            $(
+                'input#thresholdconfig'
+            ).maxlength({
+                threshold: 20
+            });
 
-    $('input#moreoptions').maxlength({
-      alwaysShow: true,
-      warningClass: "label label-success",
-      limitReachedClass: "label label-danger"
-    });
+            $(
+                'input#moreoptions'
+            ).maxlength({
+                alwaysShow: true,
+                warningClass: "label label-success",
+                limitReachedClass: "label label-danger"
+            });
 
-    $('input#alloptions').maxlength({
-      alwaysShow: true,
-      warningClass: "label label-success",
-      limitReachedClass: "label label-danger",
-      separator: ' out of ',
-      preText: 'You typed ',
-      postText: ' chars available.',
-      validate: true
-    });
+            $(
+                'input#alloptions'
+            ).maxlength({
+                alwaysShow: true,
+                warningClass: "label label-success",
+                limitReachedClass: "label label-danger",
+                separator: ' out of ',
+                preText: 'You typed ',
+                postText: ' chars available.',
+                validate: true
+            });
 
-    $('textarea#textarea').maxlength({
-      alwaysShow: true
-    });
+            $(
+                'textarea#textarea'
+            ).maxlength({
+                alwaysShow: true
+            });
 
-    $('input#placement').maxlength({
-      alwaysShow: true,
-      placement: 'top-left'
-    });
+            $('input#placement')
+                .maxlength({
+                    alwaysShow: true,
+                    placement: 'top-left'
+                });
 
-    hljs.initHighlightingOnLoad();
+            hljs.initHighlightingOnLoad();
 
-   });
-   </script>
-   <script>
-    // HN Button
-    var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();
+        });
+    </script>
+    <script>
+        // HN Button
+        var HN = [];
+        HN.factory = function (e) {
+                return function () {
+                    HN.push([e].concat(
+                        Array
+                        .prototype
+                        .slice
+                        .call(
+                            arguments,
+                            0
+                        )))
+                };
+            }, HN.on = HN.factory("on"),
+            HN.once = HN.factory("once"),
+            HN.off = HN.factory("off"),
+            HN.emit = HN.factory("emit"),
+            HN.load = function () {
+                var e = "hn-button.js";
+                if (document.getElementById(
+                    e)) return;
+                var t = document.createElement(
+                    "script");
+                t.id = e, t.src =
+                    "//hn-button.herokuapp.com/hn-button.js";
+                var n = document.getElementsByTagName(
+                    "script")[0];
+                n.parentNode.insertBefore(
+                    t, n)
+            }, HN.load();
 
-    // G+ Button
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
+         // G+ Button
+        (function () {
+            var po = document.createElement(
+                'script');
+            po.type =
+                'text/javascript';
+            po.async = true;
+            po.src =
+                'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName(
+                'script')[0];
+            s.parentNode.insertBefore(
+                po, s);
+        })();
 
-    // Twitter
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
+         // Twitter
+        ! function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(
+                    s)[0],
+                p = /^http:/.test(d.location) ?
+                'http' : 'https';
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p +
+                    '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(
+                    js, fjs);
+            }
+        }(document, 'script',
+            'twitter-wjs');
     </script>
 
-     <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-      <script type="text/javascript">
-      try {
-          var pageTracker = _gat._getTracker("UA-1714199-17");
-          pageTracker._trackPageview();
-      } catch(err) {}
-      </script>
-  </body>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" ==
+                document.location.protocol
+            ) ? "https://ssl." :
+            "http://www.");
+        document.write(unescape(
+            "%3Cscript src='" +
+            gaJsHost +
+            "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"
+        ));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker(
+                "UA-1714199-17");
+            pageTracker._trackPageview();
+        } catch (err) {}
+    </script>
+</body>
+
 </html>
