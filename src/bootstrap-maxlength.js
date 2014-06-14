@@ -11,10 +11,10 @@
       $.event.special.destroyed = {
         remove: function(o) {
           if (o.handler) {
-            o.handler()
+            o.handler();
           }
         }
-      }
+      };
     }
 
 
