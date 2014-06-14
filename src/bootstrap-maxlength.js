@@ -279,7 +279,6 @@
                     }).html(maxlengthContent);
                   }
 
-
                 // We need to detect resizes if we are dealing with a textarea:
                 if (currentInput.is('textarea')) {
                     currentInput.data('maxlenghtsizex', currentInput.outerWidth());
@@ -301,13 +300,12 @@
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
               });
-                
+
                 currentInput.on('blur remove', function(){
                   if(maxLengthIndicator) {
                     maxLengthIndicator.remove();
                   }
                 });
-                
 
                 currentInput.keyup(function() {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput)),

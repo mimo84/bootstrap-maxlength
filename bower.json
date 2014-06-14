@@ -6,7 +6,7 @@
     "**/.*"
   ],
   "dependencies": {
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.1"
   },
   "devDependencies": {
     "qunit": "~1.14.0"
