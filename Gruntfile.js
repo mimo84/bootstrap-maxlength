@@ -1,6 +1,11 @@
 'use strict';
 
 module.exports = function(grunt) {
+  // Automatically load grunt modules
+  require('load-grunt-tasks')(grunt);
+
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -44,12 +49,6 @@ module.exports = function(grunt) {
       tasks: ['jshint', 'qunit']
     }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('test', ['jshint','qunit']);
 
