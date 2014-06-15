@@ -21,13 +21,13 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '/* ========================================================== \n' +
-                ' * \n' +
-                ' * <%= pkg.name %>.js v <%= pkg.version %> \n' +
-                ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-                ' * Licensed under <%= pkg.licenses[0]["type"] %>\n' +
-                ' * URL: <%= pkg.licenses[0]["url"] %>\n' +
-                ' *\n' +
-                ' * ========================================================== */\n\n',
+          ' * \n' +
+          ' * <%= pkg.name %>.js v <%= pkg.version %> \n' +
+          ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+          ' * Licensed under <%= pkg.licenses[0]["type"] %>\n' +
+          ' * URL: <%= pkg.licenses[0]["url"] %>\n' +
+          ' *\n' +
+          ' * ========================================================== */\n\n',
       },
       dist: {
         files: {
@@ -44,14 +44,31 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
+    jsbeautifier: {
+      modify: {
+        src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+        options: {
+          config: '.jsbeautifyrc'
+        }
+      },
+      verify: {
+        src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+        options: {
+          mode: 'VERIFY_ONLY',
+          config: '.jsbeautifyrc'
+        }
+      }
+    },
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'qunit']
     }
   });
 
-  grunt.registerTask('test', ['jshint','qunit']);
+  grunt.registerTask('test', ['jshint', 'jsbeautifier:modify', 'qunit']);
 
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+
+  grunt.registerTask('beautify', ['jsbeautifier:modify']);
 
 };
