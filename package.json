@@ -36,6 +36,6 @@
     "grunt-contrib-concat": "*",
     "time-grunt": "*",
     "load-grunt-tasks": "*",
-    "grunt-jsbeautifier": "^0.2.7"
+    "grunt-jscs-checker": "^0.4.4"
   }
 }

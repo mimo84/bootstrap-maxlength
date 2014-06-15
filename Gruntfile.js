@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   // Automatically load grunt modules
   require('load-grunt-tasks')(grunt);
 
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
           ' * Licensed under <%= pkg.licenses[0]["type"] %>\n' +
           ' * URL: <%= pkg.licenses[0]["url"] %>\n' +
           ' *\n' +
-          ' * ========================================================== */\n\n',
+          ' * ========================================================== */\n\n'
       },
       dist: {
         files: {
@@ -44,19 +44,12 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
-    jsbeautifier: {
-      modify: {
-        src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-        options: {
-          config: '.jsbeautifyrc'
-        }
+    jscs: {
+      options: {
+        config: '.jscsrc'
       },
-      verify: {
-        src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-        options: {
-          mode: 'VERIFY_ONLY',
-          config: '.jsbeautifyrc'
-        }
+      src: {
+        src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js']
       }
     },
     watch: {
@@ -65,10 +58,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'jsbeautifier:modify', 'qunit']);
+  grunt.registerTask('test', ['jshint','jscs','qunit']);
 
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
-  grunt.registerTask('beautify', ['jsbeautifier:modify']);
-
+  grunt.registerTask('default', ['jshint','qunit','concat','uglify']);
 };

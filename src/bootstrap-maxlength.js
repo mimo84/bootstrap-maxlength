@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   'use strict';
   /**
    * We need an event when the elements are destroyed
@@ -9,7 +9,7 @@
    */
   if (!$.event.special.destroyed) {
     $.event.special.destroyed = {
-      remove: function(o) {
+      remove: function (o) {
         if (o.handler) {
           o.handler();
         }
@@ -18,7 +18,7 @@
   }
 
   $.fn.extend({
-    maxlength: function(options, callback) {
+    maxlength: function (options, callback) {
 
       var documentBody = $('body'),
         defaults = {
@@ -294,19 +294,19 @@
         return currentInput.attr('maxlength') || currentInput.attr('size');
       }
 
-      return this.each(function() {
+      return this.each(function () {
 
         var currentInput = $(this),
           maxLengthCurrentInput,
           maxLengthIndicator;
 
-        $(window).resize(function() {
+        $(window).resize(function () {
           if (maxLengthIndicator) {
             place(currentInput, maxLengthIndicator);
           }
         });
 
-        currentInput.focus(function() {
+        currentInput.focus(function () {
           var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
           maxLengthCurrentInput = getMaxLength(currentInput);
 
@@ -324,7 +324,7 @@
             currentInput.data('maxlenghtsizex', currentInput.outerWidth());
             currentInput.data('maxlenghtsizey', currentInput.outerHeight());
 
-            currentInput.mouseup(function() {
+            currentInput.mouseup(function () {
               if (currentInput.outerWidth() !== currentInput.data('maxlenghtsizex') || currentInput.outerHeight() !== currentInput.data('maxlenghtsizey')) {
                 place(currentInput, maxLengthIndicator);
               }
@@ -341,13 +341,13 @@
           place(currentInput, maxLengthIndicator);
         });
 
-        currentInput.on('blur destroyed', function() {
+        currentInput.on('blur destroyed', function () {
           if (maxLengthIndicator) {
             maxLengthIndicator.remove();
           }
         });
 
-        currentInput.keyup(function() {
+        currentInput.keyup(function () {
           var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
             output = true;
           if (options.validate && remaining < 0) {
