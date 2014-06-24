@@ -23,6 +23,7 @@
 
             var documentBody = $('body'),
                 defaults = {
+                    showOnReady: false, // true to always show when indicator is ready
                     alwaysShow: false, // if true the indicator it's always shown.
                     threshold: 10, // Represents how many chars left are needed to show up the counter
                     warningClass: 'label label-success',
@@ -283,7 +284,7 @@
                 }
               });
 
-              currentInput.focus(function () {
+              function firstInit() {
                 var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
                   maxLengthCurrentInput = getMaxLength(currentInput);
 
@@ -316,12 +317,28 @@
                 var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
-              });
+              };
 
-                currentInput.on('blur destroyed', function(){
+              if(options.showOnReady){
+                currentInput.ready(function () {
+                  firstInit();
+                });
+              } else {
+                currentInput.focus(function () {
+                  firstInit();
+                });
+              };
+
+                currentInput.on('destroyed', function(){
                   if(maxLengthIndicator) {
                     maxLengthIndicator.remove();
-                  }
+                  };
+                });
+
+                currentInput.on('blur', function(){
+                  if(maxLengthIndicator && !options.showOnReady) {
+                    maxLengthIndicator.remove();
+                  };
                 });
 
                 currentInput.keyup(function() {
