@@ -36,7 +36,9 @@
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
                     validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
                                                                         // the indicated chars, will be prevented.
-                    utf8: false // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+                    utf8: false, // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+
+                    appendToParent: false // append the indicator to the input field's parent instead of body
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -230,6 +232,12 @@
                     actualWidth = maxLengthIndicator.width(),
                     actualHeight = maxLengthIndicator.height();
 
+                // get the right position if the indicator is appended to the input's parent
+                if(options.appendToParent){
+                  pos.top -= currentInput.parent().offset().top;
+                  pos.left -= currentInput.parent().offset().left;
+                };
+
                 switch (options.placement) {
                 case 'bottom':
                     maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2});
@@ -326,7 +334,12 @@
                     });
                 }
 
-                documentBody.append(maxLengthIndicator);
+                if(options.appendToParent){
+                  currentInput.parent().append(maxLengthIndicator);
+                  currentInput.parent().css('position', 'relative');
+                } else {
+                  documentBody.append(maxLengthIndicator);
+                };
 
                 var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
