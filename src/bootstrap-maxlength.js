@@ -258,6 +258,20 @@
                 case 'centered-right':
                     maxLengthIndicator.css({top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3});
                     break;
+
+                // Some more options for placements
+                case 'bottom-right-inside':
+                    maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width - outerWidth});
+                    break;
+                case 'top-right-inside':
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left + inputOuter - outerWidth});
+                    break;
+                case 'top-left-inside':
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left});
+                    break;
+                case 'bottom-left-inside':
+                    maxLengthIndicator.css({top: pos.top + currentInput.outerHeight(), left: pos.left });
+                    break;
                 }
             }
 
@@ -349,6 +363,12 @@
                     } else {
                         manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     }
+
+                    //reposition the indicator if placement "bottom-right-inside" & "top-right-inside" is used
+                    if(options.placement == "bottom-right-inside" || options.placement == "top-right-inside"){
+                      place(currentInput, maxLengthIndicator);
+                    };
+
                     return output;
                 });
             });
