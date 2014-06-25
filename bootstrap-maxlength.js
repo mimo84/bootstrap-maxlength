@@ -23,6 +23,7 @@
 
             var documentBody = $('body'),
                 defaults = {
+                    showOnReady: false, // true to always show when indicator is ready
                     alwaysShow: false, // if true the indicator it's always shown.
                     threshold: 10, // Represents how many chars left are needed to show up the counter
                     warningClass: 'label label-success',
@@ -35,7 +36,9 @@
                     showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
                     validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
                                                                         // the indicated chars, will be prevented.
-                    utf8: false // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+                    utf8: false, // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
+
+                    appendToParent: false // append the indicator to the input field's parent instead of body
                 };
 
             if ($.isFunction(options) && !callback) {
@@ -229,6 +232,12 @@
                     actualWidth = maxLengthIndicator.width(),
                     actualHeight = maxLengthIndicator.height();
 
+                // get the right position if the indicator is appended to the input's parent
+                if(options.appendToParent){
+                  pos.top -= currentInput.parent().offset().top;
+                  pos.left -= currentInput.parent().offset().left;
+                };
+
                 switch (options.placement) {
                 case 'bottom':
                     maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2});
@@ -257,6 +266,20 @@
                 case 'centered-right':
                     maxLengthIndicator.css({top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3});
                     break;
+
+                // Some more options for placements
+                case 'bottom-right-inside':
+                    maxLengthIndicator.css({top: pos.top + pos.height, left: pos.left + pos.width - outerWidth});
+                    break;
+                case 'top-right-inside':
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left + inputOuter - outerWidth});
+                    break;
+                case 'top-left-inside':
+                    maxLengthIndicator.css({top: pos.top - actualHeight, left: pos.left});
+                    break;
+                case 'bottom-left-inside':
+                    maxLengthIndicator.css({top: pos.top + currentInput.outerHeight(), left: pos.left });
+                    break;
                 }
             }
 
@@ -283,7 +306,7 @@
                 }
               });
 
-              currentInput.focus(function () {
+              function firstInit() {
                 var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
                   maxLengthCurrentInput = getMaxLength(currentInput);
 
@@ -311,17 +334,38 @@
                     });
                 }
 
-                documentBody.append(maxLengthIndicator);
+                if(options.appendToParent){
+                  currentInput.parent().append(maxLengthIndicator);
+                  currentInput.parent().css('position', 'relative');
+                } else {
+                  documentBody.append(maxLengthIndicator);
+                };
 
                 var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
-              });
+              };
 
-                currentInput.on('blur destroyed', function(){
+              if(options.showOnReady){
+                currentInput.ready(function () {
+                  firstInit();
+                });
+              } else {
+                currentInput.focus(function () {
+                  firstInit();
+                });
+              };
+
+                currentInput.on('destroyed', function(){
                   if(maxLengthIndicator) {
                     maxLengthIndicator.remove();
-                  }
+                  };
+                });
+
+                currentInput.on('blur', function(){
+                  if(maxLengthIndicator && !options.showOnReady) {
+                    maxLengthIndicator.remove();
+                  };
                 });
 
                 currentInput.keyup(function() {
@@ -332,6 +376,12 @@
                     } else {
                         manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     }
+
+                    //reposition the indicator if placement "bottom-right-inside" & "top-right-inside" is used
+                    if(options.placement == "bottom-right-inside" || options.placement == "top-right-inside"){
+                      place(currentInput, maxLengthIndicator);
+                    };
+
                     return output;
                 });
             });
