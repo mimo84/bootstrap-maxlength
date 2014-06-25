@@ -236,7 +236,7 @@
                 if(options.appendToParent){
                   pos.top -= currentInput.parent().offset().top;
                   pos.left -= currentInput.parent().offset().left;
-                };
+                }
 
                 switch (options.placement) {
                 case 'bottom':
@@ -339,12 +339,12 @@
                   currentInput.parent().css('position', 'relative');
                 } else {
                   documentBody.append(maxLengthIndicator);
-                };
+                }
 
                 var remaining = remainingChars(currentInput, getMaxLength(currentInput));
                     manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
                     place(currentInput, maxLengthIndicator);
-              };
+              }
 
               if(options.showOnReady){
                 currentInput.ready(function () {
@@ -354,18 +354,18 @@
                 currentInput.focus(function () {
                   firstInit();
                 });
-              };
+              }
 
                 currentInput.on('destroyed', function(){
                   if(maxLengthIndicator) {
                     maxLengthIndicator.remove();
-                  };
+                  }
                 });
 
                 currentInput.on('blur', function(){
                   if(maxLengthIndicator && !options.showOnReady) {
                     maxLengthIndicator.remove();
-                  };
+                  }
                 });
 
                 currentInput.keyup(function() {
@@ -378,9 +378,9 @@
                     }
 
                     //reposition the indicator if placement "bottom-right-inside" & "top-right-inside" is used
-                    if(options.placement == "bottom-right-inside" || options.placement == "top-right-inside"){
+                    if(options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside'){
                       place(currentInput, maxLengthIndicator);
-                    };
+                    }
 
                     return output;
                 });
