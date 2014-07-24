@@ -71,6 +71,17 @@
       }
 
       /**
+      * Truncate the text of the specified input.
+      *
+      * @param input
+      * @param limit
+      */
+      function truncateChars(input, maxlength) {
+        var text = input.val();
+        input.val(text.substr(0, maxlength));
+      }
+
+      /**
       * Return the length of the specified input in UTF8 encoding.
       *
       * @param input
@@ -369,9 +380,11 @@
         });
 
         currentInput.keyup(function () {
-          var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
+          var maxlength = getMaxLength(currentInput),
+              remaining = remainingChars(currentInput, maxlength),
               output = true;
           if (options.validate && remaining < 0) {
+            truncateChars(currentInput, maxlength);
             output = false;
           } else {
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
