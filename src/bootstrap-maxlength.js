@@ -27,7 +27,7 @@
             alwaysShow: false, // if true the indicator it's always shown.
             threshold: 10, // Represents how many chars left are needed to show up the counter
             warningClass: 'label label-success',
-            limitReachedClass: 'label label-important',
+            limitReachedClass: 'label label-important label-danger',
             separator: ' / ',
             preText: '',
             postText: '',
