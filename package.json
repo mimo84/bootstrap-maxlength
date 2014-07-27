@@ -29,13 +29,13 @@
   },
   "devDependencies": {
     "grunt": "*",
-    "grunt-contrib-uglify": "*",
+    "grunt-contrib-concat": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-qunit": "*",
+    "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-concat": "*",
-    "time-grunt": "*",
+    "grunt-jscs": "^0.6.1",
     "load-grunt-tasks": "*",
-    "grunt-jscs-checker": "^0.4.4"
+    "time-grunt": "*"
   }
 }
