@@ -27,7 +27,7 @@
             alwaysShow: false, // if true the indicator it's always shown.
             threshold: 10, // Represents how many chars left are needed to show up the counter
             warningClass: 'label label-success',
-            limitReachedClass: 'label label-important',
+            limitReachedClass: 'label label-important label-danger',
             separator: ' / ',
             preText: '',
             postText: '',
@@ -68,6 +68,17 @@
           currentLength = input.val().length;
         }
         return currentLength;
+      }
+
+      /**
+      * Truncate the text of the specified input.
+      *
+      * @param input
+      * @param limit
+      */
+      function truncateChars(input, maxlength) {
+        var text = input.val();
+        input.val(text.substr(0, maxlength));
       }
 
       /**
@@ -369,9 +380,12 @@
         });
 
         currentInput.on('input', function () {
-          var remaining = remainingChars(currentInput, getMaxLength(currentInput)),
+          var maxlength = getMaxLength(currentInput),
+              remaining = remainingChars(currentInput, maxlength),
+
               output = true;
           if (options.validate && remaining < 0) {
+            truncateChars(currentInput, maxlength);
             output = false;
           } else {
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
