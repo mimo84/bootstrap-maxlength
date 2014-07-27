@@ -35,7 +35,7 @@ Change the threshold value:
         threshold: 20
     });
 
-An example will all the configurable options:
+An example with all the configurable options:
 
     $('input.className').maxlength({
         alwaysShow: true,
