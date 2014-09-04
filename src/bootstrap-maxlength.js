@@ -31,14 +31,15 @@
             separator: ' / ',
             preText: '',
             postText: '',
-            showMaxLength : true,
+            showMaxLength: true,
             placement: 'bottom',
             showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
             validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
-                                                                // the indicated chars, will be prevented.
+            // the indicated chars, will be prevented.
             utf8: false, // counts using bytesize rather than length.  eg: '£' is counted as 2 characters.
 
-            appendToParent: false // append the indicator to the input field's parent instead of body
+            appendToParent: false, // append the indicator to the input field's parent instead of body
+            twoCharLinebreak: true   // count linebreak as 2 characters to match IE/Chrome textarea validation.  As well as DB storage.
           };
 
       if ($.isFunction(options) && !callback) {
@@ -56,16 +57,20 @@
       function inputLength(input) {
         var text = input.val();
 
-        // Remove all double-character (\r\n) linebreaks, so they're counted only once.
-        text = text.replace(new RegExp('\r?\n','g'), '\n');
-        // var matches = text.match(/\n/g);
+        if (options.twoCharLinebreak) {
+          // Count all line breaks as 2 characters
+          text = text.replace(/\r(?!\n)|\n(?!\r)/g, '\r\n');
+        } else {
+          // Remove all double-character (\r\n) linebreaks, so they're counted only once.
+          text = text.replace(new RegExp('\r?\n', 'g'), '\n');
+        }
 
         var currentLength = 0;
 
         if (options.utf8) {
-          currentLength = utf8Length(input.val());
+          currentLength = utf8Length(text);
         } else {
-          currentLength = input.val().length;
+          currentLength = text.length;
         }
         return currentLength;
       }
@@ -154,16 +159,16 @@
         });
       }
 
-       /**
-       * This function updates the value in the indicator
-       *
-       * @param maxLengthThisInput
-       * @param typedChars
-       * @return String
-       */
+      /**
+      * This function updates the value in the indicator
+      *
+      * @param maxLengthThisInput
+      * @param typedChars
+      * @return String
+      */
       function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
         var output = '';
-        if (options.message){
+        if (options.message) {
           output = options.message.replace('%charsTyped%', typedChars)
                   .replace('%charsRemaining%', maxLengthThisInput - typedChars)
                   .replace('%charsTotal%', maxLengthThisInput);
@@ -243,64 +248,64 @@
             actualWidth = maxLengthIndicator.width(),
             actualHeight = maxLengthIndicator.height();
 
-          // get the right position if the indicator is appended to the input's parent
-        if (options.appendToParent){
+        // get the right position if the indicator is appended to the input's parent
+        if (options.appendToParent) {
           pos.top -= currentInput.parent().offset().top;
           pos.left -= currentInput.parent().offset().left;
         }
 
         switch (options.placement) {
-        case 'bottom':
-          maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2 });
-          break;
-        case 'top':
-          maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 });
-          break;
-        case 'left':
-          maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth });
-          break;
-        case 'right':
-          maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width });
-          break;
-        case 'bottom-right':
-          maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width });
-          break;
-        case 'top-right':
-          maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter });
-          break;
-        case 'top-left':
-          maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left - outerWidth });
-          break;
-        case 'bottom-left':
-          maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left - outerWidth });
-          break;
-        case 'centered-right':
-          maxLengthIndicator.css({ top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3 });
-          break;
+          case 'bottom':
+            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2 });
+            break;
+          case 'top':
+            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 });
+            break;
+          case 'left':
+            maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth });
+            break;
+          case 'right':
+            maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width });
+            break;
+          case 'bottom-right':
+            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width });
+            break;
+          case 'top-right':
+            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter });
+            break;
+          case 'top-left':
+            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left - outerWidth });
+            break;
+          case 'bottom-left':
+            maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left - outerWidth });
+            break;
+          case 'centered-right':
+            maxLengthIndicator.css({ top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3 });
+            break;
 
-        // Some more options for placements
-        case 'bottom-right-inside':
-          maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width - outerWidth });
-          break;
-        case 'top-right-inside':
-          maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter - outerWidth });
-          break;
-        case 'top-left-inside':
-          maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left });
-          break;
-        case 'bottom-left-inside':
-          maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
-          break;
+            // Some more options for placements
+          case 'bottom-right-inside':
+            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width - outerWidth });
+            break;
+          case 'top-right-inside':
+            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter - outerWidth });
+            break;
+          case 'top-left-inside':
+            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left });
+            break;
+          case 'bottom-left-inside':
+            maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
+            break;
         }
       }
 
-        /**
-         *  This function retrieves the maximum length of currentInput
-         *
-         *  @param currentInput
-         *  @return {number}
-         *
-         */
+      /**
+       *  This function retrieves the maximum length of currentInput
+       *
+       *  @param currentInput
+       *  @return {number}
+       *
+       */
       function getMaxLength(currentInput) {
         return currentInput.attr('maxlength') || currentInput.attr('size');
       }
@@ -345,7 +350,7 @@
             });
           }
 
-          if (options.appendToParent){
+          if (options.appendToParent) {
             currentInput.parent().append(maxLengthIndicator);
             currentInput.parent().css('position', 'relative');
           } else {
@@ -357,7 +362,7 @@
           place(currentInput, maxLengthIndicator);
         }
 
-        if (options.showOnReady){
+        if (options.showOnReady) {
           currentInput.ready(function () {
             firstInit();
           });
@@ -382,8 +387,8 @@
         currentInput.on('input', function () {
           var maxlength = getMaxLength(currentInput),
               remaining = remainingChars(currentInput, maxlength),
-
               output = true;
+
           if (options.validate && remaining < 0) {
             truncateChars(currentInput, maxlength);
             output = false;
@@ -392,7 +397,7 @@
           }
 
           //reposition the indicator if placement "bottom-right-inside" & "top-right-inside" is used
-          if (options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside'){
+          if (options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside') {
             place(currentInput, maxLengthIndicator);
           }
 
