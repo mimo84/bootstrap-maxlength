@@ -38,9 +38,9 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-					customMaxAttribute: 'maxlength'   // default = use maxlength attribute and browswer functionality.
+          customMaxAttribute: 'maxlength'   // default = use maxlength attribute and browswer functionality.
 					// can override with a HTML5 custom attribute like 'data-maxlength' to allow exceeding maxlength.
-					// Form submit validation is handled on your own, but when maxlength has been exceeded 'overmax' class added to element 
+					// Form submit validation is handled on your own, but when maxlength has been exceeded 'overmax' class added to element
         };
 
       if ($.isFunction(options) && !callback) {
