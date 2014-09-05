@@ -62,7 +62,9 @@ The same example using the message option:
 
 An example allowing user to enter over max characters.
 	Sample HTML element:
+```html
 		<textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
+```
 
 	// rather than creating HTML form with custom attribute (optional, but suggested)
 	// defaults to browser maxlength without javascript
