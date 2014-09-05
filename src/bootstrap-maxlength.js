@@ -317,7 +317,7 @@
              *
              */
             function getMaxLength(currentInput) {
-                return currentInput.attr('maxlengthx') || currentInput.attr('size');
+                return currentInput.attr('maxlength') || currentInput.attr('size');
             }
 
             return this.each(function () {
