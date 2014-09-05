@@ -394,19 +394,6 @@
                     }
                 });
 
-                //currentInput.on('keypress', function (event) {
-                //    var key = event.which;
-
-                //    //all keys including return.
-                //    if (key >= 33 || key == 13 || key == 32) {
-                //        var maxLength = $(this).attr("maxlength");
-                //        var length = inputLength(currentInput);
-                //        if (length >= maxLength) {
-                //            event.preventDefault();
-                //        }
-                //    }
-                //});
-
                 currentInput.on('input', function () {
                     var maxlength = getMaxLength(currentInput),
                         remaining = remainingChars(currentInput, maxlength),
