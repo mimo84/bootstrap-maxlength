@@ -37,7 +37,10 @@
           // the indicated chars, will be prevented.
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
-          twoCharLinebreak: true  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
+          twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
+					customMaxAttribute: 'maxlength'   // default = use maxlength attribute and browswer functionality.
+					// can override with a HTML5 custom attribute like 'data-maxlength' to allow exceeding maxlength.
+					// Form submit validation is handled on your own, but when maxlength has been exceeded 'overmax' class added to element 
         };
 
       if ($.isFunction(options) && !callback) {
@@ -315,7 +318,7 @@
        *
        */
       function getMaxLength(currentInput) {
-        return currentInput.attr('maxlength') || currentInput.attr('size');
+        return currentInput.attr(options.customMaxAttribute) || currentInput.attr('size');
       }
 
       return this.each(function () {
@@ -400,8 +403,16 @@
           if (options.validate && remaining < 0) {
             truncateChars(currentInput, maxlength);
             output = false;
-            //manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           } else {
+            if (options.customMaxAttribute !== 'maxlength') {
+              // class to use for form validation on custom maxlength attribute
+              if (remaining < 0) {
+                currentInput.addClass('overmax');
+              } else {
+                currentInput.removeClass('overmax');
+              }
+            }
+
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
 
