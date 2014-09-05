@@ -21,7 +21,7 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
  * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
  * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters.
-
+ * **twoCharLinebreak** count linebreak as 2 characters to match IE/Chrome textarea validation.
 
 ## Examples
 
@@ -35,7 +35,7 @@ Change the threshold value:
         threshold: 20
     });
 
-An example with all the configurable options:
+An example with some of the configurable options:
 
     $('input.className').maxlength({
         alwaysShow: true,
@@ -60,6 +60,10 @@ The same example using the message option:
     });
 
 ## Changelog
+
+### 1.5.5
+*   Implemented input event rather than keydown to improve usability
+*   Fixed jshint, jscs errors
 
 ### 1.5.4
 
