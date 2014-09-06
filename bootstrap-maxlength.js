@@ -327,7 +327,7 @@
        *
        */
       function getMaxLength(currentInput) {
-        var attr = 'maxlength'
+        var attr = 'maxlength';
         if (options.allowOverMax) {
           attr = 'data-bs-mxl';
         }

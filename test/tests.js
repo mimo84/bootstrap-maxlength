@@ -126,4 +126,18 @@ $(function () {
     ok($('#overmax').hasClass('overmax'), 'overmax class added to element');
   });
 
+  test('Maxlength attribute removed', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok($('.bootstrap-maxlength').html() === '26 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 26 / 10.');
+  });
+
+  test('New data-bs-mxl attribute created', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok($('.bootstrap-maxlength').html() === '26 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 26 / 10.');
+  });
+
 });
