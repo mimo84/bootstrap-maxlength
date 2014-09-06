@@ -38,9 +38,9 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-					customMaxAttribute: 'maxlength'   // default = use maxlength attribute and browswer functionality.
-					// can override with a HTML5 custom attribute like 'data-maxlength' to allow exceeding maxlength.
-					// Form submit validation is handled on your own, but when maxlength has been exceeded 'overmax' class added to element 
+          allowOverMax: false,  // false = use maxlength attribute and browswer functionality.
+          // true = removes maxlength attribute and replaces with 'data-bs-mxl'.
+          // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
 
       if ($.isFunction(options) && !callback) {
@@ -225,6 +225,15 @@
         } else {
           showRemaining(maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
         }
+
+        if (options.allowOverMax) {
+          // class to use for form validation on custom maxlength attribute
+          if (remaining < 0) {
+            currentInput.addClass('overmax');
+          } else {
+            currentInput.removeClass('overmax');
+          }
+        }
       }
 
       /**
@@ -318,7 +327,11 @@
        *
        */
       function getMaxLength(currentInput) {
-        return currentInput.attr(options.customMaxAttribute) || currentInput.attr('size');
+        var attr = 'maxlength'
+        if (options.allowOverMax) {
+          attr = 'data-bs-mxl';
+        }
+        return currentInput.attr(attr) || currentInput.attr('size');
       }
 
       return this.each(function () {
@@ -332,6 +345,11 @@
             place(currentInput, maxLengthIndicator);
           }
         });
+
+        if (options.allowOverMax) {
+          $(this).attr('data-bs-mxl', $(this).attr('maxlength'));
+          $(this).removeAttr('maxlength');
+        }
 
         function firstInit() {
           var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
@@ -404,15 +422,6 @@
             truncateChars(currentInput, maxlength);
             output = false;
           } else {
-            if (options.customMaxAttribute !== 'maxlength') {
-              // class to use for form validation on custom maxlength attribute
-              if (remaining < 0) {
-                currentInput.addClass('overmax');
-              } else {
-                currentInput.removeClass('overmax');
-              }
-            }
-
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
 

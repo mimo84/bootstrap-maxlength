@@ -66,20 +66,11 @@ An example allowing user to enter over max characters.
 		<textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
 ```
 
-	// rather than creating HTML form with custom attribute (optional, but suggested)
-	// defaults to browser maxlength without javascript
-	$('.form-control').each(
-		function () {
-			$(this).attr('data-maxlength', $(this).attr('maxlength'));	//data- prefix is acceptable HTML5 custom attribute
-			$(this).removeAttr('maxlength');
-		}
-	);
-
 	// Setup maxlength
 	$('.form-control').maxlength({
 		alwaysShow: true,
 		validate: false,
-		customMaxAttribute: 'data-maxlength'
+		allowOverMax: true
 	});
 
 	// validate form before submit
@@ -89,7 +80,7 @@ An example allowing user to enter over max characters.
 				if ($(this).hasClass('overmax')) {
 					alert('prevent submit here');
 					e.preventDefault();
-					return;
+					return false;
 				}
 			}
 		);

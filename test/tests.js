@@ -99,4 +99,31 @@ $(function () {
 
   });
 
+  module('overmax', {
+    setup: function () {
+      maxlengthInput = $('<input id="overmax" type="text" maxlength="10" />')
+        .appendTo('#qunit-fixture');
+
+      maxlengthInput.maxlength({ allowOverMax: true });
+    },
+    teardown: function () {
+      $('.bootstrap-maxlength').remove();
+      $('#qunit-fixture').empty();
+    }
+  });
+
+  test('Allows over maxlength', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok($('.bootstrap-maxlength').html() === '26 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 26 / 10.');
+  });
+
+  test('Adds overmax class to element', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok($('#overmax').hasClass('overmax'), 'overmax class added to element');
+  });
+
 });
