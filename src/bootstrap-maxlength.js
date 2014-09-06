@@ -38,7 +38,7 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-          allowOverMax: false,  // false = use maxlength attribute and browswer functionality.
+          allowOverMax: false  // false = use maxlength attribute and browswer functionality.
           // true = removes maxlength attribute and replaces with 'data-bs-mxl'.
           // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
