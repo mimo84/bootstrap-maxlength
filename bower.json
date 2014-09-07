@@ -24,7 +24,7 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "qunit": "~1.14.0",
-    "bootstrap": "~3.1.1",
-    "bootstrap-maxlength": "~1.5.3"
+    "bootstrap": "~3.2.0",
+    "bootstrap-maxlength": "~1.5.5"
   }
 }
