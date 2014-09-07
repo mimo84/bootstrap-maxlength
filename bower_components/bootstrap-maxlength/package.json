@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-maxlength",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "An visual feedback indicator for the MaxLength attribute",
   "main": "bootstrap-maxlength.js",
   "repository": {
@@ -34,7 +34,7 @@
     "grunt-contrib-qunit": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
-    "grunt-jscs": "^0.6.1",
+    "grunt-jscs": "*",
     "load-grunt-tasks": "*",
     "time-grunt": "*"
   }

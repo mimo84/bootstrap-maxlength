@@ -21,7 +21,8 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
  * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
  * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters.
-
+ * **twoCharLinebreak**: count linebreak as 2 characters to match IE/Chrome textarea validation.
+ * **customMaxAttribute**: allows a custom maxlength attribute to allow exceeding maxlength.  'overmax' class gets added when exceeded to allow user to implement form validation.
 
 ## Examples
 
@@ -35,7 +36,7 @@ Change the threshold value:
         threshold: 20
     });
 
-An example with all the configurable options:
+An example with some of the configurable options:
 
     $('input.className').maxlength({
         alwaysShow: true,
@@ -59,7 +60,41 @@ The same example using the message option:
         message: 'used %charsTyped% of %charsTotal% chars.'
     });
 
+An example allowing user to enter over max characters.
+	Sample HTML element:
+```html
+		<textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
+```
+
+	// Setup maxlength
+	$('.form-control').maxlength({
+		alwaysShow: true,
+		validate: false,
+		allowOverMax: true
+	});
+
+	// validate form before submit
+	$('form').on('submit', function (e) {
+		$('.form-control').each(
+			function () {
+				if ($(this).hasClass('overmax')) {
+					alert('prevent submit here');
+					e.preventDefault();
+					return false;
+				}
+			}
+		);
+	});
+
 ## Changelog
+
+### 1.5.6
+*   Added over maxlength functionality with customMaxAttribute
+*   Added twoCharLinebreak option
+
+### 1.5.5
+*   Implemented input event rather than keydown to improve usability
+*   Fixed jshint, jscs errors
 
 ### 1.5.4
 
