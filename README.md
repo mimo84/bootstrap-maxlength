@@ -88,6 +88,10 @@ An example allowing user to enter over max characters.
 
 ## Changelog
 
+### 1.5.6
+*   Added over maxlength functionality with customMaxAttribute
+*   Added twoCharLinebreak option
+
 ### 1.5.5
 *   Implemented input event rather than keydown to improve usability
 *   Fixed jshint, jscs errors
