@@ -88,7 +88,7 @@ An example allowing user to enter over max characters.
 
 ## Changelog
 
-### 1.5.6.1
+### 1.5.7
 *   Fixed issue with bower
 
 ### 1.5.6
