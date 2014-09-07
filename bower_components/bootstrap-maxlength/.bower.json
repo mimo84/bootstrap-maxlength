@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-maxlength",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "main": "bootstrap-maxlength.js",
   "ignore": [
     "**/.*"
@@ -13,14 +13,13 @@
     "bootstrap": "~3.2.0"
   },
   "homepage": "https://github.com/mimo84/bootstrap-maxlength",
-  "_release": "1.5.6",
+  "_release": "1.5.7",
   "_resolution": {
     "type": "version",
-    "tag": "1.5.6",
-    "commit": "227cfc0e3cd8226b47ea89ce0ec63b837cb0bfbe"
+    "tag": "1.5.7",
+    "commit": "997ce13c14007e8b93918d74d0c188183edeb767"
   },
   "_source": "git://github.com/mimo84/bootstrap-maxlength.git",
-  "_target": "~1.5.6",
-  "_originalSource": "bootstrap-maxlength",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "bootstrap-maxlength"
 }
