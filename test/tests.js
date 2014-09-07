@@ -99,4 +99,45 @@ $(function () {
 
   });
 
+  module('overmax', {
+    setup: function () {
+      maxlengthInput = $('<input type="text" maxlength="10" />')
+        .appendTo('#qunit-fixture');
+
+      maxlengthInput.maxlength({ allowOverMax: true });
+    },
+    teardown: function () {
+      $('.bootstrap-maxlength').remove();
+      $('#qunit-fixture').empty();
+    }
+  });
+
+  test('Allows over maxlength', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok($('.bootstrap-maxlength').html() === '26 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 26 / 10.');
+  });
+
+  test('Adds overmax class to element', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok(maxlengthInput.hasClass('overmax'), '"overmax" class added to element');
+  });
+
+  test('Maxlength attribute removed', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok(!maxlengthInput.is('[maxlength]'), 'Maxlength attribute is removed and does not exist.');
+  });
+
+  test('New data-bs-mxl attribute created', function () {
+    maxlengthInput.val('this is over the maxlength');
+    maxlengthInput.focus();
+
+    ok(maxlengthInput.attr('data-bs-mxl') === '10', 'data-bs-mxl attribute value is ' + maxlengthInput.attr('data-bs-mxl') + '. Expected value of 10.');
+  });
+
 });
