@@ -123,21 +123,21 @@ $(function () {
     maxlengthInput.val('this is over the maxlength');
     maxlengthInput.focus();
 
-    ok(maxlengthInput.hasClass('overmax'), 'overmax class added to element');
+    ok(maxlengthInput.hasClass('overmax'), '"overmax" class added to element');
   });
-	
+
   test('Maxlength attribute removed', function () {
     maxlengthInput.val('this is over the maxlength');
     maxlengthInput.focus();
 
-    ok(!maxlengthInput.is('[maxlength]'), 'Maxlength attribute removed.');
+    ok(!maxlengthInput.is('[maxlength]'), 'Maxlength attribute is removed and does not exist.');
   });
 
   test('New data-bs-mxl attribute created', function () {
     maxlengthInput.val('this is over the maxlength');
     maxlengthInput.focus();
 
-    ok(maxlengthInput.attr('data-bs-mxl') == 10, $('.bootstrap-maxlength').clone().wrap('<p>').parent().html());
+    ok(maxlengthInput.attr('data-bs-mxl') === '10', 'data-bs-mxl attribute value is ' + maxlengthInput.attr('data-bs-mxl') + '. Expected value of 10.');
   });
 
 });
