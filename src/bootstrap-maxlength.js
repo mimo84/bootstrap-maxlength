@@ -153,10 +153,11 @@
        *
        * @param indicator
        */
-      function showRemaining(indicator) {
+      function showRemaining(currentInput, indicator) {
         indicator.css({
           display: 'block'
         });
+        currentInput.trigger('maxlength.shown');
       }
 
       /**
@@ -164,10 +165,11 @@
        *
        * @param indicator
        */
-      function hideRemaining(indicator) {
+      function hideRemaining(currentInput, indicator) {
         indicator.css({
           display: 'none'
         });
+        currentInput.trigger('maxlength.hidden');
       }
 
       /**
@@ -218,12 +220,12 @@
 
         if (remaining > 0) {
           if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+            showRemaining(currentInput, currentInputmaxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
           } else {
-            hideRemaining(maxLengthIndicator);
+            hideRemaining(currentInput, maxLengthIndicator);
           }
         } else {
-          showRemaining(maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+          showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
         }
 
         if (options.allowOverMax) {
@@ -401,7 +403,7 @@
           });
         }
 
-        currentInput.on('maxlength.reposition', function() {
+        currentInput.on('maxlength.reposition', function () {
           place(currentInput, maxLengthIndicator);
         });
 

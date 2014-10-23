@@ -4,8 +4,7 @@
 This plugin integrates by default with Twitter bootstrap using badges to display the maximum length of the field where the user is inserting text.
 This plugin uses the HTML5 attribute "maxlength" to work.
 
-
-The indicator badge show up on focusing on the element, and disappear when the focus is lost.
+The indicator badge shows up on focusing on the element, and disappears when the focus is lost.
 
 ## Configurable options
 
@@ -24,67 +23,86 @@ The indicator badge show up on focusing on the element, and disappear when the f
  * **twoCharLinebreak**: count linebreak as 2 characters to match IE/Chrome textarea validation.
  * **customMaxAttribute**: allows a custom maxlength attribute to allow exceeding maxlength.  'overmax' class gets added when exceeded to allow user to implement form validation.
 
+## Events
+
+* **maxlength.reposition** on an input element triggers re-placing of its indicator. Useful if textareas are resized by an external trigger.
+* **maxlength.shown** is triggered when the indicator is displayed.
+* **maxlength.hidden** is triggered when the indicator is removed from view.
+
 ## Examples
 
 Basic implementation:
-
-    $('input[maxlength]').maxlength();
+```javascript
+$('input[maxlength]').maxlength();
+```
 
 Change the threshold value:
-
-    $('input.className').maxlength({
-        threshold: 20
-    });
+```javascript
+$('input.className').maxlength({
+    threshold: 20
+});
+```
 
 An example with some of the configurable options:
-
-    $('input.className').maxlength({
-        alwaysShow: true,
-        threshold: 10,
-        warningClass: "label label-info",
-        limitReachedClass: "label label-warning",
-        placement: 'top',
-        preText: 'used ',
-        separator: ' of ',
-        postText: ' chars.'
-    });
+```javascript
+$('input.className').maxlength({
+    alwaysShow: true,
+    threshold: 10,
+    warningClass: "label label-info",
+    limitReachedClass: "label label-warning",
+    placement: 'top',
+    preText: 'used ',
+    separator: ' of ',
+    postText: ' chars.'
+});
+```
 
 The same example using the message option:
 
-    $('input.className').maxlength({
-        alwaysShow: true,
-        threshold: 10,
-        warningClass: "label label-info",
-        limitReachedClass: "label label-warning",
-        placement: 'top',
-        message: 'used %charsTyped% of %charsTotal% chars.'
-    });
-
-An example allowing user to enter over max characters.
-	Sample HTML element:
-```html
-		<textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
+```javascript
+$('input.className').maxlength({
+    alwaysShow: true,
+    threshold: 10,
+    warningClass: "label label-info",
+    limitReachedClass: "label label-warning",
+    placement: 'top',
+    message: 'used %charsTyped% of %charsTotal% chars.'
+});
 ```
 
-	// Setup maxlength
-	$('.form-control').maxlength({
-		alwaysShow: true,
-		validate: false,
-		allowOverMax: true
-	});
+An example allowing user to enter over max characters. Sample HTML element:
+```html
+<textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
+```
 
-	// validate form before submit
-	$('form').on('submit', function (e) {
-		$('.form-control').each(
-			function () {
-				if ($(this).hasClass('overmax')) {
-					alert('prevent submit here');
-					e.preventDefault();
-					return false;
-				}
+```javascript
+// Setup maxlength
+$('.form-control').maxlength({
+	alwaysShow: true,
+	validate: false,
+	allowOverMax: true
+});
+
+// validate form before submit
+$('form').on('submit', function (e) {
+	$('.form-control').each(
+		function () {
+			if ($(this).hasClass('overmax')) {
+				alert('prevent submit here');
+				e.preventDefault();
+				return false;
 			}
-		);
-	});
+		}
+	);
+});
+```
+
+An example of triggering a `maxlength.reposition` event whenever an external autosize plugin resizes a textarea:
+```javascript
+$('textarea').on('autosize.resized', function() {
+    $(this).trigger('maxlength.reposition');
+});
+```
 
 ## Changelog
 

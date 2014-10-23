@@ -2,7 +2,7 @@
   'use strict';
   /**
    * We need an event when the elements are destroyed
-   * because if an input is remvoed, we have to remove the
+   * because if an input is removed, we have to remove the
    * maxlength object associated (if any).
    * From:
    * http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
@@ -153,10 +153,11 @@
        *
        * @param indicator
        */
-      function showRemaining(indicator) {
+      function showRemaining(currentInput, indicator) {
         indicator.css({
           display: 'block'
         });
+        currentInput.trigger('maxlength.shown');
       }
 
       /**
@@ -164,10 +165,11 @@
        *
        * @param indicator
        */
-      function hideRemaining(indicator) {
+      function hideRemaining(currentInput, indicator) {
         indicator.css({
           display: 'none'
         });
+        currentInput.trigger('maxlength.hidden');
       }
 
       /**
@@ -218,12 +220,12 @@
 
         if (remaining > 0) {
           if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+            showRemaining(currentInput, currentInputmaxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
           } else {
-            hideRemaining(maxLengthIndicator);
+            hideRemaining(currentInput, maxLengthIndicator);
           }
         } else {
-          showRemaining(maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+          showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
         }
 
         if (options.allowOverMax) {
@@ -400,6 +402,11 @@
             firstInit();
           });
         }
+
+        currentInput.on('maxlength.reposition', function () {
+          place(currentInput, maxLengthIndicator);
+        });
+
 
         currentInput.on('destroyed', function () {
           if (maxLengthIndicator) {
