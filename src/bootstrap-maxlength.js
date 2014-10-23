@@ -220,7 +220,7 @@
 
         if (remaining > 0) {
           if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(currentInput, currentInputmaxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+            showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
           } else {
             hideRemaining(currentInput, maxLengthIndicator);
           }
