@@ -2,7 +2,7 @@
   'use strict';
   /**
    * We need an event when the elements are destroyed
-   * because if an input is remvoed, we have to remove the
+   * because if an input is removed, we have to remove the
    * maxlength object associated (if any).
    * From:
    * http://stackoverflow.com/questions/2200494/jquery-trigger-event-when-an-element-is-removed-from-the-dom
@@ -400,6 +400,11 @@
             firstInit();
           });
         }
+
+        currentInput.on('maxlength.reposition', function() {
+          place(currentInput, maxLengthIndicator);
+        });
+
 
         currentInput.on('destroyed', function () {
           if (maxLengthIndicator) {
