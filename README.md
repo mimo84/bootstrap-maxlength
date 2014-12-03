@@ -22,6 +22,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters.
  * **twoCharLinebreak**: count linebreak as 2 characters to match IE/Chrome textarea validation.
  * **customMaxAttribute**: allows a custom maxlength attribute to allow exceeding maxlength.  'overmax' class gets added when exceeded to allow user to implement form validation.
+ * **specialChars**: allow to add character with a special length, key for the length and value for the array of characters. {2: ['€','$']} in this case the euro and dollar count two spaces
 
 ## Events
 
