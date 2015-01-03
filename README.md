@@ -6,6 +6,8 @@ This plugin uses the HTML5 attribute "maxlength" to work.
 
 The indicator badge shows up on focusing on the element, and disappears when the focus is lost.
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DVL2K9LZW6YL)
+
 ## Configurable options
 
  * **alwaysShow**: if true the threshold will be ignored and the remaining length indication will be always showing up while typing or on focus on the input. Default: false.
