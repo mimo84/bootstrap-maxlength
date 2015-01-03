@@ -39,6 +39,7 @@
             </section>
             <a href="https://github.com/mimo84/bootstrap-maxlength/zipball/master" class="btn btn-default btn-lg">Download</a>
             <a href="https://github.com/mimo84/bootstrap-maxlength/" class="btn btn-info btn-lg">View Project on GitHub</a>
+
             <section class="text-center">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
@@ -46,9 +47,29 @@
                     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
-                <h3>Need help?</h3>
-                <p>If you need help with your JavaScript project, I can help you. You can find my contact details <a href="http://maurizionapoleoni.de/#contacts">here</a>.</p>
+                <h3>Need help with your project?</h3>
+                <p>If you need help with your web project, not just MaxLenght I can help you. Fill up the form <a id="showhide" href="#contactform">here</a></p>
             </section>
+
+            <form action="//formspree.io/napy84@gmail.com" class="form-horizontal" id="contactform" style="display:none">
+                <div class="form-group">
+                    <label for="nameInput">Name: </label>
+                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="Your Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailInput">Email: </label>
+                    <input class="form-control" type="email" name="_replyto" id="emailInput" placeholder="Your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="messageTxt">Message: </label>
+                    <textarea class="form-control" id="messageTxt" name="message" placeholder="Please insert a description here." rows="5"></textarea>
+                </div>
+
+                    <input type="submit" class="btn btn-default" value="Send">
+                </div>
+            </form>
         </div>
     </div>
     <div class="container">
@@ -244,27 +265,23 @@
     <script src="bower_components/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(
-                'input#defaultconfig'
-            ).maxlength()
+            $( "#showhide" ).click(function() {
+                $( "#contactform" ).toggle( "slow");
+            });
 
-            $(
-                'input#thresholdconfig'
-            ).maxlength({
+            $('input#defaultconfig').maxlength()
+
+            $('input#thresholdconfig').maxlength({
                 threshold: 20
             });
 
-            $(
-                'input#moreoptions'
-            ).maxlength({
+            $('input#moreoptions').maxlength({
                 alwaysShow: true,
                 warningClass: "label label-success",
                 limitReachedClass: "label label-danger"
             });
 
-            $(
-                'input#alloptions'
-            ).maxlength({
+            $('input#alloptions').maxlength({
                 alwaysShow: true,
                 warningClass: "label label-success",
                 limitReachedClass: "label label-danger",
@@ -274,14 +291,11 @@
                 validate: true
             });
 
-            $(
-                'textarea#textarea'
-            ).maxlength({
+            $('textarea#textarea').maxlength({
                 alwaysShow: true
             });
 
-            $('input#placement')
-                .maxlength({
+            $('input#placement') .maxlength({
                     alwaysShow: true,
                     placement: 'top-left'
                 });
@@ -294,82 +308,44 @@
         // HN Button
         var HN = [];
         HN.factory = function (e) {
-                return function () {
-                    HN.push([e].concat(
-                        Array
-                        .prototype
-                        .slice
-                        .call(
-                            arguments,
-                            0
-                        )))
-                };
+                return function () {HN.push([e].concat(Array .prototype .slice .call(arguments, 0 ))); };
             }, HN.on = HN.factory("on"),
             HN.once = HN.factory("once"),
             HN.off = HN.factory("off"),
             HN.emit = HN.factory("emit"),
             HN.load = function () {
                 var e = "hn-button.js";
-                if (document.getElementById(
-                    e)) return;
-                var t = document.createElement(
-                    "script");
-                t.id = e, t.src =
-                    "//hn-button.herokuapp.com/hn-button.js";
-                var n = document.getElementsByTagName(
-                    "script")[0];
-                n.parentNode.insertBefore(
-                    t, n)
+                if (document.getElementById(e)) return;
+                var t = document.createElement("script");
+                t.id = e, t.src = "//hn-button.herokuapp.com/hn-button.js";
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(t, n)
             }, HN.load();
 
          // G+ Button
         (function () {
-            var po = document.createElement(
-                'script');
-            po.type =
-                'text/javascript';
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
             po.async = true;
-            po.src =
-                'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName(
-                'script')[0];
-            s.parentNode.insertBefore(
-                po, s);
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
         })();
 
          // Twitter
         ! function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(
-                    s)[0],
-                p = /^http:/.test(d.location) ?
-                'http' : 'https';
-            if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = p +
-                    '://platform.twitter.com/widgets.js';
-                fjs.parentNode.insertBefore(
-                    js, fjs);
-            }
-        }(document, 'script',
-            'twitter-wjs');
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
     </script>
 
     <script type="text/javascript">
-        var gaJsHost = (("https:" ==
-                document.location.protocol
-            ) ? "https://ssl." :
-            "http://www.");
-        document.write(unescape(
-            "%3Cscript src='" +
-            gaJsHost +
-            "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"
-        ));
+        var gaJsHost = (("https:" == document.location.protocol ) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script type="text/javascript">
         try {
-            var pageTracker = _gat._getTracker(
-                "UA-1714199-17");
+            var pageTracker = _gat._getTracker("UA-1714199-17");
             pageTracker._trackPageview();
         } catch (err) {}
     </script>
