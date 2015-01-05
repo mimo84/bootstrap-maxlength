@@ -216,18 +216,19 @@
        * @param maxLengthIndicator
        */
       function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
-        maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
+        if (maxLengthIndicator) { //if the indicator is here. go on (IE fix)
+                maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
-        if (remaining > 0) {
-          if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
-          } else {
-            hideRemaining(currentInput, maxLengthIndicator);
-          }
-        } else {
-          showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
-        }
-
+                if (remaining > 0) {
+                    if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
+                        showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+                    } else {
+                        hideRemaining(currentInput, maxLengthIndicator);
+                    }
+                } else {
+                    showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+                }
+            }
         if (options.allowOverMax) {
           // class to use for form validation on custom maxlength attribute
           if (remaining < 0) {
