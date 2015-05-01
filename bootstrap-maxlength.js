@@ -264,8 +264,21 @@
        *
        */
       function place(currentInput, maxLengthIndicator) {
-        var pos = getPosition(currentInput),
-          inputOuter = currentInput.outerWidth(),
+        var pos = getPosition(currentInput);
+
+        // Supports custom placement handler
+        if ($.type(options.placement) === 'function'){
+          options.place(currentInput, maxLengthIndicator, pos);
+          return;
+        }
+
+        // Supports custom placement css vals
+        if ($.isPlainObject(options.placement)){
+          maxLengthIndicator.css(options.placement);
+          return;
+        }
+
+        var inputOuter = currentInput.outerWidth(),
           outerWidth = maxLengthIndicator.outerWidth(),
           actualWidth = maxLengthIndicator.width(),
           actualHeight = maxLengthIndicator.height();
