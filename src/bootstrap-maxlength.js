@@ -268,13 +268,13 @@
 
         // Supports custom placement handler
         if ($.type(options.placement) === 'function'){
-          options.place(currentInput, maxLengthIndicator, pos);
+          options.placement(currentInput, maxLengthIndicator, pos);
           return;
         }
 
-        // Supports custom placement css vals
+        // Supports custom placement via css positional properties
         if ($.isPlainObject(options.placement)){
-          maxLengthIndicator.css(options.placement);
+          placeWithCSS(options.placement, maxLengthIndicator);
           return;
         }
 
@@ -332,6 +332,41 @@
             maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
             break;
         }
+      }
+
+      /**
+       * This function places the maxLengthIndicator based on placement config object.
+       *
+       * @param {object} placement
+       * @param {$} maxLengthIndicator
+       * @return null
+       *
+       */
+      function placeWithCSS(placement, maxLengthIndicator) {
+        if (!placement || !maxLengthIndicator){
+          return;
+        }
+
+        var POSITION_KEYS = [
+          'top',
+          'bottom',
+          'left',
+          'right',
+          'position'
+        ];
+
+        var cssPos = {};
+
+        // filter css properties to position
+        $.each(POSITION_KEYS, function (i, key) {
+          if (options.placement[key]){
+            cssPos[key] = options.placement[key];
+          }
+        });
+
+        maxLengthIndicator.css(cssPos);
+
+        return;
       }
 
       /**
