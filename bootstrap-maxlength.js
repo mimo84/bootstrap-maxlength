@@ -359,8 +359,9 @@
 
         // filter css properties to position
         $.each(POSITION_KEYS, function (i, key) {
-          if (options.placement[key]){
-            cssPos[key] = options.placement[key];
+          var val = options.placement[key];
+          if (typeof val !== 'undefined'){
+            cssPos[key] = val;
           }
         });
 
