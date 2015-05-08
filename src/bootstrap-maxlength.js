@@ -38,9 +38,11 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-          allowOverMax: false  // false = use maxlength attribute and browswer functionality.
+          allowOverMax: false,  // false = use maxlength attribute and browswer functionality.
           // true = removes maxlength attribute and replaces with 'data-bs-mxl'.
           // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
+          specialChars: [] // allow to add character with a special length, key for the length and value for the array of characters. 
+          //{2: ['€','$']} in this case the euro and dollar count two spaces
         };
 
       if ($.isFunction(options) && !callback) {
@@ -55,7 +57,7 @@
       * @param input
       * @return {number}
       */
-      function inputLength(input) {
+      function inputLength(input, nospecial) {
         var text = input.val();
 
         if (options.twoCharLinebreak) {
@@ -66,6 +68,9 @@
           text = text.replace(new RegExp('\r?\n', 'g'), '\n');
         }
 
+        var resulSpecial = (nospecial===true) ? {text: text, lengthSpecial: 0} : countToAddForSpecial(text);
+        text = resulSpecial.text;
+
         var currentLength = 0;
 
         if (options.utf8) {
@@ -73,7 +78,7 @@
         } else {
           currentLength = text.length;
         }
-        return currentLength;
+        return currentLength + resulSpecial.lengthSpecial;
       }
 
       /**
@@ -94,7 +99,7 @@
           }
         }
 
-        input.val(text.substr(0, maxlength - newlines));
+        input.val(text.substr(0, maxlength - newlines - (inputLength(input) - inputLength(input, true))));
       }
 
       /**
@@ -118,6 +123,28 @@
           }
         }
         return utf8length;
+      }
+
+      /**
+      * Return the length to add for the special characters
+      * 
+      * @param text
+      * @return {number}
+      */
+      function countToAddForSpecial(text){
+        var lengthSpecial = 0;
+        if(options.specialChars){
+          $.each(options.specialChars, function(k, v){
+            var expreg = new RegExp(v.join('|'), 'g');
+            var mat = text.match(expreg);
+            if(mat){
+              lengthSpecial += text.match(expreg).length * k;
+              text = text.replace(expreg, '');
+            }
+          });
+        }
+
+        return {text: text, lengthSpecial: lengthSpecial};
       }
 
       /**
@@ -424,7 +451,6 @@
           var maxlength = getMaxLength(currentInput),
             remaining = remainingChars(currentInput, maxlength),
             output = true;
-
           if (options.validate && remaining < 0) {
             truncateChars(currentInput, maxlength);
             output = false;
