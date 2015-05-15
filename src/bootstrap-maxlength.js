@@ -264,8 +264,21 @@
        *
        */
       function place(currentInput, maxLengthIndicator) {
-        var pos = getPosition(currentInput),
-          inputOuter = currentInput.outerWidth(),
+        var pos = getPosition(currentInput);
+
+        // Supports custom placement handler
+        if ($.type(options.placement) === 'function'){
+          options.placement(currentInput, maxLengthIndicator, pos);
+          return;
+        }
+
+        // Supports custom placement via css positional properties
+        if ($.isPlainObject(options.placement)){
+          placeWithCSS(options.placement, maxLengthIndicator);
+          return;
+        }
+
+        var inputOuter = currentInput.outerWidth(),
           outerWidth = maxLengthIndicator.outerWidth(),
           actualWidth = maxLengthIndicator.width(),
           actualHeight = maxLengthIndicator.height();
@@ -319,6 +332,42 @@
             maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
             break;
         }
+      }
+
+      /**
+       * This function places the maxLengthIndicator based on placement config object.
+       *
+       * @param {object} placement
+       * @param {$} maxLengthIndicator
+       * @return null
+       *
+       */
+      function placeWithCSS(placement, maxLengthIndicator) {
+        if (!placement || !maxLengthIndicator){
+          return;
+        }
+
+        var POSITION_KEYS = [
+          'top',
+          'bottom',
+          'left',
+          'right',
+          'position'
+        ];
+
+        var cssPos = {};
+
+        // filter css properties to position
+        $.each(POSITION_KEYS, function (i, key) {
+          var val = options.placement[key];
+          if (typeof val !== 'undefined'){
+            cssPos[key] = val;
+          }
+        });
+
+        maxLengthIndicator.css(cssPos);
+
+        return;
       }
 
       /**
