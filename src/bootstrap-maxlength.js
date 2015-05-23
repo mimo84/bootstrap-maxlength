@@ -188,7 +188,7 @@
           } else {
             output = options.message.replace('%charsTyped%', typedChars)
               .replace('%charsRemaining%', maxLengthThisInput - typedChars)
-              .replace('%charsTotal%', maxLengthThisInput);  
+              .replace('%charsTotal%', maxLengthThisInput);
           }
         } else {
           if (options.preText) {

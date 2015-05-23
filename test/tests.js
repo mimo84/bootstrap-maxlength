@@ -73,9 +73,8 @@ $(function () {
     maxlengthInput.focus();
 
     ok($('.bootstrap-maxlength').html() === '4 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 4 / 10.');
-
   });
-  
+
   test('Message can be a customizable function', function () {
     $('.bootstrap-maxlength').remove();
     $('#qunit-fixture').empty();
