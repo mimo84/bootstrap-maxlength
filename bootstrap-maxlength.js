@@ -216,16 +216,18 @@
        * @param maxLengthIndicator
        */
       function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
-        maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
+        if (maxLengthIndicator) {
+          maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
-        if (remaining > 0) {
-          if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+          if (remaining > 0) {
+            if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+            } else {
+              hideRemaining(currentInput, maxLengthIndicator);
+            }
           } else {
-            hideRemaining(currentInput, maxLengthIndicator);
+            showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
           }
-        } else {
-          showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
         }
 
         if (options.allowOverMax) {
