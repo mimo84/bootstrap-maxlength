@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-maxlength",
-  "version": "1.5.7",
+  "version": "1.6.0",
   "description": "An visual feedback indicator for the MaxLength attribute",
   "main": "bootstrap-maxlength.js",
   "repository": {
@@ -12,7 +12,8 @@
     "maxlength",
     "html5",
     "input",
-    "feedback"
+    "feedback",
+    "jquery-plugin"
   ],
   "author": "Maurizio Napoleoni @mimonap",
   "licenses": [
