@@ -13,7 +13,8 @@
     "html5",
     "input",
     "feedback",
-    "jquery-plugin"
+    "jquery-plugin",
+    "jquery"
   ],
   "author": "Maurizio Napoleoni @mimonap",
   "licenses": [
