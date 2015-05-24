@@ -221,7 +221,6 @@
        * @param maxLengthIndicator
        */
       function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
-
         if (maxLengthIndicator) {
           maxLengthIndicator.html(updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
@@ -235,7 +234,6 @@
             showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
           }
         }
-
 
         if (options.allowOverMax) {
           // class to use for form validation on custom maxlength attribute
