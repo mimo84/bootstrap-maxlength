@@ -32,6 +32,7 @@
           postText: '',
           showMaxLength: true,
           placement: 'bottom',
+          message: null, // an alternative way to provide the message text
           showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
           validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
           // the indicated chars, will be prevented.
@@ -179,12 +180,16 @@
       * @param typedChars
       * @return String
       */
-      function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
+      function updateMaxLengthHTML(currentInputText, maxLengthThisInput, typedChars) {
         var output = '';
         if (options.message) {
-          output = options.message.replace('%charsTyped%', typedChars)
+          if (typeof options.message === 'function') {
+            output = options.message(currentInputText, maxLengthThisInput);
+          } else {
+            output = options.message.replace('%charsTyped%', typedChars)
               .replace('%charsRemaining%', maxLengthThisInput - typedChars)
               .replace('%charsTotal%', maxLengthThisInput);
+          }
         } else {
           if (options.preText) {
             output += options.preText;
@@ -216,8 +221,9 @@
        * @param maxLengthIndicator
        */
       function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
+
         if (maxLengthIndicator) {
-          maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
+          maxLengthIndicator.html(updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
           if (remaining > 0) {
             if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
@@ -229,6 +235,7 @@
             showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
           }
         }
+
 
         if (options.allowOverMax) {
           // class to use for form validation on custom maxlength attribute
@@ -405,7 +412,7 @@
         }
 
         function firstInit() {
-          var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
+          var maxlengthContent = updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, '0');
           maxLengthCurrentInput = getMaxLength(currentInput);
 
           if (!maxLengthIndicator) {
