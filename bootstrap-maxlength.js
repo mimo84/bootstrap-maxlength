@@ -32,6 +32,7 @@
           postText: '',
           showMaxLength: true,
           placement: 'bottom',
+          message: null, // an alternative way to provide the message text
           showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
           validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
           // the indicated chars, will be prevented.
@@ -179,12 +180,16 @@
       * @param typedChars
       * @return String
       */
-      function updateMaxLengthHTML(maxLengthThisInput, typedChars) {
+      function updateMaxLengthHTML(currentInputText, maxLengthThisInput, typedChars) {
         var output = '';
         if (options.message) {
-          output = options.message.replace('%charsTyped%', typedChars)
+          if (typeof options.message === 'function') {
+            output = options.message(currentInputText, maxLengthThisInput);
+          } else {
+            output = options.message.replace('%charsTyped%', typedChars)
               .replace('%charsRemaining%', maxLengthThisInput - typedChars)
               .replace('%charsTotal%', maxLengthThisInput);
+          }
         } else {
           if (options.preText) {
             output += options.preText;
@@ -216,16 +221,18 @@
        * @param maxLengthIndicator
        */
       function manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator) {
-        maxLengthIndicator.html(updateMaxLengthHTML(maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
+        if (maxLengthIndicator) {
+          maxLengthIndicator.html(updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, (maxLengthCurrentInput - remaining)));
 
-        if (remaining > 0) {
-          if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-            showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+          if (remaining > 0) {
+            if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+            } else {
+              hideRemaining(currentInput, maxLengthIndicator);
+            }
           } else {
-            hideRemaining(currentInput, maxLengthIndicator);
+            showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
           }
-        } else {
-          showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
         }
 
         if (options.allowOverMax) {
@@ -264,8 +271,21 @@
        *
        */
       function place(currentInput, maxLengthIndicator) {
-        var pos = getPosition(currentInput),
-          inputOuter = currentInput.outerWidth(),
+        var pos = getPosition(currentInput);
+
+        // Supports custom placement handler
+        if ($.type(options.placement) === 'function'){
+          options.placement(currentInput, maxLengthIndicator, pos);
+          return;
+        }
+
+        // Supports custom placement via css positional properties
+        if ($.isPlainObject(options.placement)){
+          placeWithCSS(options.placement, maxLengthIndicator);
+          return;
+        }
+
+        var inputOuter = currentInput.outerWidth(),
           outerWidth = maxLengthIndicator.outerWidth(),
           actualWidth = maxLengthIndicator.width(),
           actualHeight = maxLengthIndicator.height();
@@ -322,6 +342,42 @@
       }
 
       /**
+       * This function places the maxLengthIndicator based on placement config object.
+       *
+       * @param {object} placement
+       * @param {$} maxLengthIndicator
+       * @return null
+       *
+       */
+      function placeWithCSS(placement, maxLengthIndicator) {
+        if (!placement || !maxLengthIndicator){
+          return;
+        }
+
+        var POSITION_KEYS = [
+          'top',
+          'bottom',
+          'left',
+          'right',
+          'position'
+        ];
+
+        var cssPos = {};
+
+        // filter css properties to position
+        $.each(POSITION_KEYS, function (i, key) {
+          var val = options.placement[key];
+          if (typeof val !== 'undefined'){
+            cssPos[key] = val;
+          }
+        });
+
+        maxLengthIndicator.css(cssPos);
+
+        return;
+      }
+
+      /**
        * This function retrieves the maximum length of currentInput
        *
        * @param currentInput
@@ -354,7 +410,7 @@
         }
 
         function firstInit() {
-          var maxlengthContent = updateMaxLengthHTML(maxLengthCurrentInput, '0');
+          var maxlengthContent = updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, '0');
           maxLengthCurrentInput = getMaxLength(currentInput);
 
           if (!maxLengthIndicator) {

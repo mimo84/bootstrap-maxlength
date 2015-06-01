@@ -6,6 +6,8 @@ This plugin uses the HTML5 attribute "maxlength" to work.
 
 The indicator badge shows up on focusing on the element, and disappears when the focus is lost.
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4DVL2K9LZW6YL)
+
 ## Configurable options
 
  * **alwaysShow**: if true the threshold will be ignored and the remaining length indication will be always showing up while typing or on focus on the input. Default: false.
@@ -18,10 +20,16 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **showMaxLength**: if false, will display just the number of typed characters, e.g. will not display the max length. Default: true.
  * **showCharsTyped**: if false, will display just the remaining length, e.g. will display remaining lenght instead of number of typed characters. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
- * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength.
+ *  **appendToParent**: appends the maxlength indicator badge to the parent of the input rather than to the body.
+ * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength. Alternatively you may supply a function that the current text and max length and returns the string to be displayed. For example, function(currentText, maxLength) { return '' + Math.ceil(currentText.length / 160) + ' SMS Message(s)'; }
  * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters.
  * **twoCharLinebreak**: count linebreak as 2 characters to match IE/Chrome textarea validation.
  * **customMaxAttribute**: allows a custom maxlength attribute to allow exceeding maxlength.  'overmax' class gets added when exceeded to allow user to implement form validation.
+ * **placement**: is a string, object, or function, to define where to output the counter.
+   * Possible string values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
+   * Custom placements can be passed as an object, with keys **top**, **right**, **bottom**, **left**, and **position**. These are passed to $.fn.css.
+   * A custom function may also be passed. This method is invoked with the {$element} Current Input, the {$element} MaxLength Indicator, and the Current Input's Position {bottom height left right top width}.
+
 
 ## Events
 
@@ -105,6 +113,12 @@ $('textarea').on('autosize.resized', function() {
 ```
 
 ## Changelog
+
+### 1.6.0
+* Added new custom events: maxlength.reposition, maxlength.shown, maxlength.hidden. Thanks to dr-nick.
+* Buped up required jQuery to 1.9.x
+* Added option `placement` for custom placement handler. Thanks to Kreegr
+* Extended `message` option. Now it can also be optionally a function. Thanks to Vincent Pizzo
 
 ### 1.5.7
 *   Fixed issue with bower
