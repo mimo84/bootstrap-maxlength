@@ -39,8 +39,7 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-          allowOverMax: false  // false = use maxlength attribute and browswer functionality.
-          // true = removes maxlength attribute and replaces with 'data-bs-mxl'.
+          customMaxAttribute: null  // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
           // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
 
@@ -235,7 +234,7 @@
           }
         }
 
-        if (options.allowOverMax) {
+        if (options.customMaxAttribute) {
           // class to use for form validation on custom maxlength attribute
           if (remaining < 0) {
             currentInput.addClass('overmax');
@@ -378,6 +377,17 @@
       }
 
       /**
+       * This function returns true if the indicator position needs to
+       * be recalculated when the currentInput changes
+       *
+       * @return {boolean}
+       *
+       */
+      function isPlacementMutable() {
+        return options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside' || typeof options.placement === 'function' || (options.message && typeof options.message === 'function');
+      }
+
+      /**
        * This function retrieves the maximum length of currentInput
        *
        * @param currentInput
@@ -385,11 +395,19 @@
        *
        */
       function getMaxLength(currentInput) {
-        var attr = 'maxlength';
-        if (options.allowOverMax) {
-          attr = 'data-bs-mxl';
+        var max = currentInput.attr('maxlength');
+
+        if (options.customMaxAttribute) {
+          var custom = currentInput.attr(options.customMaxAttribute);
+          if (!max || custom < max) {
+            max = custom;
+          }
         }
-        return currentInput.attr(attr) || currentInput.attr('size');
+
+        if (!max) {
+          max = currentInput.attr('size');
+        }
+        return max;
       }
 
       return this.each(function () {
@@ -403,11 +421,6 @@
             place(currentInput, maxLengthIndicator);
           }
         });
-
-        if (options.allowOverMax) {
-          $(this).attr('data-bs-mxl', $(this).attr('maxlength'));
-          $(this).removeAttr('maxlength');
-        }
 
         function firstInit() {
           var maxlengthContent = updateMaxLengthHTML(currentInput.val(), maxLengthCurrentInput, '0');
@@ -488,8 +501,7 @@
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
 
-          //reposition the indicator if placement "bottom-right-inside" & "top-right-inside" is used
-          if (options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside') {
+          if (isPlacementMutable()) {
             place(currentInput, maxLengthIndicator);
           }
 
