@@ -78,7 +78,9 @@ $('input.className').maxlength({
 });
 ```
 
-An example allowing user to enter over max characters. Sample HTML element:
+An example allowing user to enter over max characters. __NOTE: you cannot have the maxlength attribute on the input element. You will need to provide the customMaxAttribute attribute__
+
+Sample HTML element:
 ```html
 <textarea class="form-control" id="xyz" name="xyz" maxlength="10"></textarea>
 ```
@@ -88,7 +90,8 @@ An example allowing user to enter over max characters. Sample HTML element:
 $('.form-control').maxlength({
 	alwaysShow: true,
 	validate: false,
-	allowOverMax: true
+	allowOverMax: true,
+    customMaxAttribute: "90"
 });
 
 // validate form before submit
