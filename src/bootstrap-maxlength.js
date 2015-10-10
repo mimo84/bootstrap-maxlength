@@ -39,7 +39,8 @@
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-          customMaxAttribute: null  // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
+          customMaxAttribute: null,  // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
+          allowOverMax: false
           // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
 
@@ -395,9 +396,9 @@
        *
        */
       function getMaxLength(currentInput) {
-        var max = currentInput.attr('maxlength');
+        var max = currentInput.attr('maxlength') || options.customMaxAttribute;
 
-        if (options.customMaxAttribute) {
+        if (options.customMaxAttribute && !options.allowOverMax) {
           var custom = currentInput.attr(options.customMaxAttribute);
           if (!max || custom < max) {
             max = custom;
