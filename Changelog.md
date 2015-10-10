@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.7.0
+* Restructured distribution files position from root folder to /dist folder
+
 ### 1.6.1
 * Added more tests around the functionalities of the plugin.
 * Fixed issues around the **alwaysShow** option
