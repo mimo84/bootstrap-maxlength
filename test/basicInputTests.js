@@ -53,4 +53,21 @@ $(function () {
     ok($('.bootstrap-maxlength').length === 1, 'Maxlength visualized only once after multiple focuses');
   });
 
+  test('The default threshold is respected', function () {
+    var content = 'Bootstrap';
+    ok(content.length < 10, 'Initial content should be less of 10 letters');
+    maxlengthInput.val(content);
+    maxlengthInput.focus();
+
+    ok($('.bootstrap-maxlength.label.label-success').length === 1, 'Maxlength badge has the success label');
+    ok($('.bootstrap-maxlength.label.label-danger').length === 0, 'Maxlength badge do not have the danger label');
+
+    var newContent = 'Bootstrap ';
+    ok(newContent.length === 10, 'newContent should be of 10 letters');
+    maxlengthInput.val(newContent);
+    maxlengthInput.focus();
+    ok($('.bootstrap-maxlength.label.label-danger').length === 1, 'Maxlength badge has the danger label');
+    ok($('.bootstrap-maxlength.label.label-success').length === 0, 'Maxlength badge do not have the success label');
+  });
+
 });
