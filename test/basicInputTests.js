@@ -16,19 +16,6 @@ $(function () {
     }
   });
 
-  module('maxlength', {
-    setup: function () {
-      maxlengthInput = $('<input type="text" maxlength="10" />')
-        .appendTo('#qunit-fixture');
-
-      maxlengthInput.maxlength();
-    },
-    teardown: function () {
-      $('.bootstrap-maxlength').remove();
-      $('#qunit-fixture').empty();
-    }
-  });
-
   test('Maxlength is displayed correctly', function () {
     maxlengthInput.focus();
     ok($('.bootstrap-maxlength').length, 'maxlength was inserted');

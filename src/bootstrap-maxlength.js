@@ -167,6 +167,11 @@
        * @param indicator
        */
       function hideRemaining(currentInput, indicator) {
+
+        if (options.alwaysShow) {
+          return;
+        }
+
         indicator.css({
           display: 'none'
         });
@@ -485,7 +490,7 @@
         });
 
         currentInput.on('blur', function () {
-          if (maxLengthIndicator && !options.showOnReady) {
+          if (maxLengthIndicator && !options.showOnReady && !options.alwaysShow) {
             maxLengthIndicator.remove();
           }
         });
