@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-maxlength",
   "version": "1.7.0",
-  "main": "bootstrap-maxlength.js",
+  "main": "src/bootstrap-maxlength.js",
   "ignore": [
     "**/.*"
   ],
