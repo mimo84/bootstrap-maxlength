@@ -51,6 +51,29 @@
       options = $.extend(defaults, options);
 
       /**
+      * Return the length of the specified input in UTF8 encoding.
+      *
+      * @param input
+      * @return {number}
+      */
+      function utf8Length(string) {
+        var utf8length = 0;
+        for (var n = 0; n < string.length; n++) {
+          var c = string.charCodeAt(n);
+          if (c < 128) {
+            utf8length++;
+          }
+          else if ((c > 127) && (c < 2048)) {
+            utf8length = utf8length + 2;
+          }
+          else {
+            utf8length = utf8length + 3;
+          }
+        }
+        return utf8length;
+      }
+
+      /**
       * Return the length of the specified input.
       *
       * @param input
@@ -96,29 +119,6 @@
         }
 
         input.val(text.substr(0, maxlength - newlines));
-      }
-
-      /**
-      * Return the length of the specified input in UTF8 encoding.
-      *
-      * @param input
-      * @return {number}
-      */
-      function utf8Length(string) {
-        var utf8length = 0;
-        for (var n = 0; n < string.length; n++) {
-          var c = string.charCodeAt(n);
-          if (c < 128) {
-            utf8length++;
-          }
-          else if ((c > 127) && (c < 2048)) {
-            utf8length = utf8length + 2;
-          }
-          else {
-            utf8length = utf8length + 3;
-          }
-        }
-        return utf8length;
       }
 
       /**
@@ -267,6 +267,43 @@
       }
 
       /**
+       * This function places the maxLengthIndicator based on placement config object.
+       *
+       * @param {object} placement
+       * @param {$} maxLengthIndicator
+       * @return null
+       *
+       */
+      function placeWithCSS(placement, maxLengthIndicator) {
+        if (!placement || !maxLengthIndicator){
+          return;
+        }
+
+        var POSITION_KEYS = [
+          'top',
+          'bottom',
+          'left',
+          'right',
+          'position'
+        ];
+
+        var cssPos = {};
+
+        // filter css properties to position
+        $.each(POSITION_KEYS, function (i, key) {
+          var val = options.placement[key];
+          if (typeof val !== 'undefined'){
+            cssPos[key] = val;
+          }
+        });
+
+        maxLengthIndicator.css(cssPos);
+
+        return;
+      }
+
+
+      /**
        * This function places the maxLengthIndicator at the
        * top / bottom / left / right of the currentInput
        *
@@ -344,42 +381,6 @@
             maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
             break;
         }
-      }
-
-      /**
-       * This function places the maxLengthIndicator based on placement config object.
-       *
-       * @param {object} placement
-       * @param {$} maxLengthIndicator
-       * @return null
-       *
-       */
-      function placeWithCSS(placement, maxLengthIndicator) {
-        if (!placement || !maxLengthIndicator){
-          return;
-        }
-
-        var POSITION_KEYS = [
-          'top',
-          'bottom',
-          'left',
-          'right',
-          'position'
-        ];
-
-        var cssPos = {};
-
-        // filter css properties to position
-        $.each(POSITION_KEYS, function (i, key) {
-          var val = options.placement[key];
-          if (typeof val !== 'undefined'){
-            cssPos[key] = val;
-          }
-        });
-
-        maxLengthIndicator.css(cssPos);
-
-        return;
       }
 
       /**
