@@ -1,0 +1,18 @@
+{
+  "name": "mimo84/bootstrap-maxlength",
+  "type": "component",
+  "description": "jQuery and Bootstrap plugin for character count on inputs",
+  "homepage": "http://mimo84.github.com/bootstrap-maxlength/",
+  "keywords": ["count", "input", "maxlength", "length", "textarea", "form"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maurizio Napoleoni",
+      "url": "http://zoomingin.net"
+    }
+  ],
+  "require": {
+    "components/jquery": ">=1.9.0",
+    "components/bootstrap": ">=3.2.0"
+  }
+}
