@@ -16,18 +16,14 @@ $(function () {
     }
   });
 
-  function checkVisibility () {
-    ok($('.bootstrap-maxlength').is(':visible'), 'Maxlength is visible');
-  }
-
   test('The badge is always visible', function () {
     maxlengthInput.val('Hello World');
 
     maxlengthInput.focus();
-    checkVisibility();
+    ok($('.bootstrap-maxlength').is(':visible'), 'Maxlength is visible when input:focus');
 
     maxlengthInput.blur();
-    checkVisibility();
+    ok($('.bootstrap-maxlength').not(':visible'), 'Maxlength is not visible when input:not(:focus)');
   });
 
 });
