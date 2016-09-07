@@ -491,7 +491,7 @@
         });
 
         currentInput.on('blur', function () {
-          if (maxLengthIndicator && !options.showOnReady && !options.alwaysShow) {
+          if (maxLengthIndicator && !options.showOnReady) {
             maxLengthIndicator.remove();
           }
         });
