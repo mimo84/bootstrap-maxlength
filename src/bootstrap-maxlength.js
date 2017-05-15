@@ -125,13 +125,13 @@
        * Return true if the indicator should be showing up.
        *
        * @param input
-       * @param thereshold
+       * @param threshold
        * @param maxlength
        * @return {number}
        */
-      function charsLeftThreshold(input, thereshold, maxlength) {
+      function charsLeftThreshold(input, threshold, maxlength) {
         var output = true;
-        if (!options.alwaysShow && (maxlength - inputLength(input) > thereshold)) {
+        if (!options.alwaysShow && (maxlength - inputLength(input) > threshold)) {
           output = false;
         }
         return output;
