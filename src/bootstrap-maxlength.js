@@ -109,6 +109,7 @@
       function truncateChars(input, maxlength) {
         var text = input.val();
         var newlines = 0;
+		var charactersPastByteCount = 0;
 
         if (options.twoCharLinebreak) {
           text = text.replace(/\r(?!\n)|\n(?!\r)/g, '\r\n');
@@ -118,7 +119,16 @@
           }
         }
 
-        input.val(text.substr(0, maxlength - newlines));
+		if (options.utf8) {
+		  var length = utf8Length(text);
+		  while(length > maxlength && length > 0) {
+			text = text.substr(0, text.length - 1);
+			charactersPastByteCount++;
+			length = utf8Length(text);
+		  }
+		}
+
+        input.val(text.substr(0, (maxlength - charactersPastByteCount) - newlines));
       }
 
       /**
