@@ -119,7 +119,6 @@
           }
         }
 
-
         if (options.utf8) {
           var length = utf8Length(text);
           while(length > maxlength && length > 0) {
