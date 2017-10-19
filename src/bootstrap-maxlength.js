@@ -127,7 +127,7 @@
           for (
             var removedBytes = 0,
                 bytesPastMax = utf8Length(text) - maxlength
-            ;removedBytes < bytesPastMax && indexedSize.length > 0
+            ;removedBytes < bytesPastMax
             ;removedBytes += indexedSize.pop()
           );
           maxlength -= (maxlength - indexedSize.length);
