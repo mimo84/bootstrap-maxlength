@@ -53,12 +53,12 @@
 
       /**
       * Return the byte count of the specified character in UTF8 encoding.
+      * Note: This won't cover UTF-8 characters that are 4 bytes long.
       *
       * @param input
       * @return {number}
       */
       function utf8CharByteCount(character) {
-        // This won't cover UTF-8 characters that are 4 bytes long.
         var c = character.charCodeAt();
         // Not c then 0, else c < 128 then 1, else c < 2048 then 2, else 3
         return !c ? 0 : c < 128 ? 1 : c < 2048 ? 2 : 3;
@@ -125,10 +125,10 @@
         if (options.utf8) {
           var indexedSize = text.split("").map(utf8CharByteCount);
           for (
-            var removedChars = 0,
+            var removedBytes = 0,
                 bytesPastMax = utf8Length(text) - maxlength
-            ;removedChars < bytesPastMax && indexedSize.length > 0
-            ;removedChars += indexedSize.pop()
+            ;removedBytes < bytesPastMax && indexedSize.length > 0
+            ;removedBytes += indexedSize.pop()
           );
           maxlength -= (maxlength - indexedSize.length);
         }
