@@ -50,6 +50,19 @@
       }
       options = $.extend(defaults, options);
 
+
+      /**
+      * Return the byte count of the specified character in UTF8 encoding.
+      *
+      * @param input
+      * @return {number}
+      */
+      function utf8CharByteCount(character) {
+        var c = character.charCodeAt();
+        // Not c then 0, else c < 128 then 1, else c < 2048 then 2, else 3
+        return !c ? 0 : c < 128 ? 1 : c < 2048 ? 2 : 3;
+      }
+
       /**
       * Return the length of the specified input in UTF8 encoding.
       *
@@ -57,20 +70,9 @@
       * @return {number}
       */
       function utf8Length(string) {
-        var utf8length = 0;
-        for (var n = 0; n < string.length; n++) {
-          var c = string.charCodeAt(n);
-          if (c < 128) {
-            utf8length++;
-          }
-          else if ((c > 127) && (c < 2048)) {
-            utf8length = utf8length + 2;
-          }
-          else {
-            utf8length = utf8length + 3;
-          }
-        }
-        return utf8length;
+        return string.split("")
+          .map(utf8CharByteCount)
+          .reduce(function(sum, val) { return sum + val; });
       }
 
       /**
