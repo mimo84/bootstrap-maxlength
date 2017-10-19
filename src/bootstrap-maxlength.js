@@ -113,27 +113,27 @@
       */
       function truncateChars(input, maxlength) {
         var text = input.val();
-        var newlines = 0;
-        var charactersPastByteCount = 0;
 
         if (options.twoCharLinebreak) {
           text = text.replace(/\r(?!\n)|\n(?!\r)/g, '\r\n');
 
-          if (text.substr(text.length - 1) === '\n' && text.length % 2 === 1) {
-            newlines = 1;
+          if (text[text.length - 1] === '\n') {
+            maxlength -= text.length % 2;
           }
         }
 
         if (options.utf8) {
-          var length = utf8Length(text);
-          while(length > maxlength && length > 0) {
-            text = text.substr(0, text.length - 1);
-            charactersPastByteCount++;
-            length = utf8Length(text);
-          }
+          var indexedSize = text.split("").map(utf8CharByteCount);
+          for (
+            var removedChars = 0,
+                bytesPastMax = utf8Length(text) - maxlength
+            ;removedChars < bytesPastMax && indexedSize.length > 0
+            ;removedChars += indexedSize.pop()
+          );
+          maxlength -= (maxlength - indexedSize.length);
         }
 
-        input.val(text.substr(0, (maxlength - charactersPastByteCount) - newlines));
+        input.val(text.substr(0, maxlength));
       }
 
       /**
