@@ -23,7 +23,7 @@ $(function () {
 
     var len = maxlengthInput.val().length;
     var msg = [
-      'Current length', len, '/ 10.',
+      'Current length', len, '/ 9.',
       'Expected 9 / 9.'
     ].join(" ");
     ok(len === 9, msg);

@@ -24,8 +24,8 @@ $(function () {
 
     var len = maxlengthInput.val().length;
     var msg = [
-      'Current length', len, '/ 10.',
-      'Expected 6 / 10.'
+      'Current length', len, '/ 9.',
+      'Expected 6 / 9.'
     ].join(" ");
     ok(len === 6, msg);
   });
