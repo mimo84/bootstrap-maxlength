@@ -110,7 +110,7 @@ $('form').on('submit', function (e) {
 
 An example of triggering a `maxlength.reposition` event whenever an external autosize plugin resizes a textarea:
 ```javascript
-$('textarea').on('autosize.resized', function() {
+$('textarea').on('autosize:resized', function() {
     $(this).trigger('maxlength.reposition');
 });
 ```
