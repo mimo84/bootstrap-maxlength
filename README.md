@@ -26,7 +26,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **customMaxAttribute**: String -- allows a custom attribute to display indicator without triggering native maxlength behaviour.  Ignored if value greater than a native maxlength attribute. 'overmax' class gets added when exceeded to allow user to implement form validation.
  * **allowOverMax**: Will allow the input to be over the customMaxLength. Useful in soft max situations.
  * **placement**: is a string, object, or function, to define where to output the counter.
-   * Possible string values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
+   * Possible string values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**. Are also available : **bottom-right-inside** (like in Google's material design, **top-right-inside**, **top-left-inside** and **bottom-left-inside**.
    * Custom placements can be passed as an object, with keys **top**, **right**, **bottom**, **left**, and **position**. These are passed to $.fn.css.
    * A custom function may also be passed. This method is invoked with the {$element} Current Input, the {$element} MaxLength Indicator, and the Current Input's Position {bottom height left right top width}.
 
