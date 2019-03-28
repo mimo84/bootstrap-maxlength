@@ -40,7 +40,8 @@
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
           customMaxAttribute: null,  // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
-          allowOverMax: false
+          allowOverMax: false,
+          zIndex: 1099
           // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
 
@@ -453,7 +454,8 @@
               display: 'none',
               position: 'absolute',
               whiteSpace: 'nowrap',
-              zIndex: 1099
+              //zIndex: 1099
+              zIndex: options.zIndex
             }).html(maxlengthContent);
           }
 
