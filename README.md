@@ -16,7 +16,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **preText**: is a string of text that can be outputted in front of the indicator. preText is empty by default.
  * **postText**: is a string outputted after the indicator. postText is empty by default.
  * **showMaxLength**: if false, will display just the number of typed characters, e.g. will not display the max length. Default: true.
- * **showCharsTyped**: if false, will display just the remaining length, e.g. will display remaining lenght instead of number of typed characters. Default: true.
+ * **showCharsTyped**: if false, will display just the remaining length, e.g. will display remaining length instead of number of typed characters. Default: true.
  * **placement**: is a string, define where to output the counter. Possible values are: **bottom** ( *default option* ), **left**, **top**, **right**, **bottom-right**, **top-right**, **top-left**, **bottom-left** and **centered-right**.
  *  **appendToParent**: appends the maxlength indicator badge to the parent of the input rather than to the body.
  * **message**: an alternative way to provide the message text, i.e. 'You have typed %charsTyped% chars, %charsRemaining% of %charsTotal% remaining'. %charsTyped%, %charsRemaining% and %charsTotal% will be replaced by the actual values. This overrides the options separator, preText, postText and showMaxLength. Alternatively you may supply a function that the current text and max length and returns the string to be displayed. For example, function(currentText, maxLength) { return '' + Math.ceil(currentText.length / 160) + ' SMS Message(s)'; }
