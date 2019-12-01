@@ -1,12 +1,14 @@
 {
   "name": "bootstrap-maxlength",
-  "version": "1.7.0",
-  "description": "An visual feedback indicator for the MaxLength attribute",
-  "main": "bootstrap-maxlength.js",
+  "version": "1.8.0",
+  "version_short": "1.8",
+  "description": "A visual feedback indicator for the MaxLength attribute",
+  "main": "dist/bootstrap-maxlength.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mimo84/bootstrap-maxlength.git"
+    "url": "https://github.com/mimo84/bootstrap-maxlength.git"
   },
+  "homepage": "https://github.com/mimo84/bootstrap-maxlength",
   "keywords": [
     "form",
     "maxlength",
@@ -14,30 +16,29 @@
     "input",
     "feedback",
     "jquery-plugin",
-    "jquery"
+    "jquery",
+    "bootstrap",
+    "bs"
   ],
   "author": "Maurizio Napoleoni @mimonap",
-  "licenses": [
-    {
-      "type": "MIT License",
-      "url": "https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE"
-    }
+  "contributors": [
+    "Maurizio Napoleoni @mimonap",
+    "djibe @djibe"
   ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mimo84/bootstrap-maxlength/issues"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "eslint \"src/**\" --report-unused-disable-directives",
+    "dist": "terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.js -b && terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.min.js -c"
+  },
+  "dependencies": {
+    "bootstrap": ">=2",
+    "jquery": ">=1.9",
+    "terser": "^4.4.0"
   },
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-qunit": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-jscs": "*",
-    "load-grunt-tasks": "*",
-    "time-grunt": "*"
+    "eslint": "^6.7.1"
   }
 }
