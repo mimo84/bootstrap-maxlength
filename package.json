@@ -35,10 +35,10 @@
   },
   "dependencies": {
     "bootstrap": ">=2",
-    "jquery": ">=1.9",
-    "terser": "^4.4.0"
+    "jquery": ">=1.9"
   },
   "devDependencies": {
-    "eslint": "^6.7.1"
+    "eslint": "^6.7.1",
+    "terser": "^4.4.0"
   }
 }
