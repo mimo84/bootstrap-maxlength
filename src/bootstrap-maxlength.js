@@ -1,7 +1,7 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.8.0
+ * bootstrap-maxlength.js v1.9.0
  * 
- * Copyright (c) 2013-2019 Maurizio Napoleoni; 
+ * Copyright (c) 2013-2020 Maurizio Napoleoni; 
  *
  * Licensed under the terms of the MIT license.
  * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
@@ -49,7 +49,8 @@
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true, // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
           customMaxAttribute: null, // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
-          allowOverMax: false // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
+          allowOverMax: false, // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
+          zIndex: 1099
         };
 
       if ($.isFunction(options) && !callback) {
@@ -112,6 +113,13 @@
         } else {
           currentLength = text.length;
         }
+
+        // Remove "C:\fakepath\" from counter when using file input
+        // Fix https://github.com/mimo84/bootstrap-maxlength/issues/146
+        if (input.prop("type") === "file" && input.val() !== "") {
+          currentLength -= 12;
+        }
+
         return currentLength;
       }
 
@@ -499,7 +507,7 @@
               display: 'none',
               position: 'absolute',
               whiteSpace: 'nowrap',
-              zIndex: 1099
+              zIndex: options.zIndex
             }).html(maxlengthContent);
           }
 

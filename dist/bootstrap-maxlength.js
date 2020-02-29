@@ -29,7 +29,8 @@
                 appendToParent: false,
                 twoCharLinebreak: true,
                 customMaxAttribute: null,
-                allowOverMax: false
+                allowOverMax: false,
+                zIndex: 1099
             };
             if ($.isFunction(options) && !callback) {
                 callback = options;
@@ -57,6 +58,9 @@
                     currentLength = utf8Length(text);
                 } else {
                     currentLength = text.length;
+                }
+                if (input.prop("type") === "file" && input.val() !== "") {
+                    currentLength -= 12;
                 }
                 return currentLength;
             }
@@ -309,7 +313,7 @@
                             display: "none",
                             position: "absolute",
                             whiteSpace: "nowrap",
-                            zIndex: 1099
+                            zIndex: options.zIndex
                         }).html(maxlengthContent);
                     }
                     if (currentInput.is("textarea")) {
