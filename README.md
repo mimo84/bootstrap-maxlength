@@ -24,6 +24,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **customMaxAttribute**: String -- allows a custom attribute to display indicator without triggering native maxlength behaviour.  Ignored if value greater than a native maxlength attribute. 'overmax' class gets added when exceeded to allow user to implement form validation. Default is ```null```.
  * **validate**: If the browser doesn't support the maxlength attribute, attempt to type more than the indicated chars, will be prevented. Default: ```false```.
  * **allowOverMax**: Will allow the input to be over the customMaxLength. Useful in soft max situations. Default `false`.
+ * **zIndex**: Will set the counter z-elevation. Useful to fix elevation in modals or dialogs. Default `1099`.
  * **placement**: Is a string, object, or function, to define where to output the counter.
    * Possible string values are: ```bottom```, ```left```, ```top```, ```right```, ```bottom-right```, ```top-right```, ```top-left```, ```bottom-left``` and ```centered-right```. Are also available : ```bottom-right-inside``` (*default option*, as in Google's Material Design), ```top-right-inside```, ```top-left-inside``` and ```bottom-left-inside```.
    * Custom placements can be passed as an object, with keys ```top```, ```right```, ```bottom```, ```left```, and ```position```. These are passed to $.fn.css.
