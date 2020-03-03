@@ -1,5 +1,11 @@
 ## Changelog
 
+### 1.9.0
+
+* Add zIndex support by @ASKemp
+* Fixed file input counter (@djibe)
+* Update dependencies
+
 ### 1.8.0
 
 * Dropped Grunt (*Unmaintained*)
