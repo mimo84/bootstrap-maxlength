@@ -3,20 +3,20 @@ $(function () {
 
   var maxlengthInput;
 
-  module('validate', {
-    setup: function () {
+  QUnit.module('validate', {
+    beforeEach: function () {
       maxlengthInput = $('<textarea maxlength="9"></textarea>')
         .appendTo('#qunit-fixture');
 
       maxlengthInput.maxlength({ validate: true });
     },
-    teardown: function () {
+    afterEach: function () {
       $('.bootstrap-maxlength').remove();
       $('#qunit-fixture').empty();
     }
   });
 
-  test('Text length by character', function () {
+  QUnit.test('Text length by character', function (assert) {
     maxlengthInput
       .val('0°1°2°3°4°5°6°7°8°9°')
       .trigger('input');
@@ -26,7 +26,7 @@ $(function () {
       'Current length', len, '/ 9.',
       'Expected 9 / 9.'
     ].join(" ");
-    ok(len === 9, msg);
+    assert.ok(len === 9, msg);
   });
 
 });

@@ -3,26 +3,26 @@ $(function () {
 
   var maxlengthInput;
 
-  module('textarea', {
-    setup: function () {
+  QUnit.module('textarea', {
+    beforeEach: function () {
       maxlengthInput = $('<textarea maxlength="10"></textarea>')
         .appendTo('#qunit-fixture');
 
       maxlengthInput.maxlength({ twoCharLinebreak: false });
     },
-    teardown: function () {
+    afterEach: function () {
       $('.bootstrap-maxlength').remove();
       $('#qunit-fixture').empty();
     }
   });
 
-  test('Newlines are not counted twice', function () {
+  QUnit.test('Newlines are not counted twice', function (assert) {
     maxlengthInput.val('t\r\nt');
 
     maxlengthInput.maxlength({ twoCharLinebreak: false });
     maxlengthInput.focus();
 
-    ok($('.bootstrap-maxlength').html() === '3 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 3 / 10.');
+    assert.ok($('.bootstrap-maxlength').html() === '3 / 10', 'Current length is: ' + $('.bootstrap-maxlength').html() + '. Expected 3 / 10.');
 
   });
 

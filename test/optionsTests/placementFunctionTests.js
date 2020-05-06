@@ -2,35 +2,35 @@ $(function () {
   'use strict';
 
   var maxlengthInput,
-      wasCalled,
-      argsLength;
+    wasCalled,
+    argsLength;
 
-  module('placement function option', {
-    setup: function () {
+  QUnit.module('placement function option', {
+    beforeEach: function () {
       wasCalled = false;
       maxlengthInput = $('<input type="text" maxlength="10" />')
-          .appendTo('#qunit-fixture');
+        .appendTo('#qunit-fixture');
 
       maxlengthInput.maxlength({
-        placement : function () {
+        placement: function () {
           wasCalled = true;
           argsLength = arguments.length;
         }
       });
     },
-    teardown: function () {
+    afterEach: function () {
       $('.bootstrap-maxlength').remove();
       $('#qunit-fixture').empty();
     }
   });
 
-  test('Was called', function () {
+  QUnit.test('Was called', function (assert) {
     maxlengthInput.focus();
-    ok(wasCalled, 'Custom placement function was called');
+    assert.ok(wasCalled, 'Custom placement function was called');
   });
-  test('Was called with expected number of arguments', function () {
+  QUnit.test('Was called with expected number of arguments', function (assert) {
     maxlengthInput.focus();
-    ok(argsLength === 3, 'placement function option was called with expected number of arguments');
+    assert.ok(argsLength === 3, 'placement function option was called with expected number of arguments');
   });
 
 });

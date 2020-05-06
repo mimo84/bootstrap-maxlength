@@ -1,7 +1,7 @@
 /* ==========================================================
- * bootstrap-maxlength.js v1.9.0
- * 
- * Copyright (c) 2013-2020 Maurizio Napoleoni; 
+ * bootstrap-maxlength.js v1.10.0
+ *
+ * Copyright (c) 2013-2020 Maurizio Napoleoni;
  *
  * Licensed under the terms of the MIT license.
  * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
@@ -144,7 +144,7 @@
           var indexedSize = text.split("").map(utf8CharByteCount);
           for (
             var removedBytes = 0,
-              bytesPastMax = utf8Length(text) - maxlength; removedBytes < bytesPastMax; removedBytes += indexedSize.pop()
+            bytesPastMax = utf8Length(text) - maxlength; removedBytes < bytesPastMax; removedBytes += indexedSize.pop()
           );
           maxlength -= (maxlength - indexedSize.length);
         }
@@ -424,7 +424,7 @@
             });
             break;
 
-            // Some more options for placements
+          // Some more options for placements
           case 'bottom-right-inside':
             maxLengthIndicator.css({
               top: pos.top + pos.height,
@@ -577,9 +577,9 @@
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
 
-          if (isPlacementMutable()) {
-            place(currentInput, maxLengthIndicator);
-          }
+          // if (isPlacementMutable()) {
+          //   place(currentInput, maxLengthIndicator);
+          // }
 
           return output;
         });

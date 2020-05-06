@@ -3,20 +3,21 @@ $(function () {
 
   var maxlengthInput;
 
-  module('utf8', {
-    setup: function () {
+  QUnit.module('utf8', {
+    beforeEach: function () {
       maxlengthInput = $('<textarea maxlength="9"></textarea>')
         .appendTo('#qunit-fixture');
 
       maxlengthInput.maxlength({ utf8: true });
     },
-    teardown: function () {
+    afterEach: function () {
       $('.bootstrap-maxlength').remove();
       $('#qunit-fixture').empty();
     }
   });
 
-  test('Validate text length by byte', function() {
+  QUnit.test('Validate text length by byte', function (assert) {
+
     maxlengthInput
       .val('0°1°2°3°4°5°6°7°8°9°') // ° is two bytes each
       .maxlength({ utf8: true, validate: true })
@@ -27,7 +28,7 @@ $(function () {
       'Current length', len, '/ 9.',
       'Expected 6 / 9.'
     ].join(" ");
-    ok(len === 6, msg);
+    assert.ok(len === 6, msg);
   });
 
 });
