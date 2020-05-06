@@ -1,3 +1,13 @@
+/* ==========================================================
+ * bootstrap-maxlength.js v1.9.0
+ * 
+ * Copyright (c) 2013-2020 Maurizio Napoleoni; 
+ *
+ * Licensed under the terms of the MIT license.
+ * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
+ * ========================================================== */
+/*global  jQuery*/
+
 (function ($) {
   'use strict';
   /**
@@ -23,26 +33,24 @@
       var documentBody = $('body'),
         defaults = {
           showOnReady: false, // true to always show when indicator is ready
-          alwaysShow: false, // if true the indicator it's always shown.
-          threshold: 10, // Represents how many chars left are needed to show up the counter
-          warningClass: 'label label-success',
-          limitReachedClass: 'label label-important label-danger',
+          alwaysShow: true, // if true the indicator it's always shown.
+          threshold: 0, // Represents how many chars left are needed to show up the counter
+          warningClass: 'small form-text text-muted',
+          limitReachedClass: 'small form-text text-danger',
           separator: ' / ',
           preText: '',
           postText: '',
           showMaxLength: true,
-          placement: 'bottom',
+          placement: 'bottom-right-inside',
           message: null, // an alternative way to provide the message text
           showCharsTyped: true, // show the number of characters typed and not the number of characters remaining
-          validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than
-          // the indicated chars, will be prevented.
+          validate: false, // if the browser doesn't support the maxlength attribute, attempt to type more than the indicated chars, will be prevented.
           utf8: false, // counts using bytesize rather than length. eg: '£' is counted as 2 characters.
           appendToParent: false, // append the indicator to the input field's parent instead of body
-          twoCharLinebreak: true,  // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
-          customMaxAttribute: null,  // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
-          allowOverMax: false,
+          twoCharLinebreak: true, // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
+          customMaxAttribute: null, // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
+          allowOverMax: false, // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
           zIndex: 1099
-          // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
         };
 
       if ($.isFunction(options) && !callback) {
@@ -53,12 +61,12 @@
 
 
       /**
-      * Return the byte count of the specified character in UTF8 encoding.
-      * Note: This won't cover UTF-8 characters that are 4 bytes long.
-      *
-      * @param input
-      * @return {number}
-      */
+       * Return the byte count of the specified character in UTF8 encoding.
+       * Note: This won't cover UTF-8 characters that are 4 bytes long.
+       *
+       * @param input
+       * @return {number}
+       */
       function utf8CharByteCount(character) {
         var c = character.charCodeAt();
         // Not c then 0, else c < 128 then 1, else c < 2048 then 2, else 3
@@ -66,25 +74,27 @@
       }
 
       /**
-      * Return the length of the specified input in UTF8 encoding.
-      *
-      * @param input
-      * @return {number}
-      */
+       * Return the length of the specified input in UTF8 encoding.
+       *
+       * @param input
+       * @return {number}
+       */
       function utf8Length(string) {
         return string.split("")
           .map(utf8CharByteCount)
           // Prevent reduce from throwing an error if the string is empty.
           .concat(0)
-          .reduce(function(sum, val) { return sum + val; });
+          .reduce(function (sum, val) {
+            return sum + val;
+          });
       }
 
       /**
-      * Return the length of the specified input.
-      *
-      * @param input
-      * @return {number}
-      */
+       * Return the length of the specified input.
+       *
+       * @param input
+       * @return {number}
+       */
       function inputLength(input) {
         var text = input.val();
 
@@ -93,7 +103,7 @@
           text = text.replace(/\r(?!\n)|\n(?!\r)/g, '\r\n');
         } else {
           // Remove all double-character (\r\n) linebreaks, so they're counted only once.
-          text = text.replace(new RegExp('\r?\n', 'g'), '\n');
+          text = text.replace(/(?:\r\n|\r|\n)/g, '\n');
         }
 
         var currentLength = 0;
@@ -103,15 +113,22 @@
         } else {
           currentLength = text.length;
         }
+
+        // Remove "C:\fakepath\" from counter when using file input
+        // Fix https://github.com/mimo84/bootstrap-maxlength/issues/146
+        if (input.prop("type") === "file" && input.val() !== "") {
+          currentLength -= 12;
+        }
+
         return currentLength;
       }
 
       /**
-      * Truncate the text of the specified input.
-      *
-      * @param input
-      * @param limit
-      */
+       * Truncate the text of the specified input.
+       *
+       * @param input
+       * @param limit
+       */
       function truncateChars(input, maxlength) {
         var text = input.val();
 
@@ -127,9 +144,7 @@
           var indexedSize = text.split("").map(utf8CharByteCount);
           for (
             var removedBytes = 0,
-                bytesPastMax = utf8Length(text) - maxlength
-            ;removedBytes < bytesPastMax
-            ;removedBytes += indexedSize.pop()
+              bytesPastMax = utf8Length(text) - maxlength; removedBytes < bytesPastMax; removedBytes += indexedSize.pop()
           );
           maxlength -= (maxlength - indexedSize.length);
         }
@@ -195,12 +210,12 @@
       }
 
       /**
-      * This function updates the value in the indicator
-      *
-      * @param maxLengthThisInput
-      * @param typedChars
-      * @return String
-      */
+       * This function updates the value in the indicator
+       *
+       * @param maxLengthThisInput
+       * @param typedChars
+       * @return String
+       */
       function updateMaxLengthHTML(currentInputText, maxLengthThisInput, typedChars) {
         var output = '';
         if (options.message) {
@@ -217,8 +232,7 @@
           }
           if (!options.showCharsTyped) {
             output += maxLengthThisInput - typedChars;
-          }
-          else {
+          } else {
             output += typedChars;
           }
           if (options.showMaxLength) {
@@ -291,7 +305,7 @@
        *
        */
       function placeWithCSS(placement, maxLengthIndicator) {
-        if (!placement || !maxLengthIndicator){
+        if (!placement || !maxLengthIndicator) {
           return;
         }
 
@@ -308,7 +322,7 @@
         // filter css properties to position
         $.each(POSITION_KEYS, function (i, key) {
           var val = options.placement[key];
-          if (typeof val !== 'undefined'){
+          if (typeof val !== 'undefined') {
             cssPos[key] = val;
           }
         });
@@ -332,13 +346,13 @@
         var pos = getPosition(currentInput);
 
         // Supports custom placement handler
-        if ($.type(options.placement) === 'function'){
+        if ($.type(options.placement) === 'function') {
           options.placement(currentInput, maxLengthIndicator, pos);
           return;
         }
 
         // Supports custom placement via css positional properties
-        if ($.isPlainObject(options.placement)){
+        if ($.isPlainObject(options.placement)) {
           placeWithCSS(options.placement, maxLengthIndicator);
           return;
         }
@@ -356,45 +370,84 @@
 
         switch (options.placement) {
           case 'bottom':
-            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2 });
+            maxLengthIndicator.css({
+              top: pos.top + pos.height,
+              left: pos.left + pos.width / 2 - actualWidth / 2
+            });
             break;
           case 'top':
-            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 });
+            maxLengthIndicator.css({
+              top: pos.top - actualHeight,
+              left: pos.left + pos.width / 2 - actualWidth / 2
+            });
             break;
           case 'left':
-            maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left - actualWidth });
+            maxLengthIndicator.css({
+              top: pos.top + pos.height / 2 - actualHeight / 2,
+              left: pos.left - actualWidth
+            });
             break;
           case 'right':
-            maxLengthIndicator.css({ top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width });
+            maxLengthIndicator.css({
+              top: pos.top + pos.height / 2 - actualHeight / 2,
+              left: pos.left + pos.width
+            });
             break;
           case 'bottom-right':
-            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width });
+            maxLengthIndicator.css({
+              top: pos.top + pos.height,
+              left: pos.left + pos.width
+            });
             break;
           case 'top-right':
-            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter });
+            maxLengthIndicator.css({
+              top: pos.top - actualHeight,
+              left: pos.left + inputOuter
+            });
             break;
           case 'top-left':
-            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left - outerWidth });
+            maxLengthIndicator.css({
+              top: pos.top - actualHeight,
+              left: pos.left - outerWidth
+            });
             break;
           case 'bottom-left':
-            maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left - outerWidth });
+            maxLengthIndicator.css({
+              top: pos.top + currentInput.outerHeight(),
+              left: pos.left - outerWidth
+            });
             break;
           case 'centered-right':
-            maxLengthIndicator.css({ top: pos.top + (actualHeight / 2), left: pos.left + inputOuter - outerWidth - 3 });
+            maxLengthIndicator.css({
+              top: pos.top + (actualHeight / 2),
+              left: pos.left + inputOuter - outerWidth - 3
+            });
             break;
 
             // Some more options for placements
           case 'bottom-right-inside':
-            maxLengthIndicator.css({ top: pos.top + pos.height, left: pos.left + pos.width - outerWidth });
+            maxLengthIndicator.css({
+              top: pos.top + pos.height,
+              left: pos.left + pos.width - outerWidth
+            });
             break;
           case 'top-right-inside':
-            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left + inputOuter - outerWidth });
+            maxLengthIndicator.css({
+              top: pos.top - actualHeight,
+              left: pos.left + inputOuter - outerWidth
+            });
             break;
           case 'top-left-inside':
-            maxLengthIndicator.css({ top: pos.top - actualHeight, left: pos.left });
+            maxLengthIndicator.css({
+              top: pos.top - actualHeight,
+              left: pos.left
+            });
             break;
           case 'bottom-left-inside':
-            maxLengthIndicator.css({ top: pos.top + currentInput.outerHeight(), left: pos.left });
+            maxLengthIndicator.css({
+              top: pos.top + currentInput.outerHeight(),
+              left: pos.left
+            });
             break;
         }
       }
@@ -454,7 +507,6 @@
               display: 'none',
               position: 'absolute',
               whiteSpace: 'nowrap',
-              //zIndex: 1099
               zIndex: options.zIndex
             }).html(maxlengthContent);
           }

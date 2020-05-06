@@ -1,20 +1,34 @@
 ## Changelog
 
+### 1.9.0
+
+* Add zIndex support by @ASKemp
+* Fixed file input counter (@djibe)
+* Update dependencies
+
+### 1.8.0
+
+* Dropped Grunt (*Unmaintained*)
+* Moved project to **NodeJS**
+* Changed default parameters for **Bootstrap 4.4.1** and updated docs
+* Fixed : build files located in `/dist` folder
+* TODO : unit tests with qunit, travis builds
+
 ### 1.7.0
 * Restructured distribution files position from root folder to /dist folder
 
 ### 1.6.1
-* Added more tests around the functionalities of the plugin.
+* Added more tests around the functionalities of the plugin
 * Fixed issues around the **alwaysShow** option
 
 ### 1.6.0
 * Added new custom events: maxlength.reposition, maxlength.shown, maxlength.hidden. Thanks to dr-nick.
-* Buped up required jQuery to 1.9.x
+* Bumped up required jQuery to 1.9.x
 * Added option `placement` for custom placement handler. Thanks to Kreegr
 * Extended `message` option. Now it can also be optionally a function. Thanks to Vincent Pizzo
 
 ### 1.5.7
-*   Fixed issue with bower
+* Fixed issue with bower
 
 ### 1.5.6
 *   Added over maxlength functionality with customMaxAttribute
@@ -22,15 +36,15 @@
 
 ### 1.5.5
 *   Implemented input event rather than keydown to improve usability
-*   Fixed jshint, jscs errors
+* Fixed jshint, jscs errors
 
 ### 1.5.4
 
-*   When an input with associated maxlength element is removed, maxlength is also removed.
+* When an input with associated maxlength element is removed, maxlength is also removed.
 
 ### 1.5.3
 
-*   Fixed #40, error on resize event.
+* Fixed #40, error on resize event.
 
 ### 1.5.2
 
