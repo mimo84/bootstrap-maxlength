@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "bootstrap": ">=2",
-    "jquery": ">=1.9"
+    "jquery": ">=3.5"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
