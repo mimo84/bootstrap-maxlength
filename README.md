@@ -11,7 +11,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
 * **threshold**: this is a number indicating how many chars are left to start displaying the indications. Default: ```0```.
 * **warningClass**: it's the class of the element with the indicator. Default is ```small form-text text-muted``` but can be changed to anything you'd like.
 * **limitReachedClass**: it's the class the element gets when the limit is reached. Default is ```small form-text text-danger``` and can be changed.
-* **ovreMaxClass**: it's the class that the element gets when the limit is exceeded. Default is ```''``` and can be changed.
+* **overMaxClass**: it's the class that the element gets when the limit is exceeded. Default is ```''``` and can be changed.
 * **separator**: represents the separator between the number of typed chars and total number of available chars. Default is ``` / ```.
 * **preText**: is a string of text that can be outputted in front of the indicator. preText is empty by default.
 * **postText**: is a string outputted after the indicator. postText is empty by default.
