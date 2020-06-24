@@ -37,7 +37,7 @@
           threshold: 0, // Represents how many chars left are needed to show up the counter
           warningClass: 'small form-text text-muted',
           limitReachedClass: 'small form-text text-danger',
-          overMaxClass: "",
+          overMaxClass: '',
           separator: ' / ',
           preText: '',
           postText: '',
