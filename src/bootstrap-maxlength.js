@@ -37,6 +37,7 @@
           threshold: 0, // Represents how many chars left are needed to show up the counter
           warningClass: 'small form-text text-muted',
           limitReachedClass: 'small form-text text-danger',
+          overMaxClass: "",
           separator: ' / ',
           preText: '',
           postText: '',
@@ -261,12 +262,20 @@
 
           if (remaining > 0) {
             if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass + ' ' + options.overMaxClass).addClass(options.warningClass));
             } else {
               hideRemaining(currentInput, maxLengthIndicator);
             }
           } else {
-            showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+            if (!options.overMaxClass) {
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+            } else {
+              if (remaining === 0) {
+                showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass + ' ' + options.overMaxClass).addClass(options.limitReachedClass));
+              } else {
+                showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass + ' ' + options.limitReachedClass).addClass(options.overMaxClass));
+              }
+            }
           }
         }
 
