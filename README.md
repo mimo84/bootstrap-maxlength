@@ -11,6 +11,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
 * **threshold**: this is a number indicating how many chars are left to start displaying the indications. Default: ```0```.
 * **warningClass**: it's the class of the element with the indicator. Default is ```small form-text text-muted``` but can be changed to anything you'd like.
 * **limitReachedClass**: it's the class the element gets when the limit is reached. Default is ```small form-text text-danger``` and can be changed.
+* **limitExceededClass**: it's the class that the element gets when the limit is exceeded. The default is ```''``` In this case, the limitReachedClass setting is used.
 * **separator**: represents the separator between the number of typed chars and total number of available chars. Default is ``` / ```.
 * **preText**: is a string of text that can be outputted in front of the indicator. preText is empty by default.
 * **postText**: is a string outputted after the indicator. postText is empty by default.
@@ -21,7 +22,8 @@ The indicator badge shows up on focusing on the element, and disappears when the
  * **utf8**: if true the input will count using utf8 bytesize/encoding.  For example: the '£' character is counted as two characters. Default: ```false```.
  * **showOnReady**: shows the badge as soon as it is added to the page, similar to alwaysShow. Default: ```false```.
  * **twoCharLinebreak**: count linebreak as 2 characters to match IE/Chrome textarea validation. Default: ```true```.
- * **customMaxAttribute**: String -- allows a custom attribute to display indicator without triggering native maxlength behaviour.  Ignored if value greater than a native maxlength attribute. 'overmax' class gets added when exceeded to allow user to implement form validation. Default is ```null```.
+ * **customMaxAttribute**: String -- allows a custom attribute to display indicator without triggering native maxlength behaviour.  Ignored if value greater than a native maxlength attribute. customMaxClass settings gets added when exceeded to allow user to implement form validation. Default is ```null```.
+ * **customMaxClass**: Set the class to be added with 'customMaxAttribute'. The default is 'overmax'.
  * **validate**: If the browser doesn't support the maxlength attribute, attempt to type more than the indicated chars, will be prevented. Default: ```false```.
  * **allowOverMax**: Will allow the input to be over the customMaxLength. Useful in soft max situations. Default `false`.
  * **zIndex**: Will set the counter z-elevation. Useful to fix elevation in modals or dialogs. Default `1099`.
