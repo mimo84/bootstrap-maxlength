@@ -37,6 +37,7 @@
           threshold: 0, // Represents how many chars left are needed to show up the counter
           warningClass: 'small form-text text-muted',
           limitReachedClass: 'small form-text text-danger',
+          limitExceededClass: '',
           separator: ' / ',
           preText: '',
           postText: '',
@@ -49,6 +50,7 @@
           appendToParent: false, // append the indicator to the input field's parent instead of body
           twoCharLinebreak: true, // count linebreak as 2 characters to match IE/Chrome textarea validation. As well as DB storage.
           customMaxAttribute: null, // null = use maxlength attribute and browser functionality, string = use specified attribute instead.
+          customMaxClass: 'overmax', // Class to add to the input field when the maxlength is exceeded.
           allowOverMax: false, // Form submit validation is handled on your own.  when maxlength has been exceeded 'overmax' class added to element
           zIndex: 1099
         };
@@ -261,21 +263,29 @@
 
           if (remaining > 0) {
             if (charsLeftThreshold(currentInput, options.threshold, maxLengthCurrentInput)) {
-              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass).addClass(options.warningClass));
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.limitReachedClass + ' ' + options.limitExceededClass).addClass(options.warningClass));
             } else {
               hideRemaining(currentInput, maxLengthIndicator);
             }
           } else {
-            showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+            if (!options.limitExceededClass) {
+              showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass).addClass(options.limitReachedClass));
+            } else {
+              if (remaining === 0) {
+                showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass + ' ' + options.limitExceededClass).addClass(options.limitReachedClass));
+              } else {
+                showRemaining(currentInput, maxLengthIndicator.removeClass(options.warningClass + ' ' + options.limitReachedClass).addClass(options.limitExceededClass));
+              }
+            }
           }
         }
 
         if (options.customMaxAttribute) {
           // class to use for form validation on custom maxlength attribute
           if (remaining < 0) {
-            currentInput.addClass('overmax');
+            currentInput.addClass(options.customMaxClass);
           } else {
-            currentInput.removeClass('overmax');
+            currentInput.removeClass(options.customMaxClass);
           }
         }
       }
