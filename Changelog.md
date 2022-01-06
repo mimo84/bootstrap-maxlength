@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.11.0
+
+- Moved **qunit** to dev dependencies
+
 ### 1.10.0
 
 ### 1.9.0
