@@ -5,6 +5,7 @@
 - Moved **qunit** to dev dependencies
 - Moved **Bootstrap** to peer dependencies
 - Allow **Bootstrap ^5.0.0**
+- Allow **jQuery ^3.6.0**
 
 ### 1.10.0
 
