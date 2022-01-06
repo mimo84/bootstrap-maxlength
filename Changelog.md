@@ -4,6 +4,7 @@
 
 - Moved **qunit** to dev dependencies
 - Moved **Bootstrap** to peer dependencies
+- Allow **Bootstrap ^5.0.0**
 
 ### 1.10.0
 

@@ -42,6 +42,6 @@
     "terser": "^4.6.13"
   },
   "peerDependencies": {
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1 || ^5.0.0"
   }
 }
