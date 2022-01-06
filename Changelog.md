@@ -3,6 +3,7 @@
 ### 1.11.0
 
 - Moved **qunit** to dev dependencies
+- Moved **Bootstrap** to peer dependencies
 
 ### 1.10.0
 
