@@ -15,7 +15,7 @@
                 showOnReady: false,
                 alwaysShow: true,
                 threshold: 0,
-                warningClass: "small form-text text-muted",
+                warningClass: "small form-text text-body-secondary",
                 limitReachedClass: "small form-text text-danger",
                 limitExceededClass: "",
                 separator: " / ",
@@ -291,9 +291,6 @@
                     });
                     break;
                 }
-            }
-            function isPlacementMutable() {
-                return options.placement === "bottom-right-inside" || options.placement === "top-right-inside" || typeof options.placement === "function" || options.message && typeof options.message === "function";
             }
             function getMaxLength(currentInput) {
                 var max = currentInput.attr("maxlength") || options.customMaxAttribute;

@@ -9,7 +9,7 @@ The indicator badge shows up on focusing on the element, and disappears when the
 
 * **alwaysShow**: if true the threshold will be ignored and the remaining length indication will be always showing up while typing or on focus on the input. Default: ```false```.
 * **threshold**: this is a number indicating how many chars are left to start displaying the indications. Default: ```0```.
-* **warningClass**: it's the class of the element with the indicator. Default is ```small form-text text-muted``` but can be changed to anything you'd like.
+* **warningClass**: it's the class of the element with the indicator. Default is ```small form-text text-body-secondary ``` but can be changed to anything you'd like.
 * **limitReachedClass**: it's the class the element gets when the limit is reached. Default is ```small form-text text-danger``` and can be changed.
 * **limitExceededClass**: it's the class that the element gets when the limit is exceeded. The default is ```''``` In this case, the limitReachedClass setting is used.
 * **separator**: represents the separator between the number of typed chars and total number of available chars. Default is ``` / ```.

@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-maxlength",
-  "version": "1.10.0",
-  "version_short": "1.10",
+  "version": "2.0.0",
+  "version_short": "2.0",
   "description": "A visual feedback indicator for the MaxLength attribute",
   "main": "dist/bootstrap-maxlength.js",
   "repository": {
@@ -31,15 +31,15 @@
   },
   "scripts": {
     "test": "eslint \"src/**\" --report-unused-disable-directives",
-    "dist": "terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.js -b && terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.min.js -c"
+    "dist": "terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.js --format beautify && terser src/bootstrap-maxlength.js -o dist/bootstrap-maxlength.min.js -c"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "jquery": "^3.5.1",
-    "qunit": "^2.10.0"
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "qunit": "^2.22.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "terser": "^4.6.13"
+    "eslint": "^9.13.0",
+    "terser": "^5.36.0"
   }
 }

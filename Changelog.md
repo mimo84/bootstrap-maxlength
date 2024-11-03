@@ -1,5 +1,11 @@
 ## Changelog
 
+### 2.0.0
+
+- Updated bootstrap 5.3.3
+- Updated jQuery 3.7.1
+- Updated qUnit 2.22
+
 ### 1.10.0
 
 ### 1.9.0

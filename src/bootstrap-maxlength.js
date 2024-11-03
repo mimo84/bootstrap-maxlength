@@ -35,7 +35,7 @@
           showOnReady: false, // true to always show when indicator is ready
           alwaysShow: true, // if true the indicator it's always shown.
           threshold: 0, // Represents how many chars left are needed to show up the counter
-          warningClass: 'small form-text text-muted',
+          warningClass: 'small form-text text-body-secondary',
           limitReachedClass: 'small form-text text-danger',
           limitExceededClass: '',
           separator: ' / ',
@@ -463,17 +463,6 @@
       }
 
       /**
-       * This function returns true if the indicator position needs to
-       * be recalculated when the currentInput changes
-       *
-       * @return {boolean}
-       *
-       */
-      function isPlacementMutable() {
-        return options.placement === 'bottom-right-inside' || options.placement === 'top-right-inside' || typeof options.placement === 'function' || (options.message && typeof options.message === 'function');
-      }
-
-      /**
        * This function retrieves the maximum length of currentInput
        *
        * @param currentInput
@@ -586,10 +575,6 @@
           } else {
             manageRemainingVisibility(remaining, currentInput, maxLengthCurrentInput, maxLengthIndicator);
           }
-
-          // if (isPlacementMutable()) {
-          //   place(currentInput, maxLengthIndicator);
-          // }
 
           return output;
         });
